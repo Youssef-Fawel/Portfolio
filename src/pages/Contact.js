@@ -59,6 +59,12 @@ const Contact = () => {
     }
   };
 
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -76,17 +82,20 @@ const Contact = () => {
         message: 'Sending your message...'
       });
       
-      // Prepare form data for Netlify
-      const form = e.target;
-      const formData = new FormData(form);
+      // Prepare form data with form-name included
+      const submissionData = {
+        'form-name': 'contact',
+        ...formData,
+      };
       
       // This is the key part for Netlify forms
       fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString()
+        body: encode(submissionData)
       })
         .then(() => {
+          console.log("Form submission successful!");
           setFormStatus({
             submitted: true,
             success: true,
