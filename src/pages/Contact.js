@@ -6,7 +6,6 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
     message: ''
   });
   
@@ -32,10 +31,6 @@ const Contact = () => {
       errors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       errors.email = "Email address is invalid";
-    }
-    
-    if (!formData.subject.trim()) {
-      errors.subject = "Subject is required";
     }
     
     if (!formData.message.trim()) {
@@ -102,7 +97,6 @@ const Contact = () => {
           setFormData({
             name: '',
             email: '',
-            subject: '',
             message: ''
           });
           
@@ -235,7 +229,7 @@ const Contact = () => {
                 </motion.div>
               )}
               
-              {/* This is the key part for Netlify forms - the form name must match what's in the hidden input */}
+              {/* Simplified form structure for Netlify */}
               <form
                 name="contact"
                 method="POST"
@@ -252,57 +246,38 @@ const Contact = () => {
                   </label>
                 </p>
                 
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <div className="input-container">
-                      <i className="fas fa-user"></i>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Your name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className={formErrors.name ? 'error' : ''}
-                      />
-                    </div>
-                    {formErrors.name && <div className="error-message">{formErrors.name}</div>}
+                <div className="form-group">
+                  <label htmlFor="name">Name</label>
+                  <div className="input-container">
+                    <i className="fas fa-user"></i>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      placeholder="Your name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className={formErrors.name ? 'error' : ''}
+                    />
                   </div>
-                  
-                  <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <div className="input-container">
-                      <i className="fas fa-envelope"></i>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Your email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className={formErrors.email ? 'error' : ''}
-                      />
-                    </div>
-                    {formErrors.email && <div className="error-message">{formErrors.email}</div>}
-                  </div>
+                  {formErrors.name && <div className="error-message">{formErrors.name}</div>}
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="subject">Subject</label>
+                  <label htmlFor="email">Email</label>
                   <div className="input-container">
-                    <i className="fas fa-file-alt"></i>
+                    <i className="fas fa-envelope"></i>
                     <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      placeholder="Subject of your message"
-                      value={formData.subject}
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="Your email"
+                      value={formData.email}
                       onChange={handleChange}
-                      className={formErrors.subject ? 'error' : ''}
+                      className={formErrors.email ? 'error' : ''}
                     />
                   </div>
-                  {formErrors.subject && <div className="error-message">{formErrors.subject}</div>}
+                  {formErrors.email && <div className="error-message">{formErrors.email}</div>}
                 </div>
                 
                 <div className="form-group">
