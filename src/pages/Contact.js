@@ -67,13 +67,16 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Form submission started");
     
     // Validate form before submission
     if (!validateForm()) {
+      console.log("Form validation failed");
       return;
     }
     
     setIsSubmitting(true);
+    console.log("Submitting form data:", formData);
     
     try {
       setFormStatus({
@@ -88,12 +91,23 @@ const Contact = () => {
         ...formData,
       };
       
+      console.log("Encoded form data:", encode(submissionData));
+      
       // This is the key part for Netlify forms
       fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        headers: { 
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
         body: encode(submissionData)
       })
+        .then(response => {
+          console.log("Form submission response:", response);
+          if (!response.ok) {
+            throw new Error(`Form submission failed: ${response.status}`);
+          }
+          return response;
+        })
         .then(() => {
           console.log("Form submission successful!");
           setFormStatus({
@@ -242,6 +256,7 @@ const Contact = () => {
               <form
                 name="contact"
                 method="POST"
+                action="/thank-you"
                 data-netlify="true"
                 netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
