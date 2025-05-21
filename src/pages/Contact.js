@@ -330,7 +330,6 @@ const Contact = () => {
                     {isSubmitting ? (
                       <>
                         <span className="spinner"></span>
-                        <span>Sending...</span>
                       </>
                     ) : (
                       <>
