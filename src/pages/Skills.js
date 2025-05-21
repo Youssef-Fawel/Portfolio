@@ -82,8 +82,9 @@ const Skills = () => {
         category: 'Development Tools',
         skills: [
           { name: 'Git & GitHub', level: 85 },
+          { name: 'Postman', level: 85 },
           { name: 'VS Code', level: 90 },
-          { name: 'Android Studio', level: 78 }, // Added Android Studio
+          { name: 'Android Studio', level: 78 }, 
           { name: 'Webpack', level: 65 },
           { name: 'npm/yarn', level: 80 },
         ]
