@@ -35,7 +35,7 @@ const Footer = () => {
             </a>
           </div>
           <div className="copyright">
-            <span>© {currentYear} | Designed by <Link to="/cv">Youssef Fawel</Link></span>
+            <span>© {currentYear} | Developed and Designed by <Link to="/cv">Youssef Fawel</Link></span>
           </div>
         </div>
       </div>
