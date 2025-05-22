@@ -20,14 +20,16 @@ const Projects = () => {
   const categories = ['all', ...new Set(projectsData.map(project => project.category))];
   
   // Filter projects based on category
-  const filteredProjects = activeCategory === 'all' 
-    ? projectsData 
+  const filteredProjects = activeCategory === 'all'
+    ? projectsData
     : projectsData.filter(project => project.category === activeCategory);
   
   const totalSlides = filteredProjects.length;
   
   // Use useCallback to memoize these functions so they don't change on every render
   const handlePrevSlide = useCallback(() => {
+    if (totalSlides === 0) return; // Guard clause to prevent errors with empty arrays
+    
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
     // Pause auto-play temporarily when user interacts
     setIsAutoPlaying(false);
@@ -36,6 +38,8 @@ const Projects = () => {
   }, [totalSlides]);
   
   const handleNextSlide = useCallback(() => {
+    if (totalSlides === 0) return; // Guard clause to prevent errors with empty arrays
+    
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
     // Pause auto-play temporarily when user interacts
     setIsAutoPlaying(false);
@@ -43,10 +47,10 @@ const Projects = () => {
     autoPlayRef.current = setTimeout(() => setIsAutoPlaying(true), 5000);
   }, [totalSlides]);
   
-  // Reset current slide when category changes
+  // Reset current slide when category changes or when filtered projects change
   useEffect(() => {
     setCurrentSlide(0);
-  }, [activeCategory]);
+  }, [activeCategory, filteredProjects.length]);
   
   // Auto-slide effect
   useEffect(() => {
@@ -118,8 +122,13 @@ const Projects = () => {
   };
   
   // Progress indicator calculation
-  const progressPercentage = ((currentSlide + 1) / totalSlides) * 100;
+  const progressPercentage = totalSlides > 0 ? ((currentSlide + 1) / totalSlides) * 100 : 0;
 
+  // Safety check to ensure currentSlide is valid
+  if (currentSlide >= totalSlides && totalSlides > 0) {
+    setCurrentSlide(0);
+  }
+  
   return (
     <section className="projects-section" id="projects">
       <div className="projects-container">
@@ -144,7 +153,7 @@ const Projects = () => {
         </div>
         
         <div className="projects-content">
-          <div 
+          <div
             className="projects-slider"
             ref={sliderRef}
             onTouchStart={handleTouchStart}
@@ -152,48 +161,52 @@ const Projects = () => {
             onTouchEnd={handleTouchEnd}
           >
             <AnimatePresence mode="wait">
-              <motion.div
-                key={currentSlide}
-                className="project-slide"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.5 }}
-              >
-                {filteredProjects.length > 0 ? (
+              {filteredProjects.length > 0 ? (
+                <motion.div
+                  key={currentSlide}
+                  className="project-slide"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.5 }}
+                >
                   <div className="project-card">
                     <div className="project-image">
-                      <img 
-                        src={filteredProjects[currentSlide].image} 
-                        alt={filteredProjects[currentSlide].title} 
-                      />
+                      {filteredProjects[currentSlide] && filteredProjects[currentSlide].image && (
+                        <img
+                          src={filteredProjects[currentSlide].image}
+                          alt={filteredProjects[currentSlide].title || 'Project image'}
+                        />
+                      )}
                       <div className="project-category">
-                        <span>{filteredProjects[currentSlide].category}</span>
+                        <span>{filteredProjects[currentSlide]?.category || 'Uncategorized'}</span>
                       </div>
                     </div>
                     <div className="project-info">
-                      <h3 className="project-title">{filteredProjects[currentSlide].title}</h3>
+                      <h3 className="project-title">{filteredProjects[currentSlide]?.title || 'Untitled Project'}</h3>
                       <p className="project-description">
-                        {filteredProjects[currentSlide].shortDescription || 
-                          filteredProjects[currentSlide].description.substring(0, 150) + '...'}
+                        {filteredProjects[currentSlide]?.shortDescription || 
+                          (filteredProjects[currentSlide]?.description && 
+                            filteredProjects[currentSlide].description.substring(0, 150) + '...') || 
+                          'No description available'}
                       </p>
                       <div className="project-tags">
-                        {filteredProjects[currentSlide].technologies.map((tech, i) => (
+                        {filteredProjects[currentSlide]?.technologies?.map((tech, i) => (
                           <span key={i} className="project-tag">{tech}</span>
-                        ))}
+                        )) || <span className="project-tag">No technologies specified</span>}
                       </div>
                       <div className="project-actions">
-                        <button 
+                        <button
                           className="view-project-btn"
-                          onClick={() => openModal(filteredProjects[currentSlide].id)}
+                          onClick={() => openModal(filteredProjects[currentSlide]?.id)}
                         >
                           <span>Learn More</span>
                           <i className="fas fa-arrow-right"></i>
                         </button>
-                        {filteredProjects[currentSlide].liveUrl && (
-                          <a 
-                            href={filteredProjects[currentSlide].liveUrl} 
-                            target="_blank" 
+                        {filteredProjects[currentSlide]?.liveUrl && (
+                          <a
+                            href={filteredProjects[currentSlide].liveUrl}
+                            target="_blank"
                             rel="noopener noreferrer"
                             className="live-demo-btn"
                           >
@@ -204,33 +217,38 @@ const Projects = () => {
                       </div>
                     </div>
                   </div>
-                ) : (
-                  <div className="no-projects">
-                    <i className="fas fa-folder-open"></i>
-                    <h3>No projects found</h3>
-                    <p>There are no projects in this category yet.</p>
-                    <button 
-                      className="reset-filter-btn"
-                      onClick={() => setActiveCategory('all')}
-                    >
-                      View All Projects
-                    </button>
-                  </div>
-                )}
-              </motion.div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  className="no-projects"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <i className="fas fa-folder-open"></i>
+                  <h3>No projects found</h3>
+                  <p>There are no projects in this category yet.</p>
+                  <button
+                    className="reset-filter-btn"
+                    onClick={() => setActiveCategory('all')}
+                  >
+                    View All Projects
+                  </button>
+                </motion.div>
+              )}
             </AnimatePresence>
             
             {filteredProjects.length > 0 && (
               <>
-                <button 
-                  className="nav-button prev-button" 
+                <button
+                  className="nav-button prev-button"
                   onClick={handlePrevSlide}
                   aria-label="Previous project"
                 >
                   <i className="fas fa-chevron-left"></i>
                 </button>
-                <button 
-                  className="nav-button next-button" 
+                <button
+                  className="nav-button next-button"
                   onClick={handleNextSlide}
                   aria-label="Next project"
                 >
@@ -263,14 +281,14 @@ const Projects = () => {
                   {currentSlide + 1} / {totalSlides}
                 </div>
                 <div className="progress-bar">
-                  <div 
+                  <div
                     className="progress-indicator"
                     style={{ width: `${progressPercentage}%` }}
                   ></div>
                 </div>
               </div>
               
-              <button 
+              <button
                 className={`autoplay-toggle ${isAutoPlaying ? 'active' : ''}`}
                 onClick={() => setIsAutoPlaying(!isAutoPlaying)}
                 aria-label={isAutoPlaying ? 'Pause slideshow' : 'Play slideshow'}
@@ -283,9 +301,9 @@ const Projects = () => {
         
         {filteredProjects.length > 0 && (
           <div className="projects-cta">
-            <a 
-              href="https://github.com/Youssef-Fawel" 
-              target="_blank" 
+            <a
+              href="https://github.com/Youssef-Fawel"
+              target="_blank"
               rel="noopener noreferrer"
               className="github-link"
             >
