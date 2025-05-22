@@ -22,7 +22,6 @@ const Navbar = () => {
         setScrolled(false);
       }
     };
-
     // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
     
@@ -48,8 +47,8 @@ const Navbar = () => {
       const menu = document.querySelector('.menu');
       const menuBtn = document.querySelector('.menu-btn');
       
-      if (isMenuActive && menu && menuBtn &&
-          !menu.contains(event.target) &&
+      if (isMenuActive && menu && menuBtn && 
+          !menu.contains(event.target) && 
           !menuBtn.contains(event.target)) {
         setIsMenuActive(false);
       }
@@ -79,7 +78,12 @@ const Navbar = () => {
               <circle cx="25" cy="25" r="20" fill="#4db5ff" />
               <text x="25" y="32" fontFamily="Arial" fontSize="24" fill="white" textAnchor="middle">YF</text>
             </svg>
-            {!scrolled && <span className="logo-text">Youssef<span>Fawel</span></span>}
+            {!scrolled && (
+              <span className="logo-text">
+                <span className="logo-first">Youssef</span>
+                <span className="logo-last">Fawel</span>
+              </span>
+            )}
           </Link>
         </div>
         
