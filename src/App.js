@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './styles/App.css';
+import './App.css';
 
 // Components
 import Navbar from './components/Navbar';
@@ -32,8 +32,13 @@ function App() {
   if (isLoading) {
     return (
       <div className="loading-screen">
-        <div className="loader"></div>
-        <p>Loading amazing content...</p>
+        <div className="loading-content">
+          <div className="loading-spinner">
+            <div className="spinner-circle"></div>
+            <div className="spinner-circle-dot"></div>
+          </div>
+          <p className="loading-text">Loading amazing content...</p>
+        </div>
       </div>
     );
   }
