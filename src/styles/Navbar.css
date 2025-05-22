@@ -34,7 +34,7 @@
   color: #1e3c72; /* Dark blue for logo text when scrolled */
 }
 
-.navbar.scrolled .logo a span {
+.navbar.scrolled .logo-last {
   color: #4db5ff; /* Keep accent color for logo span */
 }
 
@@ -63,9 +63,12 @@
   transition: opacity 0.3s ease;
 }
 
-.navbar .logo a span {
-  color: #4db5ff; /* Your accent color */
-  transition: all 0.3s ease;
+.navbar .logo-first {
+  color: #fff; /* White color for "Youssef" */
+}
+
+.navbar .logo-last {
+  color: #4db5ff; /* Blue color for "Fawel" */
 }
 
 .navbar .menu li {
