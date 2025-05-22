@@ -4,12 +4,33 @@ import '../styles/Navbar.css';
 
 const Navbar = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   
   // Close menu when route changes
   useEffect(() => {
     setIsMenuActive(false);
   }, [location]);
+
+  // Handle scroll events
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if page is scrolled more than 100px
+      if (window.scrollY > 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Clean up
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const toggleMenu = (e) => {
     e.preventDefault();
@@ -27,8 +48,8 @@ const Navbar = () => {
       const menu = document.querySelector('.menu');
       const menuBtn = document.querySelector('.menu-btn');
       
-      if (isMenuActive && menu && menuBtn && 
-          !menu.contains(event.target) && 
+      if (isMenuActive && menu && menuBtn &&
+          !menu.contains(event.target) &&
           !menuBtn.contains(event.target)) {
         setIsMenuActive(false);
       }
@@ -50,7 +71,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar always-blue">
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="max-width">
         <div className="logo">
           <Link to="/">
@@ -58,7 +79,7 @@ const Navbar = () => {
               <circle cx="25" cy="25" r="20" fill="#4db5ff" />
               <text x="25" y="32" fontFamily="Arial" fontSize="24" fill="white" textAnchor="middle">YF</text>
             </svg>
-            Youssef<span>Fawel</span>
+            {!scrolled && <span className="logo-text">Youssef<span>Fawel</span></span>}
           </Link>
         </div>
         
