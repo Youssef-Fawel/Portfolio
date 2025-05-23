@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Contact.css';
 
 const Contact = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -96,8 +98,8 @@ const Contact = () => {
       // This is the key part for Netlify forms
       fetch("/", {
         method: "POST",
-        headers: { 
-          "Content-Type": "application/x-www-form-urlencoded"
+        headers: {
+           "Content-Type": "application/x-www-form-urlencoded"
         },
         body: encode(submissionData)
       })
@@ -110,11 +112,6 @@ const Contact = () => {
         })
         .then(() => {
           console.log("Form submission successful!");
-          setFormStatus({
-            submitted: true,
-            success: true,
-            message: 'Thank you! Your message has been sent successfully.'
-          });
           
           // Reset form
           setFormData({
@@ -123,14 +120,8 @@ const Contact = () => {
             message: ''
           });
           
-          // Reset status after 5 seconds
-          setTimeout(() => {
-            setFormStatus({
-              submitted: false,
-              success: false,
-              message: ''
-            });
-          }, 5000);
+          // Navigate to thank-you page
+          navigate('/thank-you');
         })
         .catch(error => {
           console.error('Error submitting form:', error);
@@ -256,7 +247,6 @@ const Contact = () => {
               <form
                 name="contact"
                 method="POST"
-                action="/thank-you"
                 data-netlify="true"
                 netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
