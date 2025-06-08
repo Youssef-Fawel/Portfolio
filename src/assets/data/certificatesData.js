@@ -33,7 +33,7 @@ const certificatesData = [
     id: 3,
     title: "AWS Academy Graduate - AWS Academy Cloud Foundations",
     organization: "Amazon Web Services (AWS)",
-    dateIssued: "December 2023",
+    dateIssued: "December 2024",
     expirationDate: null,
     credentialId: "b14f4199-cd36-4df6-8680-75747ebd17b4",
     description: "This certification provides a comprehensive introduction to cloud computing concepts and AWS services. It covers fundamental AWS services related to compute, storage, databases, and networking. The program includes hands-on labs to develop practical skills in using the AWS Management Console and understanding cloud service models.",
