@@ -123,7 +123,7 @@ const Projects = () => {
   
   // Progress indicator calculation
   const progressPercentage = totalSlides > 0 ? ((currentSlide + 1) / totalSlides) * 100 : 0;
-
+  
   // Safety check to ensure currentSlide is valid
   if (currentSlide >= totalSlides && totalSlides > 0) {
     setCurrentSlide(0);
@@ -185,10 +185,10 @@ const Projects = () => {
                     <div className="project-info">
                       <h3 className="project-title">{filteredProjects[currentSlide]?.title || 'Untitled Project'}</h3>
                       <p className="project-description">
-                        {filteredProjects[currentSlide]?.shortDescription || 
-                          (filteredProjects[currentSlide]?.description && 
-                            filteredProjects[currentSlide].description.substring(0, 150) + '...') || 
-                          'No description available'}
+                        {filteredProjects[currentSlide]?.shortDescription ||
+                           (filteredProjects[currentSlide]?.description &&
+                             filteredProjects[currentSlide].description.substring(0, 150) + '...') ||
+                           'No description available'}
                       </p>
                       <div className="project-tags">
                         {filteredProjects[currentSlide]?.technologies?.map((tech, i) => (
