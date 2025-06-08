@@ -1,5 +1,43 @@
 const projectsData = [
   {
+  id: 17,
+  title: "Digital Meeting Minutes Management System",
+  description: "A comprehensive MERN Stack web application for digitalizing corporate meeting minutes with electronic signatures and secure archiving. Built as a Final Year Project in collaboration with teammate Ilef Neji, this platform offers a modern and intuitive interface for teams to create, edit, and store meeting records digitally with enhanced accuracy and convenience.",
+  image: require("../images/meeting-minutes.png"),
+  category: "web",
+  technologies: ["React", "Node.js", "MongoDB", "JWT", "Express.js", "SMTP"],
+  features: [
+    "SMTP Integration for real-time automated email notifications",
+    "AI-Powered error detection and correction for meeting summaries",
+    "Role-based access control for admins and users",
+    "Advanced search and filtering for meeting records",
+    "Electronic signatures and secure archiving",
+    "Clean and intuitive UI/UX design focused on productivity"
+  ],
+  demoLink: "null",
+  codeLink: "null",
+  completed: true
+},
+  {
+  id: 17,
+  title: "GuardPet – Pet Services Mobile App Design",
+  description: "A comprehensive mobile application design for pet services featuring optimized user experience and modern interface. This design project focuses on creating an intuitive and engaging platform for pet owners to access various services for their beloved companions. The design emphasizes user-centered approach with clean aesthetics and seamless navigation.",
+  image: require("../images/guardpet-design.png"),
+  category: "design",
+  technologies: ["Figma", "Adobe XD", "Prototyping", "User Research", "UI/UX Design"],
+  features: [
+    "Modern and intuitive mobile interface design",
+    "User research and persona development",
+    "Interactive prototyping and wireframing",
+    "Optimized user experience flow",
+    "Pet service booking interface",
+    "Responsive design principles for mobile devices"
+  ],
+  demoLink: "null",
+  codeLink: "",
+  completed: true
+},
+  {
     id: 1,
     title: "Albert Einstein Tribute",
     description: "An interactive web tribute dedicated to Albert Einstein, showcasing his life, achievements, and lasting impact on science. The site features dynamic animations, including a unique intro with Einstein's famous E=mc² equation, and sections highlighting his qualities, achievements, and legacy.",
@@ -14,8 +52,8 @@ const projectsData = [
       "Responsive layout",
       "Dynamic animations with GSAP"
     ],
-    demoLink: "https://einstein-tribute.netlify.app",
-    codeLink: "https://github.com/Youssef-Fawel/einstein-tribute",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   },
   {
@@ -33,8 +71,8 @@ const projectsData = [
       "Conversion history",
       "Copy results to clipboard"
     ],
-    demoLink: "https://temperature-converter-tool.netlify.app",
-    codeLink: "https://github.com/Youssef-Fawel/temperature-converter",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   },
   {
@@ -52,8 +90,8 @@ const projectsData = [
       "High score leaderboard",
       "Sound effects"
     ],
-    demoLink: "https://number-guessing-game-app.netlify.app",
-    codeLink: "https://github.com/Youssef-Fawel/number-guessing-game",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   },
   {
@@ -71,8 +109,8 @@ const projectsData = [
       "Responsive design",
       "Form validation"
     ],
-    demoLink: "https://contact-management-system.netlify.app",
-    codeLink: "https://github.com/Youssef-Fawel/contact-management",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   },
   {
@@ -90,8 +128,8 @@ const projectsData = [
       "Hint system",
       "Backtracking algorithm implementation"
     ],
-    demoLink: "https://sudoku-solver-app.netlify.app",
-    codeLink: "https://github.com/Youssef-Fawel/sudoku-solver",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   },
   {
@@ -109,8 +147,8 @@ const projectsData = [
       "Visual data analysis",
       "API access to scraped data"
     ],
-    demoLink: "https://web-scraping-tool.netlify.app",
-    codeLink: "https://github.com/Youssef-Fawel/web-scraping-tool",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   },
   {
@@ -128,8 +166,8 @@ const projectsData = [
       "Calculation history",
       "Responsive design"
     ],
-    demoLink: "https://js-calculator-app.netlify.app",
-    codeLink: "https://github.com/Youssef-Fawel/javascript-calculator",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   },
   {
@@ -147,8 +185,8 @@ const projectsData = [
       "User profile with dietary preferences",
       "Exercise routines and tracking"
     ],
-    demoLink: "https://nutrition-meal-planner.netlify.app",
-    codeLink: "https://github.com/Youssef-Fawel/nutrition-meal-planner",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   },
   {
@@ -166,8 +204,8 @@ const projectsData = [
       "Mobile responsive design",
       "User permission management"
     ],
-    demoLink: "https://ecosmarthome.netlify.app",
-    codeLink: "",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   },
   {
@@ -185,8 +223,8 @@ const projectsData = [
       "Order history and tracking",
       "Admin dashboard for product management"
     ],
-    demoLink: "",
-    codeLink: "",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   },
   {
@@ -204,8 +242,8 @@ const projectsData = [
       "Progress tracking and reporting",
       "Mobile responsive design"
     ],
-    demoLink: "https://task-management-app.netlify.app",
-    codeLink: "https://github.com/Youssef-Fawel/task-management",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   },
   {
@@ -223,8 +261,8 @@ const projectsData = [
       "Content delivery system",
       "User authentication and authorization"
     ],
-    demoLink: "https://elearning-platform.netlify.app",
-    codeLink: "https://github.com/Youssef-Fawel/elearning-platform",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   },
   {
@@ -242,8 +280,8 @@ const projectsData = [
       "Dark mode interface",
       "Export reports to PDF/Excel"
     ],
-    demoLink: "https://product-management-system.netlify.app",
-    codeLink: "https://github.com/Youssef-Fawel/product-management",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   },
   {
@@ -261,8 +299,8 @@ const projectsData = [
       "User ratings and reviews",
       "Watchlist management"
     ],
-    demoLink: "https://movie-recommendation-engine.netlify.app",
-    codeLink: "https://github.com/Youssef-Fawel/movie-recommendation",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   },
   {
@@ -280,8 +318,8 @@ const projectsData = [
       "MVC architecture implementation",
       "Responsive design with Thymeleaf templates"
     ],
-    demoLink: "https://online-art-gallery.herokuapp.com",
-    codeLink: "https://github.com/Youssef-Fawel/online-art-gallery",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   },
   {
@@ -299,8 +337,8 @@ const projectsData = [
       "Analyse temporelle des données météorologiques",
       "Visualisations interactives avec Plotly"
     ],
-    demoLink: "https://weather-visualization-dashboard.netlify.app",
-    codeLink: "https://github.com/Youssef-Fawel/weather-visualization",
+    demoLink: "null",
+    codeLink: "null",
     completed: true
   }
 ];
