@@ -2,7 +2,7 @@ const projectsData = [
   {
   id: 17,
   title: "Digital Meeting Minutes Management System",
-  description: "A comprehensive MERN Stack web application for digitalizing corporate meeting minutes with electronic signatures and secure archiving. Built as a Final Year Project in collaboration with teammate Ilef Neji, this platform offers a modern and intuitive interface for teams to create, edit, and store meeting records digitally with enhanced accuracy and convenience.",
+  description: "A comprehensive MERN Stack web application for digitalizing corporate meeting minutes with electronic signatures and secure archiving. Built as a Final Year Project, this platform offers a modern and intuitive interface for teams to create, edit, and store meeting records digitally with enhanced accuracy and convenience.",
   image: require("../images/meeting-minutes.png"),
   category: "web",
   technologies: ["React", "Node.js", "MongoDB", "JWT", "Express.js", "SMTP"],
