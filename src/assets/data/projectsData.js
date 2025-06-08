@@ -1,43 +1,5 @@
 const projectsData = [
   {
-  id: 17,
-  title: "Digital Meeting Minutes Management System",
-  description: "A comprehensive MERN Stack web application for digitalizing corporate meeting minutes with electronic signatures and secure archiving. Built as a Final Year Project, this platform offers a modern and intuitive interface for teams to create, edit, and store meeting records digitally with enhanced accuracy and convenience.",
-  image: require("../images/meeting-minutes.png"),
-  category: "web",
-  technologies: ["React", "Node.js", "MongoDB", "JWT", "Express.js", "SMTP"],
-  features: [
-    "SMTP Integration for real-time automated email notifications",
-    "AI-Powered error detection and correction for meeting summaries",
-    "Role-based access control for admins and users",
-    "Advanced search and filtering for meeting records",
-    "Electronic signatures and secure archiving",
-    "Clean and intuitive UI/UX design focused on productivity"
-  ],
-  demoLink: "null",
-  codeLink: "null",
-  completed: true
-},
-  {
-  id: 17,
-  title: "GuardPet – Pet Services Mobile App Design",
-  description: "A comprehensive mobile application design for pet services featuring optimized user experience and modern interface. This design project focuses on creating an intuitive and engaging platform for pet owners to access various services for their beloved companions. The design emphasizes user-centered approach with clean aesthetics and seamless navigation.",
-  image: require("../images/guardpet-design.png"),
-  category: "design",
-  technologies: ["Figma", "Adobe XD", "Prototyping", "User Research", "UI/UX Design"],
-  features: [
-    "Modern and intuitive mobile interface design",
-    "User research and persona development",
-    "Interactive prototyping and wireframing",
-    "Optimized user experience flow",
-    "Pet service booking interface",
-    "Responsive design principles for mobile devices"
-  ],
-  demoLink: "null",
-  codeLink: "",
-  completed: true
-},
-  {
     id: 1,
     title: "Albert Einstein Tribute",
     description: "An interactive web tribute dedicated to Albert Einstein, showcasing his life, achievements, and lasting impact on science. The site features dynamic animations, including a unique intro with Einstein's famous E=mc² equation, and sections highlighting his qualities, achievements, and legacy.",
@@ -101,7 +63,7 @@ const projectsData = [
     image: require("../images/Contact.png"),
     category: "web",
     technologies: ["HTML", "CSS", "JavaScript", "PHP", "SQL"],
-    features: [
+        features: [
       "Add, edit, and delete contacts",
       "Contact details storage",
       "Search and filter contacts",
@@ -340,7 +302,46 @@ const projectsData = [
     demoLink: "null",
     codeLink: "null",
     completed: true
+  },
+  {
+    id: 17,
+    title: "Digital Meeting Minutes Management System",
+    description: "A comprehensive MERN Stack web application for digitalizing corporate meeting minutes with electronic signatures and secure archiving. Built as a Final Year Project, this platform offers a modern and intuitive interface for teams to create, edit, and store meeting records digitally with enhanced accuracy and convenience.",
+    image: require("../images/meeting-minutes.png"),
+    category: "web",
+    technologies: ["React", "Node.js", "MongoDB", "JWT", "Express.js", "SMTP"],
+    features: [
+      "SMTP Integration for real-time automated email notifications",
+      "AI-Powered error detection and correction for meeting summaries",
+      "Role-based access control for admins and users",
+      "Advanced search and filtering for meeting records",
+      "Electronic signatures and secure archiving",
+      "Clean and intuitive UI/UX design focused on productivity"
+    ],
+    demoLink: "null",
+    codeLink: "null",
+    completed: true
+  },
+  {
+    id: 18,
+    title: "GuardPet – Pet Services Mobile App Design",
+    description: "A comprehensive mobile application design for pet services featuring optimized user experience and modern interface. This design project focuses on creating an intuitive and engaging platform for pet owners to access various services for their beloved companions. The design emphasizes user-centered approach with clean aesthetics and seamless navigation.",
+    image: require("../images/guardpet-design.png"),
+    category: "design",
+    technologies: ["Figma", "Adobe XD", "Prototyping", "User Research", "UI/UX Design"],
+    features: [
+      "Modern and intuitive mobile interface design",
+      "User research and persona development",
+      "Interactive prototyping and wireframing",
+      "Optimized user experience flow",
+      "Pet service booking interface",
+      "Responsive design principles for mobile devices"
+    ],
+    demoLink: "null",
+    codeLink: "",
+    completed: true
   }
 ];
 
 export default projectsData;
+
