@@ -123,7 +123,7 @@ const Projects = () => {
   
   // Progress indicator calculation
   const progressPercentage = totalSlides > 0 ? ((currentSlide + 1) / totalSlides) * 100 : 0;
-  
+
   // Safety check to ensure currentSlide is valid
   if (currentSlide >= totalSlides && totalSlides > 0) {
     setCurrentSlide(0);
@@ -171,24 +171,54 @@ const Projects = () => {
                   transition={{ duration: 0.5 }}
                 >
                   <div className="project-card">
-                    <div className="project-image">
+                    <div className="project-image-container">
                       {filteredProjects[currentSlide] && filteredProjects[currentSlide].image && (
-                        <img
-                          src={filteredProjects[currentSlide].image}
-                          alt={filteredProjects[currentSlide].title || 'Project image'}
-                        />
+                        <div className="project-image-wrapper">
+                          <img
+                            src={filteredProjects[currentSlide].image}
+                            alt={filteredProjects[currentSlide].title || 'Project image'}
+                            className="project-image"
+                          />
+                          <div className="image-overlay">
+                            <div className="overlay-content">
+                              <button
+                                className="preview-btn"
+                                onClick={() => openModal(filteredProjects[currentSlide]?.id)}
+                              >
+                                <i className="fas fa-search-plus"></i>
+                                <span>View Details</span>
+                              </button>
+                              {filteredProjects[currentSlide]?.liveUrl && (
+                                <a
+                                  href={filteredProjects[currentSlide].liveUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="preview-link"
+                                >
+                                  <i className="fas fa-external-link-alt"></i>
+                                  <span>Live Demo</span>
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        </div>
                       )}
                       <div className="project-category">
                         <span>{filteredProjects[currentSlide]?.category || 'Uncategorized'}</span>
                       </div>
                     </div>
                     <div className="project-info">
-                      <h3 className="project-title">{filteredProjects[currentSlide]?.title || 'Untitled Project'}</h3>
+                      <div className="project-header">
+                        <h3 className="project-title">{filteredProjects[currentSlide]?.title || 'Untitled Project'}</h3>
+                        <div className="project-status">
+                          <span className="status-badge">Featured</span>
+                        </div>
+                      </div>
                       <p className="project-description">
-                        {filteredProjects[currentSlide]?.shortDescription ||
-                           (filteredProjects[currentSlide]?.description &&
-                             filteredProjects[currentSlide].description.substring(0, 150) + '...') ||
-                           'No description available'}
+                        {filteredProjects[currentSlide]?.shortDescription || 
+                          (filteredProjects[currentSlide]?.description && 
+                            filteredProjects[currentSlide].description.substring(0, 150) + '...') || 
+                          'No description available'}
                       </p>
                       <div className="project-tags">
                         {filteredProjects[currentSlide]?.technologies?.map((tech, i) => (
@@ -197,7 +227,7 @@ const Projects = () => {
                       </div>
                       <div className="project-actions">
                         <button
-                          className="view-project-btn"
+                          className="view-project-btn primary"
                           onClick={() => openModal(filteredProjects[currentSlide]?.id)}
                         >
                           <span>Learn More</span>
@@ -208,7 +238,7 @@ const Projects = () => {
                             href={filteredProjects[currentSlide].liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="live-demo-btn"
+                            className="live-demo-btn secondary"
                           >
                             <i className="fas fa-external-link-alt"></i>
                             <span>Live Demo</span>
