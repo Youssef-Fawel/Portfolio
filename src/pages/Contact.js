@@ -189,7 +189,7 @@ const Contact = () => {
                 </div>
                 <div className="contact-details">
                   <h4>Email</h4>
-                  <a href="mailto:youssef.fawel.it@episousse.com.tn">
+                  <a href="mailto:youssef.fawel@episousse.com.tn">
                     youssef.fawel.it@episousse.com.tn
                   </a>
                 </div>
