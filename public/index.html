@@ -5,20 +5,35 @@
     <link rel="icon" href="Logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+
     <meta
       name="description"
-      content="A modern, responsive personal portfolio website showcasing my skills, projects, and professional journey."
+      content="The professional portfolio of Youssef Fawel, a software engineering student and web developer. Showcasing projects, skills, and career journey."
     />
+
     <link rel="apple-touch-icon" href="Logo.png" />
- 
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
- 
-    <title>Youssef Fawel | Software Engineer Student & Web Developer</title>
+
+    <title>Youssef Fawel | Software Engineering Student & Web Developer Portfolio</title>
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Youssef Fawel",
+      "url": "https://yousseffawel.netlify.app",
+      "jobTitle": "Software Engineering Student & Web Developer",
+      "description": "Professional portfolio of Youssef Fawel showcasing skills, projects, and web development work.",
+      "image": "https://yousseffawel.netlify.app/Logo.png"
+    }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
     <div id="root"></div>
+
     <!-- A hidden form for Netlify to detect during build -->
     <form name="contact" netlify netlify-honeypot="bot-field" hidden>
       <input type="text" name="name" />
