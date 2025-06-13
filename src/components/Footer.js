@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="footer-left">
           <h3>Youssef<span>Fawel</span></h3>
           <div className="contact-info">
-            <p><i className="fas fa-envelope"></i> youssef.fawelt@episousse.com.tn</p>
+            <p><i className="fas fa-envelope"></i> youssef.fawel@episousse.com.tn</p>
             <p><i className="fas fa-map-marker-alt"></i> Sousse, Tunisia</p>
           </div>
         </div>
@@ -21,7 +21,7 @@ const Footer = () => {
             <a href="https://www.linkedin.com/in/youssef-fawel/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <i className="fab fa-linkedin"></i>
             </a>
-            <a href="mailto:youssef.fawel.it@episousse.com.tn" aria-label="Email">
+            <a href="mailto:youssef.fawel@episousse.com.tn" aria-label="Email">
               <i className="fas fa-envelope"></i>
             </a>
             <a href="https://github.com/Youssef-Fawel" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
