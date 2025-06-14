@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import cvPdf from '../assets/images/cv.pdf';
+import cvPdf from '../assets/images/Resume.pdf';
 import '../styles/ViewCV.css';
 
 const ViewCV = () => {
@@ -134,7 +134,7 @@ const ViewCV = () => {
                   className="download-btn"
                   target="_blank" 
                   rel="noopener noreferrer"
-                  download="Youssef_Fawel_CV.pdf"
+                  download="Youssef_Fawel_Resume.pdf"
                 >
                   <i className="fas fa-download"></i>
                   <span>Download CV</span>
@@ -233,7 +233,7 @@ const ViewCV = () => {
                 className="download-btn"
                 target="_blank" 
                 rel="noopener noreferrer"
-                download="Youssef_Fawel_CV.pdf"
+                download="Youssef_Fawel_Resume.pdf"
               >
                 <i className="fas fa-download"></i>
                 <span>Download</span>
