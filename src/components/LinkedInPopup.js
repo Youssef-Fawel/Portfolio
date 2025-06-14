@@ -4,22 +4,15 @@ import '../styles/LinkedInPopup.css';
 
 const LinkedInPopup = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [hasShown, setHasShown] = useState(false);
 
   useEffect(() => {
-    // Check if popup has already been shown in this session
-    const popupShown = sessionStorage.getItem('linkedinPopupShown');
-    
-    if (!popupShown && !hasShown) {
-      const timer = setTimeout(() => {
-        setIsVisible(true);
-        setHasShown(true);
-        sessionStorage.setItem('linkedinPopupShown', 'true');
-      }, 20000); // 20 seconds
+    // Always show popup after 20 seconds on every visit/refresh
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 20000); // 20 seconds
 
-      return () => clearTimeout(timer);
-    }
-  }, [hasShown]);
+    return () => clearTimeout(timer);
+  }, []); // Empty dependency array means this runs once when component mounts
 
   const handleClose = () => {
     setIsVisible(false);
@@ -33,16 +26,13 @@ const LinkedInPopup = () => {
   return (
     <AnimatePresence>
       {isVisible && (
-        <>
-          {/* Backdrop */}
-          <motion.div
-            className="linkedin-popup-backdrop"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={handleClose}
-          />
-          
+        <motion.div
+          className="linkedin-popup-backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={handleClose}
+        >
           {/* Popup */}
           <motion.div
             className="linkedin-popup"
@@ -50,6 +40,7 @@ const LinkedInPopup = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 50 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside popup
           >
             <div className="popup-header">
               <div className="popup-title">
@@ -96,7 +87,7 @@ const LinkedInPopup = () => {
               </div>
             </div>
           </motion.div>
-        </>
+        </motion.div>
       )}
     </AnimatePresence>
   );
