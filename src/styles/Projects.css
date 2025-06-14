@@ -825,4 +825,108 @@
     background-position: -200% 0;
   }
 }
+/* LinkedIn Button Styles */
+.linkedin-post-btn {
+  background: linear-gradient(135deg, #0077b5, #005885);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 119, 181, 0.2);
+}
+
+.linkedin-post-btn:hover {
+  background: linear-gradient(135deg, #005885, #004066);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3);
+  color: white;
+  text-decoration: none;
+}
+
+.linkedin-post-btn:active {
+  transform: translateY(0);
+}
+
+/* LinkedIn Link in Overlay */
+.linkedin-link {
+  background: linear-gradient(135deg, #0077b5, #005885);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 119, 181, 0.2);
+}
+
+.linkedin-link:hover {
+  background: linear-gradient(135deg, #005885, #004066);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 119, 181, 0.3);
+  color: white;
+  text-decoration: none;
+}
+
+/* Project Actions Layout */
+.project-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* Overlay Content Layout */
+.overlay-content {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .linkedin-post-btn {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  .linkedin-link {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .project-actions {
+    gap: 8px;
+  }
+  
+  .overlay-content {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-actions {
+    flex-direction: column;
+  }
+  
+  .linkedin-post-btn,
+  .live-demo-btn,
+  .view-project-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
 
