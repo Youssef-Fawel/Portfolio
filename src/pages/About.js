@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Typed from 'typed.js';
 import '../styles/About.css';
-import profileImage from '../assets/images/Me.png';
+import profileImage from '../assets/images/Me.jpg';
 
 const About = () => {
   const typedRef = useRef(null);
