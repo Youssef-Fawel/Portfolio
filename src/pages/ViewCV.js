@@ -107,17 +107,17 @@ const ViewCV = () => {
                 <div className="highlights-grid">
                   {cvHighlights.map((highlight, index) => (
                     <motion.div 
-                      key={index} 
+                      key={index}
                       className="highlight-item"
                       initial={{ opacity: 0, y: 20 }}
                       animate={isVisible ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.5, delay: 0.4 + (index * 0.1) }}
                     >
                       <div className="highlight-icon">
-                        <i className={index === 0 ? "fas fa-briefcase" : 
-                                     index === 1 ? "fas fa-code" : 
-                                     index === 2 ? "fas fa-graduation-cap" : 
-                                     "fas fa-project-diagram"}></i>
+                        <i className={index === 0 ? "fas fa-briefcase" :
+                                      index === 1 ? "fas fa-code" :
+                                      index === 2 ? "fas fa-graduation-cap" :
+                                      "fas fa-project-diagram"}></i>
                       </div>
                       <div className="highlight-content">
                         <h4>{highlight.title}</h4>
@@ -130,11 +130,11 @@ const ViewCV = () => {
               
               <div className="cv-actions">
                 <a 
-                  href={cvPdf} 
+                  href={cvPdf}
                   className="download-btn"
                   target="_blank" 
                   rel="noopener noreferrer"
-                  download="Youssef_Fawel_Resume.pdf"
+                  download="Resume.pdf"
                 >
                   <i className="fas fa-download"></i>
                   <span>Download CV</span>
@@ -168,7 +168,7 @@ const ViewCV = () => {
               <div className="personal-info-list">
                 {personalInfo.map((info, index) => (
                   <motion.div 
-                    key={index} 
+                    key={index}
                     className="info-item"
                     initial={{ opacity: 0, y: 20 }}
                     animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -221,19 +221,19 @@ const ViewCV = () => {
             </div>
             <div className="preview-content">
               <iframe 
-                src={`${cvPdf}#view=FitH`} 
-                title="CV Preview" 
-                width="100%" 
+                src={`${cvPdf}#view=FitH`}
+                title="CV Preview"
+                width="100%"
                 height="100%"
               ></iframe>
             </div>
             <div className="preview-footer">
               <a 
-                href={cvPdf} 
+                href={cvPdf}
                 className="download-btn"
                 target="_blank" 
                 rel="noopener noreferrer"
-                download="Youssef_Fawel_Resume.pdf"
+                download="Resume.pdf"
               >
                 <i className="fas fa-download"></i>
                 <span>Download</span>
