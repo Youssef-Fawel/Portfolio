@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Typed from 'typed.js';
 import '../styles/About.css';
 import profileImage from '../assets/images/Me.jpg';
-import cvPdf from '../assets/images/cv.pdf';
+import cvPdf from '../assets/images/Resume.pdf';
 
 const About = () => {
   const typedRef = useRef(null);
@@ -101,7 +101,7 @@ const About = () => {
               <a
                 href={cvPdf}
                 className="btn btn-primary"
-                download="Youssef_Fawel_CV.pdf"
+                download="Youssef_Fawel_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >
