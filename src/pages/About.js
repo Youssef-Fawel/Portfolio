@@ -97,7 +97,15 @@ const About = () => {
             </div>
             
             <div className="about-buttons">
-              <a href="/cv" className="btn btn-primary">Download CV</a>
+              <a
+                href="https://yousseffawel.netlify.app/static/media/cv.pdf"
+                className="btn btn-primary"
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download CV
+              </a>
               <a href="#projects" className="btn btn-secondary">View My Work</a>
             </div>
           </div>
