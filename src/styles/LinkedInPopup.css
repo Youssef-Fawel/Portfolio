@@ -1,7 +1,7 @@
 /* Countdown Indicator */
 .countdown-indicator {
   position: fixed;
-  top: 20px;
+  bottom: 20px; /* Changed from top to bottom */
   right: 20px;
   background: linear-gradient(135deg, #0077b5 0%, #005885 100%);
   color: white;
@@ -377,7 +377,7 @@
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .countdown-indicator {
-    top: 15px;
+    bottom: 15px; /* Changed from top to bottom */
     right: 15px;
     padding: 10px 16px;
     font-size: 13px;
@@ -434,7 +434,7 @@
 
 @media (max-width: 480px) {
   .countdown-indicator {
-    top: 10px;
+    bottom: 10px; /* Changed from top to bottom */
     right: 10px;
     padding: 8px 12px;
     font-size: 12px;
@@ -496,7 +496,7 @@
     font-size: 14px;
     margin-bottom: 12px;
   }
-  
+    
     .tag {
     font-size: 12px;
     padding: 6px 12px;
@@ -516,7 +516,7 @@
 /* Extra small screens */
 @media (max-width: 360px) {
   .countdown-indicator {
-    top: 8px;
+    bottom: 8px; /* Changed from top to bottom */
     right: 8px;
     padding: 6px 10px;
     font-size: 11px;
@@ -585,7 +585,7 @@
 
 @media (max-height: 600px) {
   .countdown-indicator {
-    top: 10px;
+    bottom: 10px; /* Changed from top to bottom */
     right: 10px;
   }
   
