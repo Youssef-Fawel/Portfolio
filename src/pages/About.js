@@ -72,7 +72,7 @@ const About = () => {
                 </div>
                 <div className="info-item">
                   <span className="info-title">Email:</span>
-                  <span className="info-value">youssef.fawel.it@episousse.com.tn</span>
+                  <span className="info-value">youssef.fawel@episousse.com.tn</span>
                 </div>
                 <div className="info-item">
                   <span className="info-title">Degree:</span>
