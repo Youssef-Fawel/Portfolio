@@ -199,12 +199,13 @@ const Projects = () => {
                                   <span>Live Demo</span>
                                 </a>
                               )}
-                              {filteredProjects[currentSlide]?.linkedinPostUrl && (
+                              {filteredProjects[currentSlide]?.linkedinPostUrl && 
+                               filteredProjects[currentSlide].linkedinPostUrl !== "null" && (
                                 <a
                                   href={filteredProjects[currentSlide].linkedinPostUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="preview-link linkedin-link"
+                                  className="linkedin-link"
                                 >
                                   <i className="fab fa-linkedin"></i>
                                   <span>LinkedIn Post</span>
@@ -255,12 +256,13 @@ const Projects = () => {
                             <span>Live Demo</span>
                           </a>
                         )}
-                        {filteredProjects[currentSlide]?.linkedinPostUrl && (
+                        {filteredProjects[currentSlide]?.linkedinPostUrl && 
+                         filteredProjects[currentSlide].linkedinPostUrl !== "null" && (
                           <a
                             href={filteredProjects[currentSlide].linkedinPostUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="linkedin-post-btn secondary"
+                            className="linkedin-post-btn"
                           >
                             <i className="fab fa-linkedin"></i>
                             <span>LinkedIn Post</span>
