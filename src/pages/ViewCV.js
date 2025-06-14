@@ -233,7 +233,7 @@ const ViewCV = () => {
                 className="download-btn"
                 target="_blank" 
                 rel="noopener noreferrer"
-                download="Resume.pdf"
+                download="Youssef_Fawel_Resume.pdf"
               >
                 <i className="fas fa-download"></i>
                 <span>Download</span>
