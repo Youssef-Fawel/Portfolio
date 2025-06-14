@@ -5,7 +5,7 @@ import '../styles/LinkedInPopup.css';
 const LinkedInPopup = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [countdown, setCountdown] = useState(20);
-  const [showCountdown, setShowCountdown] = useState(false); // Set to true if you want to show countdown
+  const [showCountdown] = useState(false); // Removed setShowCountdown since it's not used
 
   useEffect(() => {
     let timer;
