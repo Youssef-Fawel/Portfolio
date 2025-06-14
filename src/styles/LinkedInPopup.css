@@ -1,8 +1,8 @@
 /* Countdown Indicator */
 .countdown-indicator {
   position: fixed;
-  bottom: 20px; /* Changed from top to bottom */
-  right: 20px;
+  bottom: 20px;
+  left: 20px; /* Positioned at bottom left */
   background: linear-gradient(135deg, #0077b5 0%, #005885 100%);
   color: white;
   padding: 12px 20px;
@@ -377,8 +377,8 @@
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .countdown-indicator {
-    bottom: 15px; /* Changed from top to bottom */
-    right: 15px;
+    bottom: 15px;
+    left: 15px;
     padding: 10px 16px;
     font-size: 13px;
   }
@@ -434,8 +434,8 @@
 
 @media (max-width: 480px) {
   .countdown-indicator {
-    bottom: 10px; /* Changed from top to bottom */
-    right: 10px;
+    bottom: 10px;
+    left: 10px;
     padding: 8px 12px;
     font-size: 12px;
   }
@@ -494,10 +494,10 @@
   
   .post-content p {
     font-size: 14px;
-    margin-bottom: 12px;
+        margin-bottom: 12px;
   }
-    
-    .tag {
+  
+  .tag {
     font-size: 12px;
     padding: 6px 12px;
   }
@@ -516,8 +516,8 @@
 /* Extra small screens */
 @media (max-width: 360px) {
   .countdown-indicator {
-    bottom: 8px; /* Changed from top to bottom */
-    right: 8px;
+    bottom: 8px;
+    left: 8px;
     padding: 6px 10px;
     font-size: 11px;
     border-radius: 20px;
@@ -585,8 +585,8 @@
 
 @media (max-height: 600px) {
   .countdown-indicator {
-    bottom: 10px; /* Changed from top to bottom */
-    right: 10px;
+    bottom: 10px;
+    left: 10px;
   }
   
   .linkedin-popup {
