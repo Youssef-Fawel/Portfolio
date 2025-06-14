@@ -11,10 +11,11 @@ import Contact from './Contact';
 import Certificates from './Certificates';
 import ViewCV from './ViewCV';
 import ScrollToTop from '../components/ScrollToTop';
+import LinkedInPopup from '../components/LinkedInPopup'; // Add this import
 
 const Home = () => {
   const typedRef = useRef(null);
-  
+    
   useEffect(() => {
     const options = {
       strings: [
@@ -29,9 +30,9 @@ const Home = () => {
       backSpeed: 60,
       loop: true
     };
-    
+        
     const typed = new Typed(typedRef.current, options);
-    
+        
     return () => {
       typed.destroy();
     };
@@ -42,6 +43,9 @@ const Home = () => {
       {/* Add ScrollToTop component here */}
       <ScrollToTop />
       
+      {/* Add LinkedIn Popup component here */}
+      <LinkedInPopup />
+            
       {/* Hero Section */}
       <section className="hero-section" id="hero">
         {/* Floating background shapes */}
@@ -53,13 +57,13 @@ const Home = () => {
             <div className="text-1">Hello, my name is</div>
             <div className="text-2">Youssef Fawel</div>
             <div className="text-3">And I'm a <span ref={typedRef} className="typing"></span></div>
-            
+                        
             <div className="text-description">
               I'm passionate about creating elegant solutions through code.
               As a software engineering student, I combine technical skills with
               creative problem-solving to build impactful digital experiences.
             </div>
-            
+                        
             <div className="buttons-container">
               <a href="#contact" className="hire-me-btn">Get In Touch</a>
               <a href="#projects" className="portfolio-btn">View Portfolio</a>
@@ -141,3 +145,4 @@ const Home = () => {
 };
 
 export default Home;
+
