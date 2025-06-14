@@ -199,6 +199,17 @@ const Projects = () => {
                                   <span>Live Demo</span>
                                 </a>
                               )}
+                              {filteredProjects[currentSlide]?.linkedinPostUrl && (
+                                <a
+                                  href={filteredProjects[currentSlide].linkedinPostUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="preview-link linkedin-link"
+                                >
+                                  <i className="fab fa-linkedin"></i>
+                                  <span>LinkedIn Post</span>
+                                </a>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -242,6 +253,17 @@ const Projects = () => {
                           >
                             <i className="fas fa-external-link-alt"></i>
                             <span>Live Demo</span>
+                          </a>
+                        )}
+                        {filteredProjects[currentSlide]?.linkedinPostUrl && (
+                          <a
+                            href={filteredProjects[currentSlide].linkedinPostUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="linkedin-post-btn secondary"
+                          >
+                            <i className="fab fa-linkedin"></i>
+                            <span>LinkedIn Post</span>
                           </a>
                         )}
                       </div>
