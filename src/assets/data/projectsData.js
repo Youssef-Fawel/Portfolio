@@ -16,6 +16,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "https://www.linkedin.com/posts/youssef-fawel_encryptix-internship-webdevelopment-activity-7232793727537168386-RdTw?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA",
     completed: true
   },
   {
@@ -35,6 +36,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "https://www.linkedin.com/posts/youssef-fawel_encryptix-internship-webdevelopment-activity-7232793727537168386-RdTw?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA",
     completed: true
   },
   {
@@ -54,6 +56,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "null",
     completed: true
   },
   {
@@ -63,7 +66,7 @@ const projectsData = [
     image: require("../images/Contact.png"),
     category: "web",
     technologies: ["HTML", "CSS", "JavaScript", "PHP", "SQL"],
-        features: [
+    features: [
       "Add, edit, and delete contacts",
       "Contact details storage",
       "Search and filter contacts",
@@ -73,6 +76,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "https://www.linkedin.com/posts/youssef-fawel_task03-task04-task05-activity-7224411917233082368-nlPc?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA",
     completed: true
   },
   {
@@ -92,6 +96,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "https://www.linkedin.com/posts/youssef-fawel_task03-task04-task05-activity-7224411917233082368-nlPc?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA",
     completed: true
   },
   {
@@ -111,6 +116,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "https://www.linkedin.com/posts/youssef-fawel_task03-task04-task05-activity-7224411917233082368-nlPc?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA",
     completed: true
   },
   {
@@ -130,6 +136,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "https://www.linkedin.com/posts/youssef-fawel_encryptix-internship-webdevelopment-activity-7232793727537168386-RdTw?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA",
     completed: true
   },
   {
@@ -149,6 +156,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "null",
     completed: true
   },
   {
@@ -168,6 +176,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "https://www.linkedin.com/posts/youssef-fawel_task-encryptix-internship-activity-7228784812872855552-7Wt8?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA",
     completed: true
   },
   {
@@ -187,6 +196,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "null",
     completed: true
   },
   {
@@ -206,11 +216,12 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "null",
     completed: true
   },
   {
     id: 12,
-    title: "Plateforme d'e-learning",
+    title: "E-learning Platform",
     description: "An advanced e-learning management platform designed for three user roles: Administrators, who manage courses and users; Trainers, who create courses and track learner progress; and Learners, who access educational content and complete assessments. The platform includes a personalized dashboard for a streamlined and engaging experience.",
     image: require("../images/main.png"),
     category: "web",
@@ -225,6 +236,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "https://www.linkedin.com/posts/youssef-fawel_reactjs-nodejs-mongodb-activity-7278024254611181568-0ctr?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA",
     completed: true
   },
   {
@@ -244,6 +256,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "null",
     completed: true
   },
   {
@@ -263,6 +276,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "https://www.linkedin.com/posts/youssef-fawel_mernstack-reactjs-frontenddevelopment-activity-7332344694636462080-Cg-x?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA",
     completed: true
   },
   {
@@ -282,11 +296,12 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "https://www.linkedin.com/posts/youssef-fawel_springboot-thymeleaf-fullstackdevelopment-activity-7330185471639138305-aZ5j?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA",
     completed: true
   },
   {
-    id: 16,
-    title: "Projet de Visualisation Météorologique",
+        id: 16,
+    title: "Weather Visualization Project",
     description: "As part of my data analysis course, I completed a comprehensive project analyzing and visualizing daily weather data from the weatherHistory.csv file. The objective: to explore climate trends, detect anomalies, and visualize the evolution of variables such as temperature, humidity, and visibility.",
     image: require("../images/weather-visualization.png"),
     category: "data",
@@ -301,6 +316,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "https://www.linkedin.com/posts/youssef-fawel_dataanalysis-datascience-python-activity-7331280213613477888-u-pb?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA",
     completed: true
   },
   {
@@ -320,6 +336,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "null",
+    linkedinPostUrl: "https://www.linkedin.com/posts/youssef-fawel_finalyearproject-mernstack-webapp-activity-7337463412701958144-XanV?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA",
     completed: true
   },
   {
@@ -339,6 +356,7 @@ const projectsData = [
     ],
     demoLink: "null",
     codeLink: "",
+    linkedinPostUrl: "null",
     completed: true
   }
 ];
