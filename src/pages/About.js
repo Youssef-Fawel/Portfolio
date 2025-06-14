@@ -2,10 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import Typed from 'typed.js';
 import '../styles/About.css';
 import profileImage from '../assets/images/Me.jpg';
+import cvPdf from '../assets/images/cv.pdf';
 
 const About = () => {
   const typedRef = useRef(null);
-  
+
   useEffect(() => {
     const options = {
       strings: [
@@ -20,9 +21,9 @@ const About = () => {
       backSpeed: 60,
       loop: true
     };
-    
+
     const typed = new Typed(typedRef.current, options);
-    
+
     return () => {
       typed.destroy();
     };
@@ -35,7 +36,7 @@ const About = () => {
           <h2 className="section-title">About Me</h2>
           <div className="underline"></div>
         </div>
-        
+
         <div className="about-content">
           <div className="about-image">
             <div className="image-container">
@@ -43,13 +44,13 @@ const About = () => {
               <div className="image-outline"></div>
             </div>
           </div>
-          
+
           <div className="about-info">
             <div className="about-heading">
               <h3>I'm <span className="name">Youssef Fawel</span> and I'm a</h3>
               <h3 className="typed-text"><span ref={typedRef}></span></h3>
             </div>
-            
+
             <div className="about-description">
               <p>
                 As a dedicated software engineering student at EPI DIGITAL SCHOOL in Sousse, 
@@ -63,7 +64,7 @@ const About = () => {
                 the boundaries of what's possible in software development.
               </p>
             </div>
-            
+
             <div className="personal-info">
               <div className="info-column">
                 <div className="info-item">
@@ -79,7 +80,7 @@ const About = () => {
                   <span className="info-value">Software Engineering</span>
                 </div>
               </div>
-              
+
               <div className="info-column">
                 <div className="info-item">
                   <span className="info-title">Location:</span>
@@ -95,16 +96,17 @@ const About = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="about-buttons">
               <a
-                href="https://yousseffawel.netlify.app/static/media/cv.pdf"
+                href={cvPdf}
                 className="btn btn-primary"
-                download
+                download="Youssef_Fawel_CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Download CV
+                <i className="fas fa-download"></i>
+                <span>Download CV</span>
               </a>
               <a href="#projects" className="btn btn-secondary">View My Work</a>
             </div>
