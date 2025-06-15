@@ -2,7 +2,7 @@
 .countdown-indicator {
   position: fixed;
   bottom: 20px;
-  left: 20px; /* Positioned at bottom left */
+  left: 20px; 
   background: linear-gradient(135deg, #0077b5 0%, #005885 100%);
   color: white;
   padding: 12px 20px;
