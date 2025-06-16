@@ -74,7 +74,7 @@ const LinkedInPopup = () => {
               <div className="popup-header">
                 <div className="popup-title">
                   <i className="fab fa-linkedin linkedin-icon"></i>
-                  <span>Check out my Final Year Project publication !</span>
+                  <span>Check out my Final Year Project !</span>
                 </div>
                 <button className="close-btn" onClick={handleClose}>
                   <i className="fas fa-times"></i>
