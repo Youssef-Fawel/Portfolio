@@ -364,7 +364,7 @@ const projectsData = [
   title: "Weather Forecast App",
   description: "A modern, responsive weather application that provides real-time weather data and forecasts for locations worldwide. The app features a clean, intuitive interface with dark/light mode support, unit conversion, and location-based weather information.",
   image: require("../images/weather.png"), 
-  category: "react",
+  category: "web",
   technologies: ["React.js", "OpenWeatherMap API", "Axios", "CSS3", "LocalStorage API", "Geolocation API"],
   features: [
     "Real-time weather data with current conditions",
