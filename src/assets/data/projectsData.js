@@ -359,27 +359,36 @@ const projectsData = [
     linkedinPostUrl: "null",
     completed: true
   },
-  {
+{
   id: 19,
   title: "Weather Forecast App",
-  description: "A modern, responsive weather application that provides real-time weather data and forecasts for locations worldwide. The app features a clean, intuitive interface with dark/light mode support, unit conversion, and location-based weather information.",
-  image: require("../images/weather.png"), 
+  description: "A comprehensive, modern weather application built with React that delivers real-time weather data and detailed forecasts for locations worldwide. Features an elegant, responsive interface with advanced search capabilities, autocomplete functionality, and comprehensive weather details including sunrise/sunset times, humidity, wind patterns, and atmospheric pressure.",
+  image: require("../images/weather.png"),
   category: "web",
-  technologies: ["React.js", "OpenWeatherMap API", "Axios", "CSS3", "LocalStorage API", "Geolocation API"],
+  technologies: ["React.js", "OpenWeatherMap API", "Framer Motion", "Axios", "CSS3", "LocalStorage API", "Geolocation API", "React Icons"],
   features: [
-    "Real-time weather data with current conditions",
-    "5-Day forecast with temperature highs and lows",
-    "Geolocation for automatic local weather",
-    "Dark/Light theme with smooth transitions",
-    "Unit conversion between metric and imperial",
-    "Search history with quick access to recent locations"
+    "Real-time weather data with comprehensive current conditions",
+    "5-Day detailed forecast with temperature highs/lows and precipitation probability",
+    "Smart autocomplete search with city suggestions as you type",
+    "Keyboard navigation support for accessibility (Arrow keys, Enter, Escape)",
+    "Geolocation API integration for automatic local weather detection",
+    "Dark/Light theme toggle with smooth animations and system preference detection",
+    "Temperature unit conversion between Celsius and Fahrenheit",
+    "Search history with quick access to recently searched locations",
+    "Detailed weather metrics (humidity, wind speed/direction, pressure, visibility)",
+    "Sunrise and sunset times with precise formatting",
+    "Weather-based dynamic backgrounds that change based on conditions",
+    "Responsive design optimized for desktop, tablet, and mobile devices",
+    "Smooth animations and transitions using Framer Motion",
+    "Error handling with user-friendly messages",
+    "Loading states with elegant spinners and progress indicators",
+    "Local storage persistence for user preferences and search history"
   ],
-  demoLink: "null", 
-  codeLink: "null", 
-  linkedinPostUrl: "null", 
+  demoLink: "null",
+  codeLink: "null",
+  linkedinPostUrl: "null",
   completed: true
 }
-
 ];
 
 export default projectsData;
