@@ -23,7 +23,7 @@ const certificatesData = [
     credentialId: "1003948",
     description: "This certification validates expertise in Scrum methodology and agile project management. It covers Scrum framework, sprint planning, backlog management, and agile leadership principles. The certification demonstrates proficiency in facilitating Scrum events, managing sprint backlogs, and leading agile teams effectively.",
     category: "agile",
-    image: require("../images/Certification.jpg"),
+    image: require("../images/Scrum Master Certified.jpg"),
     verificationLink: null,
     skills: [
       "Scrum", "Sprint Planning", "Sprint Backlog", "Agile Methodologies", "Agile Project Management", "Agile Leadership"
