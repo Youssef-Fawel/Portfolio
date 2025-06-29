@@ -16,6 +16,21 @@ const certificatesData = [
   },
   {
     id: 2,
+    title: "Scrum Master Certified (SMC)",
+    organization: "Udemy",
+    dateIssued: "June 2025",
+    expirationDate: null,
+    credentialId: "1003948",
+    description: "This certification validates expertise in Scrum methodology and agile project management. It covers Scrum framework, sprint planning, backlog management, and agile leadership principles. The certification demonstrates proficiency in facilitating Scrum events, managing sprint backlogs, and leading agile teams effectively.",
+    category: "agile",
+    image: require("../images/Certification.jpg"),
+    verificationLink: null,
+    skills: [
+      "Scrum", "Sprint Planning", "Sprint Backlog", "Agile Methodologies", "Agile Project Management", "Agile Leadership"
+    ]
+  },
+  {
+    id: 3,
     title: "Hedera Certified Developer",
     organization: "The Hashgraph Association",
     dateIssued: "February 2025",
@@ -30,7 +45,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 3,
+    id: 4,
     title: "AWS Academy Graduate - AWS Academy Cloud Foundations",
     organization: "Amazon Web Services (AWS)",
     dateIssued: "December 2024",
@@ -45,7 +60,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 4,
+    id: 5,
     title: "JavaScript (Basic) Certificate",
     organization: "HackerRank",
     dateIssued: "November 2024",
@@ -60,7 +75,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 5,
+    id: 6,
     title: "Python (Basic) Certificate",
     organization: "HackerRank",
     dateIssued: "November 2024",
@@ -75,7 +90,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 6,
+    id: 7,
     title: "JavaScript (Intermediate) Certificate",
     organization: "HackerRank",
     dateIssued: "August 2024",
@@ -90,7 +105,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 7,
+    id: 8,
     title: "Software Development",
     organization: "Prodigy InfoTech",
     dateIssued: "July-August 2024",
@@ -105,7 +120,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 8,
+    id: 9,
     title: "Java (Basic) Certificate",
     organization: "HackerRank",
     dateIssued: "July 2024",
@@ -120,7 +135,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 9,
+    id: 10,
     title: "JavaScript Algorithms and Data Structures (Beta)",
     organization: "freeCodeCamp",
     dateIssued: "July 2024",
@@ -135,7 +150,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 10,
+    id: 11,
     title: "Problem Solving (Intermediate) Certificate",
     organization: "HackerRank",
     dateIssued: "July 2024",
@@ -150,7 +165,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 11,
+    id: 12,
     title: "Responsive Web Design",
     organization: "freeCodeCamp",
     dateIssued: "July 2024",
@@ -165,7 +180,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 12,
+    id: 13,
     title: "Software Engineer Certificate",
     organization: "HackerRank",
     dateIssued: "July 2024",
@@ -180,7 +195,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 13,
+    id: 14,
     title: "Web Development",
     organization: "Encryptix",
     dateIssued: "July-August 2024",
@@ -195,7 +210,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 14,
+    id: 15,
     title: "CCNA: Switching, Routing, and Wireless Essentials",
     organization: "Cisco",
     dateIssued: "June 2024",
@@ -210,7 +225,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 15,
+    id: 16,
     title: "CCNA: Introduction to Networks",
     organization: "Cisco",
     dateIssued: "May 2024",
@@ -225,7 +240,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 16,
+    id: 17,
     title: "Attestation de Participation à la Nuit de l'info 2023",
     organization: "EPI - International Multidisciplinary School",
     dateIssued: "December 2023",
@@ -240,13 +255,13 @@ const certificatesData = [
     ]
   },
   {
-    id: 17,
+    id: 18,
     title: "Introduction to Front-End Development",
     organization: "Coursera",
     dateIssued: "November 2023",
     expirationDate: null,
     credentialId: "L7RK4QBRM3GK",
-    description: "This certification covers the fundamentals of front-end web development including HTML, CSS, JavaScript, and responsive design principles. It includes hands-on projects to build interactive web pages and understand the role of front-end development in the web development process.",
+        description: "This certification covers the fundamentals of front-end web development including HTML, CSS, JavaScript, and responsive design principles. It includes hands-on projects to build interactive web pages and understand the role of front-end development in the web development process.",
     category: "web",
     image: require("../images/Introduction to Front-End Development.png"),
     verificationLink: "https://www.coursera.org/account/accomplishments/records/L7RK4QBRM3GK",
@@ -257,3 +272,4 @@ const certificatesData = [
 ];
 
 export default certificatesData;
+
