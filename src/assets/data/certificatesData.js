@@ -16,6 +16,22 @@ const certificatesData = [
   },
   {
     id: 2,
+    title: "Microsoft Certified: Azure Fundamentals",
+    organization: "Microsoft",
+    dateIssued: "December 2024",
+    expirationDate: null,
+    credentialId: "36d21eb7-3060-44ef-b9c1-52d02057abd3",
+    description: "This certification validates foundational understanding of cloud concepts, core Azure services, pricing, SLA, and the basics of Azure governance and compliance. It demonstrates knowledge of cloud computing principles and Microsoft Azure's core services, workloads, security, privacy, pricing, and support options.",
+    category: "cloud",
+    image: require("../images/microsoft-certified-azure-fundamentals.png
+"),
+    verificationLink: "https://www.credly.com/badges/36d21eb7-3060-44ef-b9c1-52d02057abd3/linked_in_profile",
+    skills: [
+      "Microsoft Azure", "Cloud Computing", "Azure Services", "Cloud Concepts", "Azure Governance", "Azure Compliance", "Cloud Pricing", "SLA Management"
+    ]
+  },
+  {
+    id: 3,
     title: "Scrum Master Certified (SMC)",
     organization: "Udemy",
     dateIssued: "June 2025",
@@ -30,7 +46,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 3,
+    id: 4,
     title: "Hedera Certified Developer",
     organization: "The Hashgraph Association",
     dateIssued: "February 2025",
@@ -45,7 +61,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 4,
+    id: 5,
     title: "AWS Academy Graduate - AWS Academy Cloud Foundations",
     organization: "Amazon Web Services (AWS)",
     dateIssued: "December 2024",
@@ -60,7 +76,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 5,
+    id: 6,
     title: "JavaScript (Basic) Certificate",
     organization: "HackerRank",
     dateIssued: "November 2024",
@@ -75,7 +91,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 6,
+    id: 7,
     title: "Python (Basic) Certificate",
     organization: "HackerRank",
     dateIssued: "November 2024",
@@ -90,7 +106,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 7,
+    id: 8,
     title: "JavaScript (Intermediate) Certificate",
     organization: "HackerRank",
     dateIssued: "August 2024",
@@ -105,7 +121,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 8,
+    id: 9,
     title: "Software Development",
     organization: "Prodigy InfoTech",
     dateIssued: "July-August 2024",
@@ -120,7 +136,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 9,
+    id: 10,
     title: "Java (Basic) Certificate",
     organization: "HackerRank",
     dateIssued: "July 2024",
@@ -135,7 +151,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 10,
+    id: 11,
     title: "JavaScript Algorithms and Data Structures (Beta)",
     organization: "freeCodeCamp",
     dateIssued: "July 2024",
@@ -150,7 +166,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 11,
+    id: 12,
     title: "Problem Solving (Intermediate) Certificate",
     organization: "HackerRank",
     dateIssued: "July 2024",
@@ -165,7 +181,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 12,
+    id: 13,
     title: "Responsive Web Design",
     organization: "freeCodeCamp",
     dateIssued: "July 2024",
@@ -180,7 +196,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 13,
+    id: 14,
     title: "Software Engineer Certificate",
     organization: "HackerRank",
     dateIssued: "July 2024",
@@ -195,7 +211,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 14,
+    id: 15,
     title: "Web Development",
     organization: "Encryptix",
     dateIssued: "July-August 2024",
@@ -210,7 +226,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 15,
+    id: 16,
     title: "CCNA: Switching, Routing, and Wireless Essentials",
     organization: "Cisco",
     dateIssued: "June 2024",
@@ -225,7 +241,7 @@ const certificatesData = [
     ]
   },
   {
-    id: 16,
+    id: 17,
     title: "CCNA: Introduction to Networks",
     organization: "Cisco",
     dateIssued: "May 2024",
@@ -240,13 +256,13 @@ const certificatesData = [
     ]
   },
   {
-    id: 17,
+    id: 18,
     title: "Attestation de Participation à la Nuit de l'info 2023",
     organization: "EPI - International Multidisciplinary School",
     dateIssued: "December 2023",
     expirationDate: null,
     credentialId: null,
-    description: "This certificate recognizes participation in 'La Nuit de l'Info 2023', an overnight national competition where teams of students work on web development challenges. It demonstrates teamwork, problem-solving under time constraints, and practical application of web development skills.",
+        description: "This certificate recognizes participation in 'La Nuit de l'Info 2023', an overnight national competition where teams of students work on web development challenges. It demonstrates teamwork, problem-solving under time constraints, and practical application of web development skills.",
     category: "competition",
     image: require("../images/Attestation de Participation à la Nuit de l'info 2023.jpg"),
     verificationLink: "https://www.episup.com/fr",
@@ -255,13 +271,13 @@ const certificatesData = [
     ]
   },
   {
-    id: 18,
+    id: 19,
     title: "Introduction to Front-End Development",
     organization: "Coursera",
     dateIssued: "November 2023",
     expirationDate: null,
     credentialId: "L7RK4QBRM3GK",
-        description: "This certification covers the fundamentals of front-end web development including HTML, CSS, JavaScript, and responsive design principles. It includes hands-on projects to build interactive web pages and understand the role of front-end development in the web development process.",
+    description: "This certification covers the fundamentals of front-end web development including HTML, CSS, JavaScript, and responsive design principles. It includes hands-on projects to build interactive web pages and understand the role of front-end development in the web development process.",
     category: "web",
     image: require("../images/Introduction to Front-End Development.png"),
     verificationLink: "https://www.coursera.org/account/accomplishments/records/L7RK4QBRM3GK",
