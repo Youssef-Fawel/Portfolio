@@ -23,8 +23,7 @@ const certificatesData = [
     credentialId: "36d21eb7-3060-44ef-b9c1-52d02057abd3",
     description: "This certification validates foundational understanding of cloud concepts, core Azure services, pricing, SLA, and the basics of Azure governance and compliance. It demonstrates knowledge of cloud computing principles and Microsoft Azure's core services, workloads, security, privacy, pricing, and support options.",
     category: "cloud",
-    image: require("../images/microsoft-certified-azure-fundamentals.png
-"),
+    image: require("../images/microsoft-certified-azure-fundamentals.png"),
     verificationLink: "https://www.credly.com/badges/36d21eb7-3060-44ef-b9c1-52d02057abd3/linked_in_profile",
     skills: [
       "Microsoft Azure", "Cloud Computing", "Azure Services", "Cloud Concepts", "Azure Governance", "Azure Compliance", "Cloud Pricing", "SLA Management"
