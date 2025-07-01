@@ -18,7 +18,7 @@ const certificatesData = [
     id: 2,
     title: "Microsoft Certified: Azure Fundamentals",
     organization: "Microsoft",
-    dateIssued: "December 2024",
+    dateIssued: "June 2025",
     expirationDate: null,
     credentialId: "36d21eb7-3060-44ef-b9c1-52d02057abd3",
     description: "This certification validates foundational understanding of cloud concepts, core Azure services, pricing, SLA, and the basics of Azure governance and compliance. It demonstrates knowledge of cloud computing principles and Microsoft Azure's core services, workloads, security, privacy, pricing, and support options.",
