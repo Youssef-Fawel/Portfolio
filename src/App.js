@@ -19,25 +19,58 @@ import ThankYou from './pages/ThankYou';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  
-  useEffect(() => {
-    // Simulate loading time and then set loading to false
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
+  const [loadingProgress, setLoadingProgress] = useState(0);
     
-    return () => clearTimeout(timer);
+  useEffect(() => {
+    // Simulate progressive loading
+    const progressInterval = setInterval(() => {
+      setLoadingProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          setTimeout(() => setIsLoading(false), 500);
+          return 100;
+        }
+        return prev + Math.random() * 15;
+      });
+    }, 100);
+        
+    return () => clearInterval(progressInterval);
   }, []);
 
   if (isLoading) {
     return (
       <div className="loading-screen">
         <div className="loading-content">
-          <div className="loading-spinner">
-            <div className="spinner-circle"></div>
-            <div className="spinner-circle-dot"></div>
+          <div className="loading-logo">
+            <div className="logo-container">
+              <div className="geometric-shape shape-1"></div>
+              <div className="geometric-shape shape-2"></div>
+              <div className="geometric-shape shape-3"></div>
+              <div className="center-dot"></div>
+            </div>
           </div>
-          <p className="loading-text">Loading amazing content...</p>
+          
+          <div className="loading-progress">
+            <div className="progress-bar">
+              <div 
+                className="progress-fill" 
+                style={{ width: `${loadingProgress}%` }}
+              ></div>
+            </div>
+            <div className="progress-text">
+              {Math.round(loadingProgress)}%
+            </div>
+          </div>
+          
+          <p className="loading-text">
+            Crafting exceptional experience...
+          </p>
+        </div>
+        
+        <div className="loading-particles">
+          {[...Array(20)].map((_, i) => (
+            <div key={i} className={`particle particle-${i + 1}`}></div>
+          ))}
         </div>
       </div>
     );
@@ -47,12 +80,10 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
-        
+                
         <main className="main-content">
           <Routes>
-            {/* Render Home component directly at the root path */}
             <Route path="/" element={<Home />} />
-            
             <Route path="/about" element={<About />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/projects" element={<Projects />} />
@@ -62,7 +93,7 @@ function App() {
             <Route path="/thank-you" element={<ThankYou />} />
           </Routes>
         </main>
-        
+                
         <ScrollToTop />
         <Footer />
       </div>
