@@ -30,9 +30,9 @@ function App() {
           setTimeout(() => setIsLoading(false), 500);
           return 100;
         }
-        return prev + Math.random() * 15;
+        return prev + Math.random() * 10 + 5;
       });
-    }, 100);
+    }, 150);
         
     return () => clearInterval(progressInterval);
   }, []);
@@ -41,36 +41,36 @@ function App() {
     return (
       <div className="loading-screen">
         <div className="loading-content">
-          <div className="loading-logo">
-            <div className="logo-container">
-              <div className="geometric-shape shape-1"></div>
-              <div className="geometric-shape shape-2"></div>
-              <div className="geometric-shape shape-3"></div>
-              <div className="center-dot"></div>
-            </div>
+          {/* Main Spinner */}
+          <div className="spinner-container">
+            <div className="spinner-outer"></div>
+            <div className="spinner-middle"></div>
+            <div className="spinner-inner"></div>
+            <div className="spinner-dot"></div>
           </div>
           
-          <div className="loading-progress">
+          {/* Progress Bar */}
+          <div className="progress-container">
             <div className="progress-bar">
               <div 
                 className="progress-fill" 
-                style={{ width: `${loadingProgress}%` }}
+                style={{ width: `${Math.min(loadingProgress, 100)}%` }}
               ></div>
             </div>
-            <div className="progress-text">
-              {Math.round(loadingProgress)}%
+            <div className="progress-percentage">
+              {Math.round(Math.min(loadingProgress, 100))}%
             </div>
           </div>
           
-          <p className="loading-text">
-            Crafting exceptional experience...
-          </p>
-        </div>
-        
-        <div className="loading-particles">
-          {[...Array(20)].map((_, i) => (
-            <div key={i} className={`particle particle-${i + 1}`}></div>
-          ))}
+          {/* Loading Text */}
+          <div className="loading-text-container">
+            <p className="loading-text">Loading Portfolio...</p>
+            <div className="loading-dots">
+              <span className="dot dot1">.</span>
+              <span className="dot dot2">.</span>
+              <span className="dot dot3">.</span>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -80,7 +80,6 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
-                
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -93,7 +92,6 @@ function App() {
             <Route path="/thank-you" element={<ThankYou />} />
           </Routes>
         </main>
-                
         <ScrollToTop />
         <Footer />
       </div>
