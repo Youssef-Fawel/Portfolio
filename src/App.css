@@ -37,7 +37,6 @@
   }
 }
 
-/* Perfectly Centered Loading Screen */
 .loading-screen {
   position: fixed;
   top: 0;
@@ -50,7 +49,6 @@
   background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
   z-index: 9999;
   overflow: hidden;
-  /* Ensure no margin/padding issues */
   margin: 0;
   padding: 0;
 }
@@ -62,19 +60,14 @@
   justify-content: center;
   z-index: 2;
   position: relative;
-  /* Add some padding for mobile safety */
   padding: 20px;
-  /* Ensure content doesn't exceed viewport */
   max-width: 90vw;
   max-height: 90vh;
-  /* Center the content box itself */
   text-align: center;
 }
 
-/* Geometric Logo Animation */
 .loading-logo {
   margin-bottom: 40px;
-  /* Ensure logo container is centered */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,7 +80,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Ensure perfect centering */
   margin: 0 auto;
 }
 
@@ -95,7 +87,6 @@
   position: absolute;
   border: 2px solid;
   border-radius: 50%;
-  /* Center each shape */
   top: 50%;
   left: 50%;
   transform-origin: center;
@@ -141,12 +132,10 @@
   transform: translate(-50%, -50%);
 }
 
-/* Progress Bar - Centered */
 .loading-progress {
   width: 100%;
   max-width: 300px;
   margin: 0 auto 30px auto;
-  /* Ensure centering */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -179,7 +168,6 @@
   margin: 0;
 }
 
-/* Loading Text - Centered */
 .loading-text {
   color: #ffffff;
   font-family: 'Poppins', sans-serif;
@@ -190,11 +178,9 @@
   text-align: center;
   animation: textGlow 2s ease-in-out infinite;
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-  /* Ensure text doesn't break centering */
   white-space: nowrap;
 }
 
-/* Floating Particles */
 .loading-particles {
   position: absolute;
   top: 0;
@@ -235,7 +221,6 @@
 .particle-19 { top: 95%; left: 5%; animation-delay: 3.2s; }
 .particle-20 { top: 50%; left: 50%; animation-delay: 3.7s; }
 
-/* Animations */
 @keyframes rotateClockwise {
   0% { transform: translate(-50%, -50%) rotate(0deg); }
   100% { transform: translate(-50%, -50%) rotate(360deg); }
@@ -287,7 +272,6 @@
   }
 }
 
-/* Smooth transition when loading completes */
 .App {
   animation: fadeIn 0.8s ease-in;
 }
@@ -303,7 +287,6 @@
   }
 }
 
-/* Responsive Design - Maintain centering on all devices */
 @media (max-width: 768px) {
   .loading-content {
     padding: 15px;
@@ -317,7 +300,6 @@
   .loading-text {
     font-size: 16px;
     letter-spacing: 1px;
-    /* Allow text to wrap on very small screens */
     white-space: normal;
     line-height: 1.4;
   }
@@ -368,7 +350,6 @@
   }
 }
 
-/* Handle very short screens (landscape mobile) */
 @media (max-height: 500px) {
   .loading-content {
     padding: 10px;
@@ -409,7 +390,6 @@
   }
 }
 
-/* Ensure no body margin/padding interferes */
 body {
   margin: 0;
   padding: 0;
