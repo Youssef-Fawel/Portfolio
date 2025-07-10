@@ -37,19 +37,22 @@
   }
 }
 
-/* Professional Loading Screen Styles */
+/* Perfectly Centered Loading Screen */
 .loading-screen {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
   z-index: 9999;
   overflow: hidden;
+  /* Ensure no margin/padding issues */
+  margin: 0;
+  padding: 0;
 }
 
 .loading-content {
@@ -59,11 +62,22 @@
   justify-content: center;
   z-index: 2;
   position: relative;
+  /* Add some padding for mobile safety */
+  padding: 20px;
+  /* Ensure content doesn't exceed viewport */
+  max-width: 90vw;
+  max-height: 90vh;
+  /* Center the content box itself */
+  text-align: center;
 }
 
 /* Geometric Logo Animation */
 .loading-logo {
   margin-bottom: 40px;
+  /* Ensure logo container is centered */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo-container {
@@ -73,18 +87,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  /* Ensure perfect centering */
+  margin: 0 auto;
 }
 
 .geometric-shape {
   position: absolute;
   border: 2px solid;
   border-radius: 50%;
+  /* Center each shape */
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
 }
 
 .shape-1 {
   width: 120px;
   height: 120px;
   border-color: #4facfe;
+  margin-top: -60px;
+  margin-left: -60px;
   animation: rotateClockwise 3s linear infinite;
 }
 
@@ -92,6 +114,8 @@
   width: 80px;
   height: 80px;
   border-color: #00f2fe;
+  margin-top: -40px;
+  margin-left: -40px;
   animation: rotateCounterClockwise 2s linear infinite;
 }
 
@@ -99,6 +123,8 @@
   width: 40px;
   height: 40px;
   border-color: #43e97b;
+  margin-top: -20px;
+  margin-left: -20px;
   animation: rotateClockwise 1.5s linear infinite;
 }
 
@@ -109,12 +135,21 @@
   border-radius: 50%;
   box-shadow: 0 0 20px rgba(79, 172, 254, 0.8);
   animation: pulse-glow 2s ease-in-out infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-/* Progress Bar */
+/* Progress Bar - Centered */
 .loading-progress {
-  width: 300px;
-  margin-bottom: 30px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto 30px auto;
+  /* Ensure centering */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .progress-bar {
@@ -141,9 +176,10 @@
   font-weight: 500;
   text-align: center;
   opacity: 0.8;
+  margin: 0;
 }
 
-/* Loading Text */
+/* Loading Text - Centered */
 .loading-text {
   color: #ffffff;
   font-family: 'Poppins', sans-serif;
@@ -154,14 +190,19 @@
   text-align: center;
   animation: textGlow 2s ease-in-out infinite;
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  /* Ensure text doesn't break centering */
+  white-space: nowrap;
 }
 
 /* Floating Particles */
 .loading-particles {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .particle {
@@ -196,22 +237,22 @@
 
 /* Animations */
 @keyframes rotateClockwise {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 @keyframes rotateCounterClockwise {
-  0% { transform: rotate(360deg); }
-  100% { transform: rotate(0deg); }
+  0% { transform: translate(-50%, -50%) rotate(360deg); }
+  100% { transform: translate(-50%, -50%) rotate(0deg); }
 }
 
 @keyframes pulse-glow {
   0%, 100% {
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
     box-shadow: 0 0 20px rgba(79, 172, 254, 0.8);
   }
   50% {
-    transform: scale(1.2);
+    transform: translate(-50%, -50%) scale(1.2);
     box-shadow: 0 0 30px rgba(79, 172, 254, 1);
   }
 }
@@ -262,15 +303,23 @@
   }
 }
 
-/* Responsive Design */
+/* Responsive Design - Maintain centering on all devices */
 @media (max-width: 768px) {
+  .loading-content {
+    padding: 15px;
+    max-width: 95vw;
+  }
+  
   .loading-progress {
-    width: 250px;
+    max-width: 250px;
   }
   
   .loading-text {
     font-size: 16px;
     letter-spacing: 1px;
+    /* Allow text to wrap on very small screens */
+    white-space: normal;
+    line-height: 1.4;
   }
   
   .logo-container {
@@ -281,15 +330,92 @@
   .shape-1 {
     width: 100px;
     height: 100px;
+    margin-top: -50px;
+    margin-left: -50px;
   }
   
   .shape-2 {
     width: 70px;
     height: 70px;
+    margin-top: -35px;
+    margin-left: -35px;
   }
   
   .shape-3 {
     width: 35px;
     height: 35px;
+    margin-top: -17.5px;
+    margin-left: -17.5px;
   }
+}
+
+@media (max-width: 480px) {
+  .loading-content {
+    padding: 10px;
+  }
+  
+  .loading-logo {
+    margin-bottom: 30px;
+  }
+  
+  .loading-progress {
+    max-width: 200px;
+    margin-bottom: 20px;
+  }
+  
+  .loading-text {
+    font-size: 14px;
+  }
+}
+
+/* Handle very short screens (landscape mobile) */
+@media (max-height: 500px) {
+  .loading-content {
+    padding: 10px;
+  }
+  
+  .loading-logo {
+    margin-bottom: 20px;
+  }
+  
+  .loading-progress {
+    margin-bottom: 15px;
+  }
+  
+  .logo-container {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .shape-1 {
+    width: 80px;
+    height: 80px;
+    margin-top: -40px;
+    margin-left: -40px;
+  }
+  
+  .shape-2 {
+    width: 55px;
+    height: 55px;
+    margin-top: -27.5px;
+    margin-left: -27.5px;
+  }
+  
+  .shape-3 {
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    margin-left: -15px;
+  }
+}
+
+/* Ensure no body margin/padding interferes */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  margin: 0;
+  padding: 0;
 }
