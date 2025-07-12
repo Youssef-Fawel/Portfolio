@@ -37,7 +37,7 @@ const ViewCV = () => {
   // Social media links data
   const socialLinks = [
     { icon: 'fab fa-linkedin', url: 'https://www.linkedin.com/in/youssef-fawel/', label: 'LinkedIn' },
-    { icon: 'fas fa-envelope', url: 'mailto:youssef.fawel.it@episousse.com.tn', label: 'Email' },
+    { icon: 'fas fa-envelope', url: 'mailto:youssef.fawel@episousse.com.tn', label: 'Email' },
     { icon: 'fab fa-github', url: 'https://github.com/Youssef-Fawel', label: 'GitHub' },
     { icon: 'fab fa-instagram', url: 'https://instagram.com/youssef.fawel/', label: 'Instagram' },
     { icon: 'fab fa-facebook', url: 'https://facebook.com/YusufFawel/', label: 'Facebook' }
