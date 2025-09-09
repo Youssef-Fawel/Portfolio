@@ -61,7 +61,7 @@ const About = () => {
               </p>
               <p>
                 Currently, I'm expanding my horizons through an exciting exchange semester at 
-                ESIEA - École d'Ingénieures d'un numérique utile in Paris, France. This 
+                ESIEA - École d'Ingénieur·e·s d'un numérique utile in Paris, France. This 
                 international experience is enriching my perspective and allowing me to develop 
                 new skills in an innovative academic environment. I thrive in challenging 
                 environments and am constantly seeking opportunities to expand my skill set.
@@ -77,6 +77,10 @@ const About = () => {
                 <div className="info-item">
                   <span className="info-title">Email:</span>
                   <span className="info-value">youssef.fawel@episousse.com.tn</span>
+                </div>
+                <div className="info-item">
+                  <span className="info-title">ESIEA Email:</span>
+                  <span className="info-value">youssef.fawel@et.esiea.fr</span>
                 </div>
                 <div className="info-item">
                   <span className="info-title">Degree:</span>
