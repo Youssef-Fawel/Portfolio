@@ -94,7 +94,7 @@ const LinkedInPopup = () => {
                   </div>
 
                   <div className="post-content">
-                    <p>🚀 Début d'un nouveau chapitre académique et professionnel !</p>
+                    <p>🚀 Début d'un nouveau chapitre académique et professionnel</p>
                     <p>Je suis heureux d'entamer ma 5ᵉ et dernière année d'études en ingénierie en France, dans le cadre d'un semestre d'échange à l'ESIEA...</p>
                     <div className="post-tags">
                       <span className="tag">#ExchangeSemester</span>
