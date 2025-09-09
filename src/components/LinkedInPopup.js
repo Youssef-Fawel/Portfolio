@@ -40,7 +40,7 @@ const LinkedInPopup = () => {
 
   const handleVisitLinkedIn = () => {
     window.open(
-      'https://www.linkedin.com/posts/youssef-fawel_finalyearproject-mernstack-webapp-activity-7336013938741993473-4uxa?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA',
+      'https://www.linkedin.com/posts/youssef-fawel_exchangesemester-esiea-engineering-activity-7368930855508934658-jzuN?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA',
       '_blank'
     );
     setIsVisible(false);
@@ -74,7 +74,7 @@ const LinkedInPopup = () => {
               <div className="popup-header">
                 <div className="popup-title">
                   <i className="fab fa-linkedin linkedin-icon"></i>
-                  <span>Check out my Final Year Project !</span>
+                  <span>Check out my Academic Journey !</span>
                 </div>
                 <button className="close-btn" onClick={handleClose}>
                   <i className="fas fa-times"></i>
@@ -94,12 +94,14 @@ const LinkedInPopup = () => {
                   </div>
 
                   <div className="post-content">
-                    <p>🚀 Thrilled to announce that our Final Year Project is officially completed and validated!</p>
-                    <p>We built a MERN stack web application for managing electronic meeting minutes...</p>
+                    <p>🚀 Début d'un nouveau chapitre académique et professionnel !</p>
+                    <p>Je suis heureux d'entamer ma 5ᵉ et dernière année d'études en ingénierie en France, dans le cadre d'un semestre d'échange à l'ESIEA...</p>
                     <div className="post-tags">
-                      <span className="tag">#FinalYearProject</span>
-                      <span className="tag">#MERNStack</span>
-                      <span className="tag">#WebDevelopment</span>
+                      <span className="tag">#ExchangeSemester</span>
+                      <span className="tag">#ESIEA</span>
+                      <span className="tag">#Engineering</span>
+                      <span className="tag">#Digital</span>
+                      <span className="tag">#Innovation</span>
                     </div>
                   </div>
                 </div>
