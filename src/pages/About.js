@@ -15,7 +15,8 @@ const About = () => {
         "Full-Stack Developer",
         "Problem Solver",
         "MERN Stack Developer",
-        "Tech Enthusiast"
+        "Tech Enthusiast",
+        "Exchange Student in France"
       ],
       typeSpeed: 100,
       backSpeed: 60,
@@ -59,9 +60,11 @@ const About = () => {
                 programming languages and cutting-edge technologies.
               </p>
               <p>
-                I thrive in challenging environments and am constantly seeking opportunities to 
-                expand my skill set. My goal is to contribute to innovative projects that push 
-                the boundaries of what's possible in software development.
+                Currently, I'm expanding my horizons through an exciting exchange semester at 
+                ESIEA - École d'Ingénieur·e·s d'un numérique utile in Paris, France. This 
+                international experience is enriching my perspective and allowing me to develop 
+                new skills in an innovative academic environment. I thrive in challenging 
+                environments and am constantly seeking opportunities to expand my skill set.
               </p>
             </div>
             
@@ -83,11 +86,11 @@ const About = () => {
               <div className="info-column">
                 <div className="info-item">
                   <span className="info-title">Location:</span>
-                  <span className="info-value">Sousse, Tunisia</span>
+                  <span className="info-value">Paris, France</span>
                 </div>
                 <div className="info-item">
                   <span className="info-title">Study:</span>
-                  <span className="info-value">EPI DIGITAL SCHOOL</span>
+                  <span className="info-value">ESIEA (Exchange) / EPI DIGITAL SCHOOL</span>
                 </div>
                 <div className="info-item">
                   <span className="info-title">Graduation:</span>
