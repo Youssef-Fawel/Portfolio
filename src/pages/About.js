@@ -61,7 +61,7 @@ const About = () => {
               </p>
               <p>
                 Currently, I'm expanding my horizons through an exciting exchange semester at 
-                ESIEA - École d'Ingénieur·e·s d'un numérique utile in Paris, France. This 
+                ESIEA - École d'Ingénieures d'un numérique utile in Paris, France. This 
                 international experience is enriching my perspective and allowing me to develop 
                 new skills in an innovative academic environment. I thrive in challenging 
                 environments and am constantly seeking opportunities to expand my skill set.
