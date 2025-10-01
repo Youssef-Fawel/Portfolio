@@ -85,7 +85,6 @@ const Contact = () => {
         message: 'Sending your message...'
       });
       
-      // Prepare form data with form-name included
       const submissionData = {
         'form-name': 'contact',
         ...formData,
@@ -93,7 +92,6 @@ const Contact = () => {
       
       console.log("Encoded form data:", encode(submissionData));
       
-      // This is the key part for Netlify forms
       fetch("/", {
         method: "POST",
         headers: {
@@ -111,14 +109,12 @@ const Contact = () => {
         .then(() => {
           console.log("Form submission successful!");
           
-          // Reset form
           setFormData({
             name: '',
             email: '',
             message: ''
           });
           
-          // Navigate to thank-you page
           navigate('/thank-you');
         })
         .catch(error => {
@@ -143,7 +139,6 @@ const Contact = () => {
     }
   };
 
-  // Scroll to form errors
   useEffect(() => {
     if (Object.keys(formErrors).length > 0 && formRef.current) {
       const firstErrorField = document.querySelector('.error-message');
