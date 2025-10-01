@@ -21,7 +21,6 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef(null);
   
-  // Validate form
   const validateForm = () => {
     const errors = {};
     
@@ -71,7 +70,6 @@ const Contact = () => {
     e.preventDefault();
     console.log("Form submission started");
     
-    // Validate form before submission
     if (!validateForm()) {
       console.log("Form validation failed");
       return;
@@ -211,7 +209,7 @@ const Contact = () => {
                 </div>
                 <div className="contact-details">
                   <h4>Phone</h4>
-                  <p>+216 96275573</p>
+                  <p>+33 7 46 49 51 70</p>
                 </div>
               </div>
             </div>
