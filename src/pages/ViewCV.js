@@ -7,7 +7,6 @@ const ViewCV = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   
-  // Intersection Observer to trigger animations when section is visible
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -27,14 +26,12 @@ const ViewCV = () => {
     };
   }, []);
   
-  // Personal information data
   const personalInfo = [
     { icon: 'fas fa-graduation-cap', label: 'Education', value: 'Computer Science Engineering' },
     { icon: 'fas fa-language', label: 'Languages', value: 'English, Arabic, French' },
-    { icon: 'fas fa-phone-alt', label: 'Phone', value: '+216 96275573' }
+    { icon: 'fas fa-phone-alt', label: 'Phone', value: '+33 7 46 49 51 70' }
   ];
   
-  // Social media links data
   const socialLinks = [
     { icon: 'fab fa-linkedin', url: 'https://www.linkedin.com/in/youssef-fawel/', label: 'LinkedIn' },
     { icon: 'fas fa-envelope', url: 'mailto:youssef.fawel@episousse.com.tn', label: 'Email' },
@@ -43,7 +40,6 @@ const ViewCV = () => {
     { icon: 'fab fa-facebook', url: 'https://facebook.com/YusufFawel/', label: 'Facebook' }
   ];
   
-  // CV highlights data
   const cvHighlights = [
     { title: 'Professional Experience', description: 'Detailed work history with key achievements and responsibilities.' },
     { title: 'Technical Skills', description: 'Comprehensive list of programming languages, frameworks, and tools.' },
@@ -51,7 +47,6 @@ const ViewCV = () => {
     { title: 'Projects', description: 'Showcase of significant projects with technologies used and outcomes.' }
   ];
   
-  // Close CV preview
   const closePreview = () => {
     setShowPreview(false);
   };
@@ -209,7 +204,6 @@ const ViewCV = () => {
         </div>
       </div>
       
-      {/* CV Preview Modal */}
       {showPreview && (
         <div className="cv-preview-overlay" onClick={closePreview}>
           <div className="cv-preview-container" onClick={e => e.stopPropagation()}>
