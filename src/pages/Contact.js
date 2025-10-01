@@ -187,8 +187,8 @@ const Contact = () => {
                 </div>
                 <div className="contact-details">
                   <h4>Email</h4>
-                  <a href="mailto:youssef.fawel@episousse.com.tn">
-                    youssef.fawel@episousse.com.tn
+                  <a href="mailto:youssef.fawel@et.esiea.fr">
+                    youssef.fawel@et.esiea.fr
                   </a>
                 </div>
               </div>
@@ -199,7 +199,7 @@ const Contact = () => {
                 </div>
                 <div className="contact-details">
                   <h4>Location</h4>
-                  <p>Sousse, Tunisia</p>
+                  <p>Paris, France</p>
                 </div>
               </div>
               
@@ -241,7 +241,6 @@ const Contact = () => {
                 </motion.div>
               )}
               
-              {/* Simplified form structure for Netlify */}
               <form
                 name="contact"
                 method="POST"
