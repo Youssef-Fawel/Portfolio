@@ -12,7 +12,7 @@ const Footer = () => {
           <h3>Youssef<span>Fawel</span></h3>
           <div className="contact-info">
             <p><i className="fas fa-envelope"></i> youssef.fawel@et.esiea.fr</p>
-            <p><i className="fas fa-map-marker-alt"></i> Sousse, Tunisia</p>
+            <p><i className="fas fa-map-marker-alt"></i> Paris, France</p>
           </div>
         </div>
         
