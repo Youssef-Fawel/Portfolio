@@ -29,7 +29,7 @@ const ViewCV = () => {
   const personalInfo = [
     { icon: 'fas fa-graduation-cap', label: 'Education', value: 'Computer Science Engineering' },
     { icon: 'fas fa-language', label: 'Languages', value: 'English, Arabic, French' },
-    { icon: 'fas fa-phone-alt', label: 'Phone', value: '+33 7 46 49 51 70' }
+    { icon: 'fas fa-phone-alt', label: 'Phone', value: '+33 780765291' }
   ];
   
   const socialLinks = [
@@ -227,7 +227,7 @@ const ViewCV = () => {
                 className="download-btn"
                 target="_blank" 
                 rel="noopener noreferrer"
-                download="Youssef_Fawel_Resume.pdf"
+                download="Resume.pdf"
               >
                 <i className="fas fa-download"></i>
                 <span>Download</span>
