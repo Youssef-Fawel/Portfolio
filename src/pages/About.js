@@ -107,7 +107,7 @@ const About = () => {
               <a
                 href={cvPdf}
                 className="btn btn-primary"
-                download="Youssef_Fawel_Resume.pdf"
+                download="Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >
