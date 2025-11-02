@@ -40,7 +40,7 @@ const LinkedInPopup = () => {
 
   const handleVisitLinkedIn = () => {
     window.open(
-      'https://www.linkedin.com/posts/youssef-fawel_exchangesemester-esiea-engineering-activity-7368930855508934658-jzuN?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA',
+      'https://www.linkedin.com/posts/youssef-fawel_cv-activity-7378006809162268672-hlVL?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA',
       '_blank'
     );
     setIsVisible(false);
@@ -74,7 +74,7 @@ const LinkedInPopup = () => {
               <div className="popup-header">
                 <div className="popup-title">
                   <i className="fab fa-linkedin linkedin-icon"></i>
-                  <span>Check out my Academic Journey !</span>
+                  <span>I'm Looking for an Internship !</span>
                 </div>
                 <button className="close-btn" onClick={handleClose}>
                   <i className="fas fa-times"></i>
@@ -94,14 +94,14 @@ const LinkedInPopup = () => {
                   </div>
 
                   <div className="post-content">
-                    <p>🚀 Début d'un nouveau chapitre académique et professionnel</p>
-                    <p>Je suis heureux d'entamer ma 5ᵉ et dernière année d'études en ingénierie en France, dans le cadre d'un semestre d'échange à l'ESIEA...</p>
+                    <p>🚀 À la recherche d'un stage de fin d'études – Développement Full Stack - Intelligence Artificielle</p>
+                    <p>Je suis actuellement étudiant en 5ᵉ année de cycle ingénieur en génie logiciel, et je recherche un stage de fin d'études à partir de février 2026...</p>
                     <div className="post-tags">
-                      <span className="tag">#ExchangeSemester</span>
-                      <span className="tag">#ESIEA</span>
-                      <span className="tag">#Engineering</span>
-                      <span className="tag">#Digital</span>
-                      <span className="tag">#Innovation</span>
+                      <span className="tag">#Stage</span>
+                      <span className="tag">#FullStack</span>
+                      <span className="tag">#AI</span>
+                      <span className="tag">#Développement</span>
+                      <span className="tag">#Opportunité</span>
                     </div>
                   </div>
                 </div>
