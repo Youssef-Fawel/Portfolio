@@ -157,7 +157,7 @@ const ViewCV = () => {
                 <img src={require("../assets/images/Me.png")} alt="Youssef Fawel" />
                 </div>
                 <h3>Youssef Fawel</h3>
-                <p className="profile-title">Software Developer</p>
+                <p className="profile-title">Software Developer - Développeur full stack</p>
               </div>
               
               <div className="personal-info-list">
