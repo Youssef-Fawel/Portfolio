@@ -40,7 +40,7 @@ const LinkedInPopup = () => {
 
   const handleVisitLinkedIn = () => {
     window.open(
-      'https://www.linkedin.com/posts/youssef-fawel_cv-activity-7378006809162268672-hlVL?utm_source=share&utm_medium=member_desktop&rcm=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA',
+      'https://www.linkedin.com/in/youssef-fawel/overlay/1762630858862/single-media-viewer/?profileId=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA',
       '_blank'
     );
     setIsVisible(false);
