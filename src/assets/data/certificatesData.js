@@ -23,7 +23,7 @@ const certificatesData = [
     credentialId: "2238908f-fab5-4d78-943f-9ff61ea82ad9",
     description: "This certification validates expertise in microservices architecture and CI/CD pipeline implementation. It covers breaking down monolithic applications into containerized microservices and implementing continuous integration and deployment strategies using AWS services. The program includes hands-on labs in AWS Cloud9, ECS, and CodePipeline.",
     category: "cloud",
-    image: require("../images/CI-CD.pdf"),
+    image: require("../images/CI-CD.png"),
     verificationLink: "https://www.credly.com/badges/2238908f-fab5-4d78-943f-9ff61ea82ad9/print",
     skills: [
       "Microservices Architecture", "CI/CD Pipeline", "Docker Containers", "AWS ECS", "Application Load Balancer", "Blue/Green Deployment", "AWS CodePipeline", "AWS Cloud9"
