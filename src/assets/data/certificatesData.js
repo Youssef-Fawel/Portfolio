@@ -15,6 +15,51 @@ const certificatesData = [
     ]
   },
   {
+    id: 20,
+    title: "AWS Academy Graduate - Microservices and CI/CD Pipeline Builder",
+    organization: "Amazon Web Services (AWS)",
+    dateIssued: "November 2025",
+    expirationDate: null,
+    credentialId: "2238908f-fab5-4d78-943f-9ff61ea82ad9",
+    description: "This certification validates expertise in microservices architecture and CI/CD pipeline implementation. It covers breaking down monolithic applications into containerized microservices and implementing continuous integration and deployment strategies using AWS services. The program includes hands-on labs in AWS Cloud9, ECS, and CodePipeline.",
+    category: "cloud",
+    image: require("../images/CI-CD.pdf"),
+    verificationLink: "https://www.credly.com/badges/2238908f-fab5-4d78-943f-9ff61ea82ad9/print",
+    skills: [
+      "Microservices Architecture", "CI/CD Pipeline", "Docker Containers", "AWS ECS", "Application Load Balancer", "Blue/Green Deployment", "AWS CodePipeline", "AWS Cloud9"
+    ]
+  },
+  {
+    id: 21,
+    title: "AWS Cloud Quest: Cloud Practitioner",
+    organization: "Amazon Web Services (AWS)",
+    dateIssued: "November 2025",
+    expirationDate: null,
+    credentialId: "CQ-PRACTITIONER-2024",
+    description: "This certification demonstrates foundational AWS Cloud knowledge earned through completion of all solution building assignments in the Cloud Quest game-based learning experience. It covers hands-on experience with compute, networking, database, and security services including EC2, VPC, S3, RDS, and IAM.",
+    category: "cloud",
+    image: require("../images/Quest_Cloud.png"),
+    verificationLink: "https://www.credly.com/badges/2a322ece-26da-4f35-a0ce-23b5d0153063/public_url",
+    skills: [
+      "AWS Cloud Fundamentals", "Amazon EC2", "Amazon VPC", "Amazon S3", "Amazon RDS", "Security Groups", "IAM", "Cloud Architecture"
+    ]
+  },
+  {
+    id: 22,
+    title: "AWS Cloud Quest: Generative AI",
+    organization: "Amazon Web Services (AWS)",
+    dateIssued: "November 2025",
+    expirationDate: null,
+    credentialId: "CQ-GENAI-2024",
+    description: "This certification validates hands-on experience with generative AI solutions using AWS services. It demonstrates practical skills in building AI applications with Amazon Bedrock, Amazon Q, and Amazon SageMaker. Covers foundation models, prompt engineering, RAG implementation, and deploying generative AI solutions.",
+    category: "ai",
+    image: require("../images/Generative_AI.png"),
+    verificationLink: "https://www.credly.com/badges/44fa4859-a7c0-45da-912f-3aef7e0093a2/public_url",
+    skills: [
+      "Generative AI", "Amazon Bedrock", "Amazon Q Developer", "Foundation Models", "Prompt Engineering", "RAG (Retrieval Augmented Generation)", "Amazon SageMaker", "Large Language Models"
+    ]
+  },
+  {
     id: 2,
     title: "Microsoft Certified: Azure Fundamentals",
     organization: "Microsoft",
@@ -261,7 +306,7 @@ const certificatesData = [
     dateIssued: "December 2023",
     expirationDate: null,
     credentialId: null,
-        description: "This certificate recognizes participation in 'La Nuit de l'Info 2023', an overnight national competition where teams of students work on web development challenges. It demonstrates teamwork, problem-solving under time constraints, and practical application of web development skills.",
+    description: "This certificate recognizes participation in 'La Nuit de l'Info 2023', an overnight national competition where teams of students work on web development challenges. It demonstrates teamwork, problem-solving under time constraints, and practical application of web development skills.",
     category: "competition",
     image: require("../images/Attestation de Participation à la Nuit de l'info 2023.jpg"),
     verificationLink: "https://www.episup.com/fr",
@@ -287,4 +332,3 @@ const certificatesData = [
 ];
 
 export default certificatesData;
-
