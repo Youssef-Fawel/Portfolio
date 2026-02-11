@@ -6,7 +6,7 @@ import projectsData from '../assets/data/projectsData';
 import '../styles/Projects.css';
 
 const Projects = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -223,13 +223,16 @@ const Projects = () => {
                     </div>
                     <div className="project-info">
                       <div className="project-header">
-                        <h3 className="project-title">{filteredProjects[currentSlide]?.title || 'Untitled Project'}</h3>
+                        <h3 className="project-title">{filteredProjects[currentSlide]?.title?.[language] || filteredProjects[currentSlide]?.title || 'Untitled Project'}</h3>
                         <div className="project-status">
                           <span className="status-badge">{t.projects.featured}</span>
                         </div>
                       </div>
                       <p className="project-description">
-                        {filteredProjects[currentSlide]?.shortDescription || 
+                        {filteredProjects[currentSlide]?.shortDescription?.[language] || 
+                          filteredProjects[currentSlide]?.shortDescription ||
+                          (filteredProjects[currentSlide]?.description?.[language] && 
+                            filteredProjects[currentSlide].description[language].substring(0, 150) + '...') ||
                           (filteredProjects[currentSlide]?.description && 
                             filteredProjects[currentSlide].description.substring(0, 150) + '...') || 
                           'No description available'}

@@ -4,7 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import '../styles/ProjectModal.css';
 
 const ProjectModal = ({ project, onClose }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const modalRef = useRef(null);
   
   useEffect(() => {
@@ -86,7 +86,7 @@ const ProjectModal = ({ project, onClose }) => {
         transition={{ duration: 0.4, type: 'spring', damping: 25 }}
       >
         <div className="project-modal-header">
-          <h2 className="project-modal-title">{project.title}</h2>
+          <h2 className="project-modal-title">{project.title?.[language] || project.title}</h2>
           <button 
             className="close-modal-btn" 
             onClick={onClose}
@@ -114,14 +114,14 @@ const ProjectModal = ({ project, onClose }) => {
             <div className="project-modal-info">
               <div className="project-modal-description">
                 <h3>{t.projects.projectOverview}</h3>
-                <p>{project.description}</p>
+                <p>{project.description?.[language] || project.description}</p>
               </div>
               
-              {project.features && project.features.length > 0 && (
+              {project.features && ((project.features[language] && project.features[language].length > 0) || project.features.length > 0) && (
                 <div className="project-modal-features">
                   <h3>{t.projects.keyFeatures}</h3>
                   <ul>
-                    {project.features.map((feature, index) => (
+                    {(project.features[language] || project.features).map((feature, index) => (
                       <li key={index}>
                         <i className="fas fa-check-circle"></i>
                         <span>{feature}</span>

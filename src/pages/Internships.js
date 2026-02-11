@@ -105,13 +105,6 @@ const Internships = () => {
                       <span>{internship.location[language]}</span>
                     </div>
                     
-                    {internship.certificate && (
-                      <div className="certificate-badge-wave">
-                        <i className="fas fa-certificate"></i>
-                        <span>{internship.certificate}</span>
-                      </div>
-                    )}
-                    
                     <p className="internship-description-wave">
                       {internship.description[language]}
                     </p>
