@@ -154,7 +154,7 @@ const ViewCV = () => {
             <div className="details-card">
               <div className="profile-header">
                 <div className="profile-image">
-                <img src={require("../assets/images/Me.png")} alt="Youssef Fawel" />
+                <img src={require("../assets/images/Me.jpeg")} alt="Youssef Fawel" />
                 </div>
                 <h3>Youssef Fawel</h3>
                 <p className="profile-title">Software Developer - Full-stack developer</p>
