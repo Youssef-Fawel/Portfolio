@@ -63,7 +63,7 @@ const About = () => {
                 </div>
                 <div className="info-item">
                   <span className="info-title">{t.about.email}:</span>
-                  <span className="info-value">youssef.fawel@episousse.com.tn</span>
+                  <span className="info-value">fawelyou@gmail.com</span>
                 </div>
                 <div className="info-item">
                   <span className="info-title">{t.about.esieaEmail}:</span>
