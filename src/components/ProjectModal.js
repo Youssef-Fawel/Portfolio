@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/ProjectModal.css';
 
 const ProjectModal = ({ project, onClose }) => {
+  const { t } = useLanguage();
   const modalRef = useRef(null);
   
   useEffect(() => {
@@ -111,13 +113,13 @@ const ProjectModal = ({ project, onClose }) => {
           <div className="project-modal-details">
             <div className="project-modal-info">
               <div className="project-modal-description">
-                <h3>Project Overview</h3>
+                <h3>{t.projects.projectOverview}</h3>
                 <p>{project.description}</p>
               </div>
               
               {project.features && project.features.length > 0 && (
                 <div className="project-modal-features">
-                  <h3>Key Features</h3>
+                  <h3>{t.projects.keyFeatures}</h3>
                   <ul>
                     {project.features.map((feature, index) => (
                       <li key={index}>
@@ -134,7 +136,7 @@ const ProjectModal = ({ project, onClose }) => {
                   <div className="meta-item">
                     <i className="fas fa-user-tie"></i>
                     <div>
-                      <h4>Client</h4>
+                      <h4>{t.projects.client}</h4>
                       <p>{project.client}</p>
                     </div>
                   </div>
@@ -144,7 +146,7 @@ const ProjectModal = ({ project, onClose }) => {
                   <div className="meta-item">
                     <i className="fas fa-calendar-alt"></i>
                     <div>
-                      <h4>Date</h4>
+                      <h4>{t.projects.date}</h4>
                       <p>{formatDate(project.date)}</p>
                     </div>
                   </div>
@@ -154,7 +156,7 @@ const ProjectModal = ({ project, onClose }) => {
                   <div className="meta-item">
                     <i className="fas fa-clock"></i>
                     <div>
-                      <h4>Duration</h4>
+                      <h4>{t.projects.duration}</h4>
                       <p>{project.duration}</p>
                     </div>
                   </div>
@@ -164,7 +166,7 @@ const ProjectModal = ({ project, onClose }) => {
                   <div className="meta-item">
                     <i className="fas fa-user-cog"></i>
                     <div>
-                      <h4>My Role</h4>
+                      <h4>{t.projects.myRole}</h4>
                       <p>{project.role}</p>
                     </div>
                   </div>
@@ -172,7 +174,7 @@ const ProjectModal = ({ project, onClose }) => {
               </div>
               
               <div className="project-modal-technologies">
-                <h3>Technologies Used</h3>
+                <h3>{t.projects.technologiesUsed}</h3>
                 <div className="tech-tags">
                   {project.technologies.map((tech, index) => (
                     <span key={index} className="tech-tag">
@@ -184,7 +186,7 @@ const ProjectModal = ({ project, onClose }) => {
               
               {project.challenges && (
                 <div className="project-modal-challenges">
-                  <h3>Challenges & Solutions</h3>
+                  <h3>{t.projects.challengesSolutions}</h3>
                   <p>{project.challenges}</p>
                 </div>
               )}
@@ -199,7 +201,7 @@ const ProjectModal = ({ project, onClose }) => {
                   className="github-btn"
                 >
                   <i className="fab fa-github"></i>
-                  <span>View Code</span>
+                  <span>{t.projects.viewCode}</span>
                 </a>
               )}
               
@@ -211,7 +213,7 @@ const ProjectModal = ({ project, onClose }) => {
                   className="live-btn"
                 >
                   <i className="fas fa-external-link-alt"></i>
-                  <span>Live Demo</span>
+                  <span>{t.projects.liveDemo}</span>
                 </a>
               )}
             </div>
@@ -223,7 +225,7 @@ const ProjectModal = ({ project, onClose }) => {
             className="close-btn" 
             onClick={onClose}
           >
-            Close
+            {t.projects.close}
           </button>
         </div>
       </motion.div>

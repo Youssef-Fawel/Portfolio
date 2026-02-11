@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 import cvPdf from '../assets/images/Resume.pdf';
 import '../styles/ViewCV.css';
 
 const ViewCV = () => {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   
@@ -41,10 +43,10 @@ const ViewCV = () => {
   ];
   
   const cvHighlights = [
-    { title: 'Professional Experience', description: 'Detailed work history with key achievements and responsibilities.' },
-    { title: 'Technical Skills', description: 'Comprehensive list of programming languages, frameworks, and tools.' },
-    { title: 'Education & Certifications', description: 'Academic background and professional certifications.' },
-    { title: 'Projects', description: 'Showcase of significant projects with technologies used and outcomes.' }
+    { title: t.viewCV.experience, description: t.viewCV.experienceDesc },
+    { title: t.viewCV.technicalSkills, description: t.viewCV.technicalSkillsDesc },
+    { title: t.viewCV.education, description: t.viewCV.educationDesc },
+    { title: t.viewCV.projects, description: t.viewCV.projectsDesc }
   ];
   
   const closePreview = () => {
@@ -61,7 +63,7 @@ const ViewCV = () => {
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
           >
-            My Curriculum Vitae
+            {t.viewCV.title}
           </motion.h2>
           <div className="underline"></div>
           <motion.p 
@@ -70,7 +72,7 @@ const ViewCV = () => {
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Get to know my professional journey and qualifications
+            {t.viewCV.subtitle}
           </motion.p>
         </div>
         
@@ -83,22 +85,17 @@ const ViewCV = () => {
           >
             <div className="cv-card">
               <div className="cv-description">
-                <h3>Professional Summary</h3>
+                <h3>{t.viewCV.professionalSummary}</h3>
                 <p>
-                  I'm a passionate software developer with expertise in web development, 
-                  specializing in building responsive and user-friendly applications. 
-                  My CV provides a comprehensive overview of my professional experience, 
-                  technical skills, educational background, and notable projects.
+                  {t.viewCV.summaryText1}
                 </p>
                 <p>
-                  I'm constantly learning and adapting to new technologies to stay at the 
-                  forefront of the industry. My goal is to create innovative solutions that 
-                  make a positive impact and deliver exceptional user experiences.
+                  {t.viewCV.summaryText2}
                 </p>
               </div>
               
               <div className="cv-highlights">
-                <h3>What's Inside</h3>
+                <h3>{t.viewCV.whatsInside}</h3>
                 <div className="highlights-grid">
                   {cvHighlights.map((highlight, index) => (
                     <motion.div 
@@ -132,14 +129,14 @@ const ViewCV = () => {
                   download="Youssef_Fawel_Resume.pdf"
                 >
                   <i className="fas fa-download"></i>
-                  <span>Download CV</span>
+                  <span>{t.viewCV.downloadCV}</span>
                 </a>
                 <button 
                   className="preview-btn"
                   onClick={() => setShowPreview(true)}
                 >
                   <i className="fas fa-eye"></i>
-                  <span>Preview CV</span>
+                  <span>{t.viewCV.previewCV}</span>
                 </button>
               </div>
             </div>

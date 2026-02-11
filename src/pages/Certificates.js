@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 import CertificateModal from '../components/CertificateModal';
 import certificatesData from '../assets/data/certificatesData';
 import '../styles/Certificates.css';
 
 const Certificates = () => {
+  const { t } = useLanguage();
   const categories = [...new Set(certificatesData.map(cert => cert.category))];
   
   const [filter, setFilter] = useState(categories[0]); 
@@ -55,10 +57,10 @@ const Certificates = () => {
     <section className="certificates-section" id="certificates">
       <div className="certificates-container">
         <div className="section-header">
-          <h2 className="section-title">My Certificates</h2>
+          <h2 className="section-title">{t.certificates.title}</h2>
           <div className="underline"></div>
           <p className="section-subtitle">
-            A collection of my professional certifications and achievements
+            {t.certificates.subtitle}
           </p>
         </div>
         
@@ -78,7 +80,7 @@ const Certificates = () => {
           <div className="search-container">
             <input
               type="text"
-              placeholder="Search certificates..."
+              placeholder={t.certificates.searchPlaceholder}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"

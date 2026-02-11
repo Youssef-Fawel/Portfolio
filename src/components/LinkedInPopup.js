@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/LinkedInPopup.css';
 
 const LinkedInPopup = () => {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
-  const [countdown, setCountdown] = useState(20);
+  const [countdown, setCountdown] = useState(10);
   const [showCountdown] = useState(true);
 
   useEffect(() => {
@@ -26,7 +28,7 @@ const LinkedInPopup = () => {
     timer = setTimeout(() => {
       setIsVisible(true);
       if (countdownTimer) clearInterval(countdownTimer);
-    }, 20000); // 20 seconds
+    }, 10000); // 10 seconds
 
     return () => {
       clearTimeout(timer);
@@ -40,7 +42,7 @@ const LinkedInPopup = () => {
 
   const handleVisitLinkedIn = () => {
     window.open(
-      'https://www.linkedin.com/in/youssef-fawel/overlay/1762630858862/single-media-viewer/?profileId=ACoAADfv7ysBSAA3OYiTAPtRQV8Z0J2uJWssXYA',
+      'https://www.linkedin.com/in/youssef-fawel/',
       '_blank'
     );
     setIsVisible(false);
@@ -50,7 +52,7 @@ const LinkedInPopup = () => {
     <>
       {showCountdown && countdown > 0 && !isVisible && (
         <div className="countdown-indicator">
-          LinkedIn post in: {countdown}s
+          {t.linkedin.countdown} {countdown}s
         </div>
       )}
 
@@ -74,7 +76,7 @@ const LinkedInPopup = () => {
               <div className="popup-header">
                 <div className="popup-title">
                   <i className="fab fa-linkedin linkedin-icon"></i>
-                  <span>I'm Looking for an Internship !</span>
+                  <span>{t.linkedin.title}</span>
                 </div>
                 <button className="close-btn" onClick={handleClose}>
                   <i className="fas fa-times"></i>
@@ -88,31 +90,23 @@ const LinkedInPopup = () => {
                       <i className="fas fa-user-circle"></i>
                     </div>
                     <div className="author-details">
-                      <h4>Youssef Fawel</h4>
-                      <p>Software Engineering Student</p>
+                      <h4>{t.linkedin.author}</h4>
+                      <p>{t.linkedin.subtitle}</p>
                     </div>
                   </div>
 
                   <div className="post-content">
-                    <p>🚀 À la recherche d'un stage de fin d'études – Développement Full Stack - Intelligence Artificielle</p>
-                    <p>Je suis actuellement étudiant en 5ᵉ année de cycle ingénieur en génie logiciel, et je recherche un stage de fin d'études à partir de février 2026...</p>
-                    <div className="post-tags">
-                      <span className="tag">#Stage</span>
-                      <span className="tag">#FullStack</span>
-                      <span className="tag">#AI</span>
-                      <span className="tag">#Développement</span>
-                      <span className="tag">#Opportunité</span>
-                    </div>
+                    <p className="linkedin-over-text">LinkedIn Over</p>
                   </div>
                 </div>
 
                 <div className="popup-actions">
                   <button className="visit-linkedin-btn" onClick={handleVisitLinkedIn}>
                     <i className="fab fa-linkedin"></i>
-                    <span>See the LinkedIn Post</span>
+                    <span>{t.linkedin.visitBtn}</span>
                   </button>
                   <button className="maybe-later-btn" onClick={handleClose}>
-                    Maybe Later
+                    {t.linkedin.closeBtn}
                   </button>
                 </div>
               </div>

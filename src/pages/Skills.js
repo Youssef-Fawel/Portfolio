@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/Skills.css';
 
 const Skills = () => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('technical');
   const [isVisible, setIsVisible] = useState(false);
   
@@ -10,7 +12,7 @@ const Skills = () => {
   const skillsData = {
     technical: [
       {
-        category: 'Frontend',
+        category: t.skills.frontend || 'Frontend',
         skills: [
           { name: 'HTML5', level: 95 },
           { name: 'CSS3', level: 95 },
@@ -22,7 +24,7 @@ const Skills = () => {
         ]
       },
       {
-        category: 'Backend',
+        category: t.skills.backend || 'Backend',
         skills: [
           { name: 'Node.js', level: 85 },
           { name: 'Spring Boot', level: 80 }, 
@@ -34,13 +36,13 @@ const Skills = () => {
         ]
       },
       {
-        category: 'Mobile Development',
+        category: t.skills.mobile || 'Mobile Development',
         skills: [
           { name: 'Android (Kotlin)', level: 75 }, 
         ]
       },
       {
-        category: 'Database',
+        category: t.skills.database || 'Database',
         skills: [
           { name: 'MySQL', level: 85 },
           { name: 'MongoDB', level: 85 },
@@ -146,7 +148,7 @@ const Skills = () => {
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
           >
-            My Skills
+            {t.skills.title}
           </motion.h2>
           <div className="underline"></div>
           <motion.p
@@ -155,7 +157,7 @@ const Skills = () => {
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Expertise and proficiencies I've developed over the years
+            {t.skills.subtitle}
           </motion.p>
         </div>
         
@@ -170,21 +172,21 @@ const Skills = () => {
             onClick={() => setActiveTab('technical')}
           >
             <i className="fas fa-code"></i>
-            <span>Technical Skills</span>
+            <span>{t.skills.technicalSkills}</span>
           </button>
           <button
             className={`tab-btn ${activeTab === 'soft' ? 'active' : ''}`}
             onClick={() => setActiveTab('soft')}
           >
             <i className="fas fa-users"></i>
-            <span>Soft Skills</span>
+            <span>{t.skills.softSkills}</span>
           </button>
           <button
             className={`tab-btn ${activeTab === 'tools' ? 'active' : ''}`}
             onClick={() => setActiveTab('tools')}
           >
             <i className="fas fa-tools"></i>
-            <span>Tools & Technologies</span>
+            <span>{t.skills.toolsTech}</span>
           </button>
         </motion.div>
         
@@ -195,25 +197,20 @@ const Skills = () => {
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h3>My Expertise</h3>
+            <h3>{t.skills.myExpertise}</h3>
             <p>
-              As a dedicated software engineering student with a passion for development since {new Date().getFullYear() - 2022}, 
-              I've been building a diverse skill set that allows me to tackle interesting problems and deliver 
-              quality solutions. I'm enthusiastic about creating clean, efficient, and user-friendly 
-              applications that address real-world challenges.
+              {t.skills.expertiseDesc1}
             </p>
             <p>
-              I continuously expand my knowledge through coursework, personal projects, and staying updated with 
-              the latest technologies and industry trends. My approach combines growing technical expertise with 
-              strong communication and problem-solving abilities, preparing me for success in the professional world.
+              {t.skills.expertiseDesc2}
             </p>
             <div className="skills-cta">
               <a href="#projects" className="cta-btn">
-                <span>View My Projects</span>
+                <span>{t.skills.viewProjects}</span>
                 <i className="fas fa-arrow-right"></i>
               </a>
               <a href="#contact" className="cta-btn outline">
-                <span>Get In Touch</span>
+                <span>{t.skills.getInTouch}</span>
                 <i className="fas fa-envelope"></i>
               </a>
             </div>

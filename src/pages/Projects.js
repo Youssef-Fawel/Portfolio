@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 import ProjectModal from '../components/ProjectModal';
 import projectsData from '../assets/data/projectsData';
 import '../styles/Projects.css';
 
 const Projects = () => {
+  const { t } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -133,10 +135,10 @@ const Projects = () => {
     <section className="projects-section" id="projects">
       <div className="projects-container">
         <div className="section-header">
-          <h2 className="section-title">My Projects</h2>
+          <h2 className="section-title">{t.projects.title}</h2>
           <div className="underline"></div>
           <p className="section-subtitle">
-            Check out some of my recent work
+            {t.projects.subtitle}
           </p>
         </div>
         
@@ -147,7 +149,7 @@ const Projects = () => {
               className={`filter-btn ${activeCategory === category ? 'active' : ''}`}
               onClick={() => handleCategoryChange(category)}
             >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
+              {t.projects[category] || category.charAt(0).toUpperCase() + category.slice(1)}
             </button>
           ))}
         </div>
@@ -196,7 +198,7 @@ const Projects = () => {
                                   className="preview-link"
                                 >
                                   <i className="fas fa-external-link-alt"></i>
-                                  <span>Live Demo</span>
+                                  <span>{t.projects.liveDemo}</span>
                                 </a>
                               )}
                               {filteredProjects[currentSlide]?.linkedinPostUrl && 
@@ -208,7 +210,7 @@ const Projects = () => {
                                   className="linkedin-link"
                                 >
                                   <i className="fab fa-linkedin"></i>
-                                  <span>LinkedIn Post</span>
+                                  <span>{t.projects.linkedinPost}</span>
                                 </a>
                               )}
                             </div>
@@ -223,7 +225,7 @@ const Projects = () => {
                       <div className="project-header">
                         <h3 className="project-title">{filteredProjects[currentSlide]?.title || 'Untitled Project'}</h3>
                         <div className="project-status">
-                          <span className="status-badge">Featured</span>
+                          <span className="status-badge">{t.projects.featured}</span>
                         </div>
                       </div>
                       <p className="project-description">
@@ -242,7 +244,7 @@ const Projects = () => {
                           className="view-project-btn primary"
                           onClick={() => openModal(filteredProjects[currentSlide]?.id)}
                         >
-                          <span>Learn More</span>
+                          <span>{t.projects.learnMore}</span>
                           <i className="fas fa-arrow-right"></i>
                         </button>
                         {filteredProjects[currentSlide]?.liveUrl && (
@@ -253,7 +255,7 @@ const Projects = () => {
                             className="live-demo-btn secondary"
                           >
                             <i className="fas fa-external-link-alt"></i>
-                            <span>Live Demo</span>
+                            <span>{t.projects.liveDemo}</span>
                           </a>
                         )}
                         {filteredProjects[currentSlide]?.linkedinPostUrl && 
@@ -265,7 +267,7 @@ const Projects = () => {
                             className="linkedin-post-btn"
                           >
                             <i className="fab fa-linkedin"></i>
-                            <span>LinkedIn Post</span>
+                            <span>{t.projects.linkedinPost}</span>
                           </a>
                         )}
                       </div>
@@ -280,13 +282,13 @@ const Projects = () => {
                   exit={{ opacity: 0 }}
                 >
                   <i className="fas fa-folder-open"></i>
-                  <h3>No projects found</h3>
-                  <p>There are no projects in this category yet.</p>
+                  <h3>{t.projects.noProjects}</h3>
+                  <p>{t.projects.noProjectsDesc}</p>
                   <button
                     className="reset-filter-btn"
                     onClick={() => setActiveCategory('all')}
                   >
-                    View All Projects
+                    {t.projects.viewAllProjects}
                   </button>
                 </motion.div>
               )}

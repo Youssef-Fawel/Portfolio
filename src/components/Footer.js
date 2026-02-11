@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/Footer.css';
 
 const Footer = () => {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
   
   return (
@@ -35,7 +37,7 @@ const Footer = () => {
             </a>
           </div>
           <div className="copyright">
-            <span>© {currentYear} | Developed and Designed by <Link to="/cv">Youssef Fawel</Link></span>
+            <span>© {currentYear} | {t.footer.createdBy} <Link to="/cv">Youssef Fawel</Link></span>
           </div>
         </div>
       </div>

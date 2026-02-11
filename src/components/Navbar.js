@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
+  const { language, toggleLanguage, t } = useLanguage();
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -102,7 +104,7 @@ const Navbar = () => {
               className={isActive('/')}
               onClick={closeMenu}
             >
-              Home
+              {t.nav.home}
             </Link>
           </li>
           <li>
@@ -111,7 +113,7 @@ const Navbar = () => {
               className={isActive('/about')}
               onClick={closeMenu}
             >
-              About
+              {t.nav.about}
             </Link>
           </li>
           <li>
@@ -120,7 +122,7 @@ const Navbar = () => {
               className={isActive('/skills')}
               onClick={closeMenu}
             >
-              Skills
+              {t.nav.skills}
             </Link>
           </li>
           <li>
@@ -129,7 +131,16 @@ const Navbar = () => {
               className={isActive('/projects')}
               onClick={closeMenu}
             >
-              Projects
+              {t.nav.projects}
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/internships"
+              className={isActive('/internships')}
+              onClick={closeMenu}
+            >
+              {t.nav.internships}
             </Link>
           </li>
           <li>
@@ -138,7 +149,7 @@ const Navbar = () => {
               className={isActive('/certificates')}
               onClick={closeMenu}
             >
-              Certificates
+              {t.nav.certificates}
             </Link>
           </li>
           <li>
@@ -147,7 +158,7 @@ const Navbar = () => {
               className={isActive('/cv')}
               onClick={closeMenu}
             >
-              View CV
+              {t.nav.viewCV}
             </Link>
           </li>
           <li>
@@ -156,8 +167,21 @@ const Navbar = () => {
               className={isActive('/contact')}
               onClick={closeMenu}
             >
-              Contact
+              {t.nav.contact}
             </Link>
+          </li>
+          <li className="language-switcher">
+            <button 
+              className="language-btn" 
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleLanguage();
+              }}
+              aria-label="Toggle language"
+            >
+              <i className="fas fa-globe"></i>
+              <span className="lang-text">{language === 'en' ? 'FR' : 'EN'}</span>
+            </button>
           </li>
         </ul>
       </div>

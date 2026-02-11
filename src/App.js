@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LanguageProvider } from './context/LanguageContext';
 import './App.css';
 
 // Components
@@ -12,6 +13,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Skills from './pages/Skills';
 import Projects from './pages/Projects';
+import Internships from './pages/Internships';
 import Certificates from './pages/Certificates';
 import ViewCV from './pages/ViewCV';
 import Contact from './pages/Contact';
@@ -138,25 +140,28 @@ function App() {
   }
 
   return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/certificates" element={<Certificates />} />
-            <Route path="/cv" element={<ViewCV />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/thank-you" element={<ThankYou />} />
-          </Routes>
-        </main>
-        <ScrollToTop />
-        <Footer />
-      </div>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/skills" element={<Skills />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/internships" element={<Internships />} />
+              <Route path="/certificates" element={<Certificates />} />
+              <Route path="/cv" element={<ViewCV />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/thank-you" element={<ThankYou />} />
+            </Routes>
+          </main>
+          <ScrollToTop />
+          <Footer />
+        </div>
+      </Router>
+    </LanguageProvider>
   );
 }
 

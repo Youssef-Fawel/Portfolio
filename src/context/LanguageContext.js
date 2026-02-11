@@ -1,0 +1,402 @@
+import React, { createContext, useState, useContext } from 'react';
+
+const LanguageContext = createContext();
+
+export const translations = {
+  en: {
+    nav: {
+      home: 'Home',
+      about: 'About',
+      skills: 'Skills',
+      projects: 'Projects',
+      internships: 'Internships',
+      certificates: 'Certificates',
+      viewCV: 'View CV',
+      contact: 'Contact'
+    },
+    home: {
+      greeting: "Hello, my name is",
+      name: "Youssef Fawel",
+      tagline: "And I'm a",
+      description: "I'm passionate about creating elegant solutions through code. As a software engineering student, I combine technical skills with creative problem-solving to build impactful digital experiences.",
+      hireMeBtn: "Get In Touch",
+      portfolioBtn: "View Portfolio",
+      downloadCVBtn: "Download CV",
+      learnMore: "Learn More About Me",
+      viewAllSkills: "View All Skills",
+      viewAllProjects: "View All Projects",
+      viewAllInternships: "View All Internships",
+      viewAllCertificates: "View All Certificates",
+      viewFullCV: "View Full CV",
+      titles: [
+        "Software Engineering Student",
+        "Web Developer",
+        "Full-Stack Developer",
+        "Problem Solver",
+        "MERN Stack Developer",
+        "Tech Enthusiast"
+      ]
+    },
+    about: {
+      title: "About Me",
+      subtitle: "Who I am",
+      heading: "I'm Youssef and I'm a",
+      description1: "As a dedicated software engineering student at EPI DIGITAL SCHOOL in Sousse, I'm passionate about leveraging technology to solve complex problems. My academic journey from 2021 to 2026 has equipped me with a strong foundation in various programming languages and cutting-edge technologies.",
+      description2: "Currently, I'm expanding my horizons through an exciting exchange semester at ESIEA - École d'Ingénieur·e·s d'un numérique utile in Paris, France. This international experience is enriching my perspective and allowing me to develop new skills in an innovative academic environment. I thrive in challenging environments and am constantly seeking opportunities to expand my skill set.",
+      downloadCV: "Download CV",
+      viewWork: "View My Work",
+      name: "Name",
+      email: "Email",
+      esieaEmail: "ESIEA Email",
+      degree: "Degree",
+      degreeValue: "Software Engineering",
+      location: "Location",
+      locationValue: "Paris, France",
+      study: "Study",
+      studyValue: "ESIEA (Exchange) / EPI DIGITAL SCHOOL",
+      graduation: "Graduation"
+    },
+    skills: {
+      title: "My Skills",
+      subtitle: "Expertise and proficiencies I've developed over the years",
+      description: "As a dedicated software engineering student with a passion for development, I've been building a diverse skill set that allows me to tackle interesting problems and deliver quality solutions. I'm enthusiastic about creating clean, efficient, and user-friendly applications that address real-world challenges.",
+      technicalSkills: "Technical Skills",
+      softSkills: "Soft Skills",
+      toolsTech: "Tools & Technologies",
+      myExpertise: "My Expertise",
+      expertiseDesc1: "As a dedicated software engineering student with a passion for development, I've been building a diverse skill set that allows me to tackle interesting problems and deliver quality solutions. I'm enthusiastic about creating clean, efficient, and user-friendly applications that address real-world challenges.",
+      expertiseDesc2: "I continuously expand my knowledge through coursework, personal projects, and staying updated with the latest technologies and industry trends. My approach combines growing technical expertise with strong communication and problem-solving abilities, preparing me for success in the professional world.",
+      viewProjects: "View My Projects",
+      getInTouch: "Get In Touch",
+      beginner: "Beginner (0-69%)",
+      intermediate: "Intermediate (70-84%)",
+      advanced: "Advanced (85-100%)",
+      frontend: "Frontend",
+      backend: "Backend",
+      mobile: "Mobile Development",
+      database: "Database",
+      communication: "Communication",
+      collaboration: "Collaboration",
+      problemSolving: "Problem Solving",
+      devTools: "Development Tools",
+      designTools: "Design Tools"
+    },
+    projects: {
+      title: "My Projects",
+      subtitle: "A collection of my work and personal projects",
+      all: "All",
+      web: "Web",
+      mobile: "Mobile",
+      html: "HTML",
+      javascript: "JavaScript",
+      react: "React",
+      fullstack: "Full Stack",
+      featured: "Featured",
+      learnMore: "Learn More",
+      liveDemo: "Live Demo",
+      viewCode: "View Code",
+      linkedinPost: "LinkedIn Post",
+      noProjects: "No projects found",
+      noProjectsDesc: "There are no projects in this category yet.",
+      viewAllProjects: "View All Projects",
+      projectOverview: "Project Overview",
+      keyFeatures: "Key Features",
+      client: "Client",
+      date: "Date",
+      duration: "Duration",
+      myRole: "My Role",
+      technologiesUsed: "Technologies Used",
+      challengesSolutions: "Challenges & Solutions",
+      close: "Close",
+      allFilter: "All",
+      searchPlaceholder: "Search projects..."
+    },
+    internships: {
+      title: "My Internships",
+      subtitle: "Professional Experience",
+      duration: "Duration",
+      location: "Location",
+      skills: "Skills",
+      months: "mos",
+      month: "mo",
+      remote: "Remote",
+      onsite: "On-site",
+      hybrid: "Hybrid"
+    },
+    certificates: {
+      title: "My Certificates",
+      subtitle: "A collection of my professional certifications and achievements",
+      searchPlaceholder: "Search certificates...",
+      loading: "Loading certificates...",
+      showing: "Showing",
+      of: "of",
+      certificatesIn: "certificates in"
+    },
+    viewCV: {
+      title: "My Curriculum Vitae",
+      subtitle: "Get to know my professional journey and qualifications",
+      professionalSummary: "Professional Summary",
+      summaryText1: "I'm a passionate software developer with expertise in web development, specializing in building responsive and user-friendly applications. My CV provides a comprehensive overview of my professional experience, technical skills, educational background, and notable projects.",
+      summaryText2: "I'm constantly learning and adapting to new technologies to stay at the forefront of the industry. My goal is to create innovative solutions that make a positive impact and deliver exceptional user experiences.",
+      whatsInside: "What's Inside",
+      experience: "Professional Experience",
+      experienceDesc: "Detailed work history with key achievements and responsibilities.",
+      technicalSkills: "Technical Skills",
+      technicalSkillsDesc: "Comprehensive list of programming languages, frameworks, and tools.",
+      education: "Education & Certifications",
+      educationDesc: "Academic background and professional certifications.",
+      projects: "Projects",
+      projectsDesc: "Showcase of significant projects with technologies used and outcomes.",
+      downloadCV: "Download CV",
+      previewCV: "Preview CV",
+      viewFull: "View Full CV"
+    },
+    contact: {
+      title: "Contact Me",
+      subtitle: "Get in Touch",
+      name: "Name",
+      namePlaceholder: "Your name",
+      email: "Email",
+      emailPlaceholder: "Your email",
+      subject: "Subject",
+      message: "Message",
+      messagePlaceholder: "Write your message here...",
+      sendBtn: "Send Message",
+      getInTouch: "Get in Touch",
+      sendMessage: "Send Me a Message",
+      description: "I'm always open to new opportunities and collaborations. Feel free to reach out to me using the form or through my contact information below.",
+      emailLabel: "Email",
+      phoneLabel: "Phone",
+      locationLabel: "Location",
+      nameRequired: "Name is required",
+      emailRequired: "Email is required",
+      emailInvalid: "Email address is invalid",
+      messageRequired: "Message is required",
+      messageShort: "Message must be at least 10 characters"
+    },
+    linkedin: {
+      title: "I'm Looking for an Internship !",
+      author: "Youssef Fawel",
+      subtitle: "Software Engineering Student",
+      content1: "🚀 Looking for an End-of-Study Internship – Full Stack Development - Artificial Intelligence",
+      content2: "I am currently a 5th-year student in software engineering, and I am looking for an end-of-study internship starting from February 2026...",
+      visitBtn: "Visit LinkedIn Post",
+      closeBtn: "Close",
+      countdown: "LinkedIn post in:"
+    },
+    footer: {
+      createdBy: "Developed and Designed by",
+      rights: "All rights reserved."
+    }
+  },
+  fr: {
+    nav: {
+      home: 'Accueil',
+      about: 'À propos',
+      skills: 'Compétences',
+      projects: 'Projets',
+      internships: 'Stages',
+      certificates: 'Certificats',
+      viewCV: 'Voir CV',
+      contact: 'Contact'
+    },
+    home: {
+      greeting: "Bonjour, je m'appelle",
+      name: "Youssef Fawel",
+      tagline: "Et je suis",
+      description: "Je suis passionné par la création de solutions élégantes à travers le code. En tant qu'étudiant en génie logiciel, je combine compétences techniques et résolution créative de problèmes pour créer des expériences numériques percutantes.",
+      hireMeBtn: "Prenez Contact",
+      portfolioBtn: "Voir le Portfolio",
+      downloadCVBtn: "Télécharger CV",
+      learnMore: "En Savoir Plus Sur Moi",
+      viewAllSkills: "Voir Toutes les Compétences",
+      viewAllProjects: "Voir Tous les Projets",
+      viewAllInternships: "Voir Tous les Stages",
+      viewAllCertificates: "Voir Tous les Certificats",
+      viewFullCV: "Voir le CV Complet",
+      titles: [
+        "Étudiant en Génie Logiciel",
+        "Développeur Web",
+        "Développeur Full-Stack",
+        "Résolveur de Problèmes",
+        "Développeur MERN Stack",
+        "Passionné de Technologie"
+      ]
+    },
+    about: {
+      title: "À Propos de Moi",
+      subtitle: "Qui je suis",
+      heading: "Je suis Youssef et je suis",
+      description1: "En tant qu'étudiant dévoué en génie logiciel à l'EPI DIGITAL SCHOOL à Sousse, je suis passionné par l'utilisation de la technologie pour résoudre des problèmes complexes. Mon parcours académique de 2021 à 2026 m'a doté d'une base solide dans divers langages de programmation et technologies de pointe.",
+      description2: "Actuellement, j'élargis mes horizons grâce à un semestre d'échange passionnant à l'ESIEA - École d'Ingénieur·e·s d'un numérique utile à Paris, France. Cette expérience internationale enrichit ma perspective et me permet de développer de nouvelles compétences dans un environnement académique innovant. Je m'épanouis dans des environnements stimulants et je cherche constamment des opportunités pour élargir mes compétences.",
+      downloadCV: "Télécharger CV",
+      viewWork: "Voir Mon Travail",
+      name: "Nom",
+      email: "Email",
+      esieaEmail: "Email ESIEA",
+      degree: "Diplôme",
+      degreeValue: "Génie Logiciel",
+      location: "Lieu",
+      locationValue: "Paris, France",
+      study: "Études",
+      studyValue: "ESIEA (Échange) / EPI DIGITAL SCHOOL",
+      graduation: "Diplômation"
+    },
+    skills: {
+      title: "Mes Compétences",
+      subtitle: "Expertise et compétences que j'ai développées au fil des années",
+      description: "En tant qu'étudiant dévoué en génie logiciel avec une passion pour le développement, j'ai construit un ensemble diversifié de compétences qui me permet de relever des problèmes intéressants et de fournir des solutions de qualité. Je suis enthousiaste à l'idée de créer des applications propres, efficaces et conviviales qui répondent aux défis du monde réel.",
+      technicalSkills: "Compétences Techniques",
+      softSkills: "Compétences Relationnelles",
+      toolsTech: "Outils et Technologies",
+      myExpertise: "Mon Expertise",
+      expertiseDesc1: "En tant qu'étudiant dévoué en génie logiciel avec une passion pour le développement, j'ai construit un ensemble diversifié de compétences qui me permet de relever des problèmes intéressants et de fournir des solutions de qualité. Je suis enthousiaste à l'idée de créer des applications propres, efficaces et conviviales qui répondent aux défis du monde réel.",
+      expertiseDesc2: "J'élargis continuellement mes connaissances à travers les cours, les projets personnels et en restant à jour avec les dernières technologies et tendances de l'industrie. Mon approche combine une expertise technique croissante avec de solides capacités de communication et de résolution de problèmes, me préparant au succès dans le monde professionnel.",
+      viewProjects: "Voir Mes Projets",
+      getInTouch: "Prenez Contact",
+      beginner: "Débutant (0-69%)",
+      intermediate: "Intermédiaire (70-84%)",
+      advanced: "Avancé (85-100%)",
+      frontend: "Frontend",
+      backend: "Backend",
+      mobile: "Développement Mobile",
+      database: "Base de Données",
+      communication: "Communication",
+      collaboration: "Collaboration",
+      problemSolving: "Résolution de Problèmes",
+      devTools: "Outils de Développement",
+      designTools: "Outils de Design"
+    },
+    projects: {
+      title: "Mes Projets",
+      subtitle: "Une collection de mes travaux et projets personnels",
+      all: "Tous",
+      web: "Web",
+      mobile: "Mobile",
+      html: "HTML",
+      javascript: "JavaScript",
+      react: "React",
+      fullstack: "Full Stack",
+      featured: "En Vedette",
+      learnMore: "En Savoir Plus",
+      liveDemo: "Démo en Direct",
+      viewCode: "Voir le Code",
+      linkedinPost: "Publication LinkedIn",
+      noProjects: "Aucun projet trouvé",
+      noProjectsDesc: "Il n'y a pas encore de projets dans cette catégorie.",
+      viewAllProjects: "Voir Tous les Projets",
+      projectOverview: "Aperçu du Projet",
+      keyFeatures: "Caractéristiques Principales",
+      client: "Client",
+      date: "Date",
+      duration: "Durée",
+      myRole: "Mon Rôle",
+      technologiesUsed: "Technologies Utilisées",
+      challengesSolutions: "Défis et Solutions",
+      close: "Fermer",
+      allFilter: "Tous",
+      searchPlaceholder: "Rechercher des projets..."
+    },
+    internships: {
+      title: "Mes Stages",
+      subtitle: "Expérience Professionnelle",
+      duration: "Durée",
+      location: "Lieu",
+      skills: "Compétences",
+      months: "mois",
+      month: "mois",
+      remote: "À distance",
+      onsite: "Sur site",
+      hybrid: "Hybride"
+    },
+    certificates: {
+      title: "Mes Certificats",
+      subtitle: "Une collection de mes certifications professionnelles et réalisations",
+      searchPlaceholder: "Rechercher des certificats...",
+      loading: "Chargement des certificats...",
+      showing: "Affichage de",
+      of: "sur",
+      certificatesIn: "certificats dans"
+    },
+    viewCV: {
+      title: "Mon Curriculum Vitae",
+      subtitle: "Découvrez mon parcours professionnel et mes qualifications",
+      professionalSummary: "Résumé Professionnel",
+      summaryText1: "Je suis un développeur logiciel passionné avec une expertise en développement web, spécialisé dans la création d'applications réactives et conviviales. Mon CV offre un aperçu complet de mon expérience professionnelle, de mes compétences techniques, de mon parcours éducatif et de mes projets notables.",
+      summaryText2: "J'apprends et m'adapte constamment aux nouvelles technologies pour rester à la pointe de l'industrie. Mon objectif est de créer des solutions innovantes qui ont un impact positif et offrent des expériences utilisateur exceptionnelles.",
+      whatsInside: "Contenu",
+      experience: "Expérience Professionnelle",
+      experienceDesc: "Historique de travail détaillé avec les réalisations et responsabilités clés.",
+      technicalSkills: "Compétences Techniques",
+      technicalSkillsDesc: "Liste complète des langages de programmation, frameworks et outils.",
+      education: "Formation et Certifications",
+      educationDesc: "Parcours académique et certifications professionnelles.",
+      projects: "Projets",
+      projectsDesc: "Présentation de projets significatifs avec les technologies utilisées et les résultats.",
+      downloadCV: "Télécharger CV",
+      previewCV: "Prévisualiser CV",
+      viewFull: "Voir le CV Complet"
+    },
+    contact: {
+      title: "Contactez-moi",
+      subtitle: "Prenez Contact",
+      name: "Nom",
+      namePlaceholder: "Votre nom",
+      email: "Email",
+      emailPlaceholder: "Votre email",
+      subject: "Sujet",
+      message: "Message",
+      messagePlaceholder: "Écrivez votre message ici...",
+      sendBtn: "Envoyer le Message",
+      getInTouch: "Prenez Contact",
+      sendMessage: "Envoyez-moi un Message",
+      description: "Je suis toujours ouvert aux nouvelles opportunités et collaborations. N'hésitez pas à me contacter via le formulaire ou mes coordonnées ci-dessous.",
+      emailLabel: "Email",
+      phoneLabel: "Téléphone",
+      locationLabel: "Localisation",
+      nameRequired: "Le nom est requis",
+      emailRequired: "L'email est requis",
+      emailInvalid: "L'adresse email est invalide",
+      messageRequired: "Le message est requis",
+      messageShort: "Le message doit contenir au moins 10 caractères"
+    },
+    linkedin: {
+      title: "Je Recherche un Stage !",
+      author: "Youssef Fawel",
+      subtitle: "Étudiant en Génie Logiciel",
+      content1: "🚀 À la recherche d'un stage de fin d'études – Développement Full Stack - Intelligence Artificielle",
+      content2: "Je suis actuellement étudiant en 5ᵉ année de cycle ingénieur en génie logiciel, et je recherche un stage de fin d'études à partir de février 2026...",
+      visitBtn: "Visiter la Publication LinkedIn",
+      closeBtn: "Fermer",
+      countdown: "Publication LinkedIn dans :"
+    },
+    footer: {
+      createdBy: "Développé et Conçu par",
+      rights: "Tous droits réservés."
+    }
+  }
+};
+
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+};
+
+export const LanguageProvider = ({ children }) => {
+  const [language, setLanguage] = useState('en');
+
+  const toggleLanguage = () => {
+    setLanguage(prev => prev === 'en' ? 'fr' : 'en');
+  };
+
+  const t = translations[language];
+
+  return (
+    <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};

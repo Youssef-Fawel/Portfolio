@@ -228,3 +228,67 @@
 .navbar.scrolled {
   animation: fadeIn 0.3s ease forwards;
 }
+
+/* Language Switcher Button Styles */
+.navbar .menu .language-switcher {
+  margin-left: 10px;
+}
+
+.navbar .menu .language-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(77, 181, 255, 0.2);
+  border: 2px solid rgba(77, 181, 255, 0.4);
+  border-radius: 25px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar .menu .language-btn:hover {
+  background: rgba(77, 181, 255, 0.3);
+  border-color: rgba(77, 181, 255, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(77, 181, 255, 0.3);
+}
+
+.navbar .menu .language-btn i {
+  font-size: 16px;
+}
+
+.navbar .menu .language-btn .lang-text {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.navbar.scrolled .menu .language-btn {
+  background: rgba(77, 181, 255, 0.1);
+  border-color: rgba(77, 181, 255, 0.3);
+  color: #1e3c72;
+}
+
+.navbar.scrolled .menu .language-btn:hover {
+  background: rgba(77, 181, 255, 0.2);
+  border-color: rgba(77, 181, 255, 0.5);
+  color: #4db5ff;
+}
+
+/* Mobile adjustments for language switcher */
+@media (max-width: 947px) {
+  .navbar .menu .language-switcher {
+    margin-left: 0;
+    padding: 0 20px;
+  }
+
+  .navbar .menu .language-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    margin-top: 10px;
+  }
+}

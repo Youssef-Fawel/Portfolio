@@ -1,0 +1,447 @@
+﻿/* Internships Section - Horizontal Wave Timeline */
+.internships {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #0a0e27 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.internships .max-width {
+  width: 100%;
+  margin: 0;
+  padding: 0 40px;
+}
+
+.internships .section-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.internships .title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+}
+
+.internships .title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, #4db5ff, #6a5acd);
+  border-radius: 2px;
+}
+
+.internships .subtitle {
+  font-size: 1.3rem;
+  color: #a0a0a0;
+  margin-top: 25px;
+  font-weight: 300;
+}
+
+/* Timeline Wave Container */
+.timeline-wave-container {
+  position: relative;
+  width: 100%;
+  padding: 60px 0;
+  min-height: 900px;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+/* Custom Scrollbar */
+.timeline-wave-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.timeline-wave-container::-webkit-scrollbar-track {
+  background: rgba(77, 181, 255, 0.1);
+  border-radius: 10px;
+}
+
+.timeline-wave-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #4db5ff, #6a5acd);
+  border-radius: 10px;
+}
+
+.timeline-wave-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #6a5acd, #4db5ff);
+}
+
+/* SVG Wave Line */
+.wave-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 2200px;
+  height: 300px;
+  transform: translateY(-50%);
+  z-index: 1;
+  opacity: 0.8;
+}
+
+/* Timeline Items Container */
+.timeline-items-wave {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 60px;
+  gap: 80px;
+  min-width: 2200px;
+  z-index: 2;
+}
+
+/* Individual Timeline Item */
+.timeline-item-wave {
+  position: relative;
+  flex: 0 0 auto;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Alternating Top/Bottom Position */
+.timeline-item-wave.top {
+  margin-top: -200px;
+}
+
+.timeline-item-wave.bottom {
+  margin-top: 200px;
+}
+
+/* Timeline Dot */
+.timeline-dot-wave {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #4db5ff, #6a5acd);
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px rgba(77, 181, 255, 0.2), 0 0 20px rgba(77, 181, 255, 0.5);
+  z-index: 3;
+  margin-bottom: 20px;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.dot-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(77, 181, 255, 0.2), 0 0 20px rgba(77, 181, 255, 0.5);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 12px rgba(77, 181, 255, 0.3), 0 0 30px rgba(77, 181, 255, 0.7);
+  }
+}
+
+/* Timeline Card */
+.timeline-card-wave {
+  background: linear-gradient(145deg, rgba(26, 26, 46, 0.95), rgba(16, 16, 36, 0.95));
+  border-radius: 20px;
+  padding: 25px;
+  width: 280px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(77, 181, 255, 0.2);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-card-wave::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #4db5ff, #6a5acd, #4db5ff);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.timeline-card-wave:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 50px rgba(77, 181, 255, 0.4);
+  border-color: rgba(77, 181, 255, 0.5);
+}
+
+/* Card Icon */
+.card-icon-wave {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #4db5ff, #6a5acd);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  box-shadow: 0 5px 15px rgba(77, 181, 255, 0.3);
+}
+
+.card-icon-wave i {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+/* Card Content */
+.card-content-wave {
+  color: #fff;
+}
+
+.timeline-date-wave {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #4db5ff;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.timeline-date-wave i {
+  font-size: 0.9rem;
+}
+
+.company-name-wave {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.position-title-wave {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #a0a0a0;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.internship-meta-wave {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.internship-type-wave,
+.internship-duration-wave {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #b0b0b0;
+}
+
+.internship-type-wave i,
+.internship-duration-wave i {
+  color: #6a5acd;
+  font-size: 0.8rem;
+}
+
+.location-info-wave {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #b0b0b0;
+  margin-bottom: 15px;
+}
+
+.location-info-wave i {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+}
+
+.certificate-badge-wave {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(77, 181, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: #4db5ff;
+  margin-bottom: 15px;
+  border: 1px solid rgba(77, 181, 255, 0.3);
+}
+
+.certificate-badge-wave i {
+  font-size: 0.8rem;
+}
+
+.internship-description-wave {
+  font-size: 0.9rem;
+  color: #c0c0c0;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.skills-list-wave {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(77, 181, 255, 0.2);
+}
+
+.skills-label-wave {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.skills-label-wave i {
+  color: #6a5acd;
+  font-size: 0.9rem;
+}
+
+.skills-tags-wave {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-tag-wave {
+  background: rgba(106, 90, 205, 0.2);
+  color: #b8aff5;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid rgba(106, 90, 205, 0.3);
+  transition: all 0.3s ease;
+}
+
+.skill-tag-wave:hover {
+  background: rgba(106, 90, 205, 0.4);
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .internships .max-width {
+    padding: 0 40px;
+  }
+  
+  .timeline-card-wave {
+    width: 240px;
+    padding: 20px;
+  }
+  
+  .company-name-wave {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 968px) {
+  .internships .title {
+    font-size: 2.5rem;
+  }
+  
+  .timeline-items-wave {
+    flex-direction: column;
+    gap: 60px;
+  }
+  
+  .timeline-item-wave {
+    width: 100%;
+    margin-top: 0 !important;
+  }
+  
+  .wave-line {
+    display: none;
+  }
+  
+  .timeline-card-wave {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .timeline-dot-wave {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0;
+  }
+  
+  .timeline-item-wave.top .timeline-dot-wave {
+    top: -40px;
+  }
+  
+  .timeline-item-wave.bottom .timeline-dot-wave {
+    bottom: -40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .internships {
+    padding: 60px 0;
+  }
+  
+  .internships .max-width {
+    padding: 0 20px;
+  }
+  
+  .internships .title {
+    font-size: 2rem;
+  }
+  
+  .internships .subtitle {
+    font-size: 1rem;
+  }
+  
+  .timeline-card-wave {
+    padding: 18px;
+  }
+  
+  .card-icon-wave {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .card-icon-wave i {
+    font-size: 1.2rem;
+  }
+  
+  .company-name-wave {
+    font-size: 1rem;
+  }
+  
+  .position-title-wave {
+    font-size: 0.9rem;
+  }
+}

@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/Contact.css';
 
 const Contact = () => {
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
@@ -25,19 +27,19 @@ const Contact = () => {
     const errors = {};
     
     if (!formData.name.trim()) {
-      errors.name = "Name is required";
+      errors.name = t.contact.nameRequired;
     }
     
     if (!formData.email.trim()) {
-      errors.email = "Email is required";
+      errors.email = t.contact.emailRequired;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = "Email address is invalid";
+      errors.email = t.contact.emailInvalid;
     }
     
     if (!formData.message.trim()) {
-      errors.message = "Message is required";
+      errors.message = t.contact.messageRequired;
     } else if (formData.message.trim().length < 10) {
-      errors.message = "Message must be at least 10 characters";
+      errors.message = t.contact.messageShort;
     }
     
     setFormErrors(errors);
@@ -152,10 +154,10 @@ const Contact = () => {
     <section className="contact-section" id="contact">
       <div className="contact-container">
         <div className="section-header">
-          <h2 className="section-title">Contact Me</h2>
+          <h2 className="section-title">{t.contact.title}</h2>
           <div className="underline"></div>
           <p className="section-subtitle">
-            Let's work together on your next project
+            {t.contact.subtitle}
           </p>
         </div>
         
@@ -168,10 +170,9 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <div className="contact-heading">
-              <h3>Get in Touch</h3>
+              <h3>{t.contact.getInTouch}</h3>
               <p>
-                I'm always open to new opportunities and collaborations.
-                Feel free to reach out to me using the form or through my contact information below.
+                {t.contact.description}
               </p>
             </div>
             
@@ -181,7 +182,7 @@ const Contact = () => {
                   <i className="fas fa-envelope"></i>
                 </div>
                 <div className="contact-details">
-                  <h4>Email</h4>
+                  <h4>{t.contact.emailLabel}</h4>
                   <a href="mailto:youssef.fawel@et.esiea.fr">
                     youssef.fawel@et.esiea.fr
                   </a>
@@ -193,7 +194,7 @@ const Contact = () => {
                   <i className="fas fa-map-marker-alt"></i>
                 </div>
                 <div className="contact-details">
-                  <h4>Location</h4>
+                  <h4>{t.contact.locationLabel}</h4>
                   <p>Paris, France</p>
                 </div>
               </div>
@@ -220,7 +221,7 @@ const Contact = () => {
           >
             <div className="contact-form-container">
               <div className="form-header">
-                <h3>Send Me a Message</h3>
+                <h3>{t.contact.sendMessage}</h3>
                 <p>I'll get back to you as soon as possible</p>
               </div>
               
@@ -253,14 +254,14 @@ const Contact = () => {
                 </p>
                 
                 <div className="form-group">
-                  <label htmlFor="name">Name</label>
+                  <label htmlFor="name">{t.contact.name}</label>
                   <div className="input-container">
                     <i className="fas fa-user"></i>
                     <input
                       type="text"
                       id="name"
                       name="name"
-                      placeholder="Your name"
+                      placeholder={t.contact.namePlaceholder}
                       value={formData.name}
                       onChange={handleChange}
                       className={formErrors.name ? 'error' : ''}
@@ -270,14 +271,14 @@ const Contact = () => {
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="email">{t.contact.email}</label>
                   <div className="input-container">
                     <i className="fas fa-envelope"></i>
                     <input
                       type="email"
                       id="email"
                       name="email"
-                      placeholder="Your email"
+                      placeholder={t.contact.emailPlaceholder}
                       value={formData.email}
                       onChange={handleChange}
                       className={formErrors.email ? 'error' : ''}
@@ -287,14 +288,14 @@ const Contact = () => {
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="message">Message</label>
+                  <label htmlFor="message">{t.contact.message}</label>
                   <div className="input-container textarea-container">
                     <i className="fas fa-comment-alt"></i>
                     <textarea
                       id="message"
                       name="message"
                       rows="5"
-                      placeholder="Write your message here..."
+                      placeholder={t.contact.messagePlaceholder}
                       value={formData.message}
                       onChange={handleChange}
                       className={formErrors.message ? 'error' : ''}
@@ -315,7 +316,7 @@ const Contact = () => {
                       </>
                     ) : (
                       <>
-                        <span>Send Message</span>
+                        <span>{t.contact.sendBtn}</span>
                         <i className="fas fa-paper-plane"></i>
                       </>
                     )}

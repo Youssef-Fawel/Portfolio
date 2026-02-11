@@ -1,12 +1,14 @@
 import React, { useEffect, useRef} from 'react';
 import { Link } from 'react-router-dom';
 import Typed from 'typed.js';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/Home.css';
 
 // Import section content from other pages
 import About from './About';
 import Skills from './Skills';
 import Projects from './Projects';
+import Internships from './Internships';
 import Contact from './Contact';
 import Certificates from './Certificates';
 import ViewCV from './ViewCV';
@@ -14,18 +16,12 @@ import ScrollToTop from '../components/ScrollToTop';
 import LinkedInPopup from '../components/LinkedInPopup'; // Add this import
 
 const Home = () => {
+  const { t } = useLanguage();
   const typedRef = useRef(null);
     
   useEffect(() => {
     const options = {
-      strings: [
-        "Software Engineering Student",
-        "Web Developer",
-        "Full-Stack Developer",
-        "Problem Solver",
-        "MERN Stack Developer",
-        "Tech Enthusiast"
-      ],
+      strings: t.home.titles,
       typeSpeed: 100,
       backSpeed: 60,
       loop: true
@@ -36,7 +32,7 @@ const Home = () => {
     return () => {
       typed.destroy();
     };
-  }, []);
+  }, [t.home.titles]);
 
   return (
     <div className="home-page">
@@ -54,19 +50,17 @@ const Home = () => {
         <div className="floating-shape shape3"></div>
         <div className="hero-container">
           <div className="home-content">
-            <div className="text-1">Hello, my name is</div>
-            <div className="text-2">Youssef Fawel</div>
-            <div className="text-3">And I'm a <span ref={typedRef} className="typing"></span></div>
+            <div className="text-1">{t.home.greeting}</div>
+            <div className="text-2">{t.home.name}</div>
+            <div className="text-3">{t.home.tagline} <span ref={typedRef} className="typing"></span></div>
                         
             <div className="text-description">
-              I'm passionate about creating elegant solutions through code.
-              As a software engineering student, I combine technical skills with
-              creative problem-solving to build impactful digital experiences.
+              {t.home.description}
             </div>
                         
             <div className="buttons-container">
-              <a href="#contact" className="hire-me-btn">Get In Touch</a>
-              <a href="#projects" className="portfolio-btn">View Portfolio</a>
+              <a href="#contact" className="hire-me-btn">{t.home.hireMeBtn}</a>
+              <a href="#projects" className="portfolio-btn">{t.home.portfolioBtn}</a>
             </div>
           </div>
         </div>
@@ -79,7 +73,7 @@ const Home = () => {
           </div>
           <About />
           <div className="section-link">
-            <Link to="/about" className="view-more-btn">Learn More About Me</Link>
+            <Link to="/about" className="view-more-btn">{t.home.learnMore}</Link>
           </div>
         </div>
       </section>
@@ -91,7 +85,7 @@ const Home = () => {
           </div>
           <Skills />
           <div className="section-link">
-            <Link to="/skills" className="view-more-btn">View All Skills</Link>
+            <Link to="/skills" className="view-more-btn">{t.home.viewAllSkills}</Link>
           </div>
         </div>
       </section>
@@ -103,7 +97,19 @@ const Home = () => {
           </div>
           <Projects featured={true} />
           <div className="section-link">
-            <Link to="/projects" className="view-more-btn">View All Projects</Link>
+            <Link to="/projects" className="view-more-btn">{t.home.viewAllProjects}</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Internships Section */}
+      <section className="internships-section" id="internships">
+        <div className="section-container">
+          <div className="section-title">
+          </div>
+          <Internships />
+          <div className="section-link">
+            <Link to="/internships" className="view-more-btn">{t.home.viewAllInternships}</Link>
           </div>
         </div>
       </section>
@@ -115,7 +121,7 @@ const Home = () => {
           </div>
           <Certificates featured={true} />
           <div className="section-link">
-            <Link to="/certificates" className="view-more-btn">View All Certificates</Link>
+            <Link to="/certificates" className="view-more-btn">{t.home.viewAllCertificates}</Link>
           </div>
         </div>
       </section>
@@ -127,7 +133,7 @@ const Home = () => {
           </div>
           <ViewCV />
           <div className="section-link">
-            <Link to="/cv" className="view-more-btn">View Full CV</Link>
+            <Link to="/cv" className="view-more-btn">{t.home.viewFullCV}</Link>
           </div>
         </div>
       </section>
