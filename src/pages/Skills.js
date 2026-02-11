@@ -52,60 +52,60 @@ const Skills = () => {
     ],
     soft: [
       {
-        category: 'Communication',
+        category: t.skills.communication,
         skills: [
-          { name: 'Written Communication', level: 90 },
-          { name: 'Verbal Communication', level: 85 },
-          { name: 'Presentation', level: 80 },
-          { name: 'Documentation', level: 85 },
+          { name: t.skills.writtenCommunication, level: 90 },
+          { name: t.skills.verbalCommunication, level: 85 },
+          { name: t.skills.presentation, level: 80 },
+          { name: t.skills.documentation, level: 85 },
         ]
       },
       {
-        category: 'Collaboration',
+        category: t.skills.collaboration,
         skills: [
-          { name: 'Teamwork', level: 90 },
-          { name: 'Leadership', level: 75 },
-          { name: 'Conflict Resolution', level: 80 },
-          { name: 'Mentoring', level: 70 },
+          { name: t.skills.teamwork, level: 90 },
+          { name: t.skills.leadership, level: 75 },
+          { name: t.skills.conflictResolution, level: 80 },
+          { name: t.skills.mentoring, level: 70 },
         ]
       },
       {
-        category: 'Problem Solving',
+        category: t.skills.problemSolving,
         skills: [
-          { name: 'Critical Thinking', level: 85 },
-          { name: 'Analytical Skills', level: 90 },
-          { name: 'Creativity', level: 80 },
-          { name: 'Attention to Detail', level: 85 },
+          { name: t.skills.criticalThinking, level: 85 },
+          { name: t.skills.analyticalSkills, level: 90 },
+          { name: t.skills.creativity, level: 80 },
+          { name: t.skills.attentionToDetail, level: 85 },
         ]
       },
     ],
     tools: [
       {
-        category: 'Development Tools',
+        category: t.skills.devTools,
         skills: [
-          { name: 'Git & GitHub', level: 85 },
-          { name: 'Postman', level: 85 },
-          { name: 'VS Code', level: 90 },
-          { name: 'Android Studio', level: 78 }, 
-          { name: 'Webpack', level: 65 },
-          { name: 'npm/yarn', level: 80 },
+          { name: t.skills.gitGithub, level: 85 },
+          { name: t.skills.postman, level: 85 },
+          { name: t.skills.vsCode, level: 90 },
+          { name: t.skills.androidStudio, level: 78 }, 
+          { name: t.skills.webpack, level: 65 },
+          { name: t.skills.npmYarn, level: 80 },
         ]
       },
       {
-        category: 'Design Tools',
+        category: t.skills.designTools,
         skills: [
-          { name: 'Figma', level: 75 },
-          { name: 'Adobe XD', level: 70 },
-          { name: 'Photoshop', level: 65 },
-          { name: 'Illustrator', level: 60 },
+          { name: t.skills.figma, level: 75 },
+          { name: t.skills.adobeXd, level: 70 },
+          { name: t.skills.photoshop, level: 65 },
+          { name: t.skills.illustrator, level: 60 },
         ]
       },
       {
-        category: 'Project Management',
+        category: t.skills.projectManagement,
         skills: [
-          { name: 'Jira', level: 80 },
-          { name: 'Trello', level: 85 },
-          { name: 'Agile/Scrum', level: 75 },
+          { name: t.skills.jira, level: 80 },
+          { name: t.skills.trello, level: 85 },
+          { name: t.skills.agileScrum, level: 75 },
         ]
       },
     ]
