@@ -175,14 +175,14 @@ export const translations = {
       messageShort: "Message must be at least 10 characters"
     },
     linkedin: {
-      title: "I'm Looking for an Internship !",
+      title: "LinkedIn",
       author: "Youssef Fawel",
       subtitle: "Software Engineering Student",
       content1: "🚀 Looking for an End-of-Study Internship – Full Stack Development - Artificial Intelligence",
       content2: "I am currently a 5th-year student in software engineering, and I am looking for an end-of-study internship starting from February 2026...",
-      visitBtn: "Visit LinkedIn Post",
+      visitBtn: "Visit My LinkedIn Profile",
       closeBtn: "Close",
-      countdown: "LinkedIn post in:"
+      countdown: "LinkedIn in:"
     },
     footer: {
       createdBy: "Developed and Designed by",
@@ -361,14 +361,14 @@ export const translations = {
       messageShort: "Le message doit contenir au moins 10 caractères"
     },
     linkedin: {
-      title: "Je Recherche un Stage !",
+      title: "LinkedIn",
       author: "Youssef Fawel",
       subtitle: "Étudiant en Génie Logiciel",
       content1: "🚀 À la recherche d'un stage de fin d'études – Développement Full Stack - Intelligence Artificielle",
       content2: "Je suis actuellement étudiant en 5ᵉ année de cycle ingénieur en génie logiciel, et je recherche un stage de fin d'études à partir de février 2026...",
-      visitBtn: "Visiter la Publication LinkedIn",
+      visitBtn: "Visiter Mon Profil LinkedIn",
       closeBtn: "Fermer",
-      countdown: "Publication LinkedIn dans :"
+      countdown: "LinkedIn dans :"
     },
     footer: {
       createdBy: "Développé et Conçu par",
