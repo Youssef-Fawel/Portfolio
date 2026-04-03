@@ -13,7 +13,7 @@ import Contact from './Contact';
 import Certificates from './Certificates';
 import ViewCV from './ViewCV';
 import ScrollToTop from '../components/ScrollToTop';
-import LinkedInPopup from '../components/LinkedInPopup'; // Add this import
+import LinkedInPopup from '../components/LinkedInPopup'; 
 
 const Home = () => {
   const { t } = useLanguage();
