@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Typed from 'typed.js';
 import { useLanguage } from '../context/LanguageContext';
 import '../styles/About.css';
-import profileImage from '../assets/images/Me.jpg';
+import profileImage from '../assets/images/Me.jpeg';
 import cvPdf from '../assets/images/Resume.pdf';
 
 const About = () => {
