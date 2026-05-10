@@ -377,11 +377,13 @@
   .internships {
     width: 100%;
     margin-left: 0;
+    overflow-y: visible;
   }
 
   .timeline-wave-container {
     min-height: auto;
     overflow-x: hidden;
+    overflow-y: visible;
     padding: 20px 0 40px;
   }
 
@@ -412,18 +414,16 @@
   }
   
   .timeline-dot-wave {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 0;
+    position: relative;
+    left: auto;
+    transform: none;
+    margin-bottom: 15px;
   }
   
-  .timeline-item-wave.top .timeline-dot-wave {
-    top: -40px;
-  }
-  
+  .timeline-item-wave.top .timeline-dot-wave,
   .timeline-item-wave.bottom .timeline-dot-wave {
-    bottom: -40px;
+    top: auto;
+    bottom: auto;
   }
 }
 
