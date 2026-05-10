@@ -377,13 +377,12 @@
   .internships {
     width: 100%;
     margin-left: 0;
-    overflow-y: visible;
+    overflow-x: visible;
   }
 
   .timeline-wave-container {
     min-height: auto;
-    overflow-x: hidden;
-    overflow-y: visible;
+    overflow: visible;
     padding: 20px 0 40px;
   }
 
