@@ -14,14 +14,14 @@ const Internships = () => {
     }
 
     const mediaQuery = window.matchMedia('(max-width: 968px)');
-    const updateIsMobileLayout = (event) => {
+    const handleMediaChange = (event) => {
       setIsMobileLayout(event.matches);
     };
 
     setIsMobileLayout(mediaQuery.matches);
 
-    mediaQuery.addEventListener('change', updateIsMobileLayout);
-    return () => mediaQuery.removeEventListener('change', updateIsMobileLayout);
+    mediaQuery.addEventListener('change', handleMediaChange);
+    return () => mediaQuery.removeEventListener('change', handleMediaChange);
   }, []);
 
   const containerVariants = {
@@ -60,22 +60,22 @@ const Internships = () => {
 
   const itemMotionProps = isMobileLayout ? {} : { variants: itemVariants };
 
-  const HeaderTag = isMobileLayout ? 'div' : motion.div;
-  const ContainerTag = isMobileLayout ? 'div' : motion.div;
-  const ItemTag = isMobileLayout ? 'div' : motion.div;
+  const HeaderComponent = isMobileLayout ? 'div' : motion.div;
+  const ContainerComponent = isMobileLayout ? 'div' : motion.div;
+  const ItemComponent = isMobileLayout ? 'div' : motion.div;
 
   return (
     <section className="internships" id="internships">
       <div className="max-width">
-        <HeaderTag
+        <HeaderComponent
           className="section-header"
           {...headerMotionProps}
         >
           <h2 className="title">{t.internships.title}</h2>
           <p className="subtitle">{t.internships.subtitle}</p>
-        </HeaderTag>
+        </HeaderComponent>
 
-        <ContainerTag
+        <ContainerComponent
           className="timeline-wave-container"
           {...containerMotionProps}
         >
@@ -97,7 +97,7 @@ const Internships = () => {
 
           <div className="timeline-items-wave">
             {internshipsData.map((internship, index) => (
-              <ItemTag
+              <ItemComponent
                 key={internship.id}
                 className={`timeline-item-wave ${index % 2 === 0 ? 'top' : 'bottom'}`}
                 {...itemMotionProps}
@@ -150,10 +150,10 @@ const Internships = () => {
                     </div>
                   </div>
                 </div>
-              </ItemTag>
+              </ItemComponent>
             ))}
           </div>
-        </ContainerTag>
+        </ContainerComponent>
       </div>
     </section>
   );
