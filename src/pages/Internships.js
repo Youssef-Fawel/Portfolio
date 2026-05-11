@@ -81,20 +81,15 @@ const Internships = () => {
                   </div>
                   
                   <div className="card-content-wave">
-                    <div className="timeline-date-wave">
-                      <i className="fas fa-calendar-alt"></i>
-                      <span>{internship.duration}</span>
-                    </div>
-                    
-                    <h3 className="company-name-wave">{internship.company}</h3>
-                    <h4 className="position-title-wave">{internship.title[language]}</h4>
+                    <h3 className="position-title-wave">{internship.title[language]}</h3>
+                    <h4 className="company-name-wave">{internship.company}</h4>
                     
                     <div className="internship-meta-wave">
-                      <span className="internship-type-wave">
-                        <i className="fas fa-tag"></i>
-                        {internship.type[language]}
-                      </span>
                       <span className="internship-duration-wave">
+                        <i className="fas fa-calendar-alt"></i>
+                        {internship.duration}
+                      </span>
+                      <span className="internship-months-wave">
                         <i className="fas fa-clock"></i>
                         {internship.months} {internship.months > 1 ? t.internships.months : t.internships.month}
                       </span>
