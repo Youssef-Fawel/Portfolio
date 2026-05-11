@@ -4,16 +4,26 @@ import { useLanguage } from '../context/LanguageContext';
 import { internshipsData } from '../assets/data/internshipsData';
 import '../styles/Internships.css';
 
+const MOBILE_BREAKPOINT = 968;
+
+const getInitialMobileLayout = () => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+
+  return window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches;
+};
+
 const Internships = () => {
   const { language, t } = useLanguage();
-  const [isMobileLayout, setIsMobileLayout] = React.useState(false);
+  const [isMobileLayout, setIsMobileLayout] = React.useState(getInitialMobileLayout);
 
   React.useEffect(() => {
     if (typeof window === 'undefined') {
       return;
     }
 
-    const mediaQuery = window.matchMedia('(max-width: 968px)');
+    const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
     const handleMediaChange = (event) => {
       setIsMobileLayout(event.matches);
     };
