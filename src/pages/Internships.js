@@ -10,7 +10,7 @@ const Internships = () => {
 
   React.useEffect(() => {
     if (typeof window === 'undefined') {
-      return undefined;
+      return;
     }
 
     const mediaQuery = window.matchMedia('(max-width: 968px)');
