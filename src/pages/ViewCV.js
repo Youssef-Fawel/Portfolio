@@ -10,6 +10,11 @@ const ViewCV = () => {
   const [showPreview, setShowPreview] = useState(false);
   
   useEffect(() => {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

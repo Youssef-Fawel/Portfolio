@@ -158,7 +158,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .menu-btn {
     display: block;
     z-index: 999;
@@ -175,6 +175,11 @@
     padding-top: 80px;
     transition: all 0.3s ease;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 900;
   }
   
   .navbar.scrolled .menu {
