@@ -367,126 +367,125 @@
   }
 }
 
-/* Mobile layout: stacked column, title on top, cards centered below */
+/* Mobile layout: stacked column, title on top, cards full-width */
 @media (max-width: 968px) {
   .internships {
     width: 100%;
     margin-left: 0;
-    padding: 60px 0;
+    padding: 48px 0 64px;
     overflow-x: hidden;
   }
 
   .internships .max-width {
+    width: 100%;
+    max-width: 100%;
     padding: 0 16px;
+    box-sizing: border-box;
   }
 
-  /* Ensure title block is full-width and sits above the cards */
   .internships .section-header {
-    width: 100%;
     text-align: center;
     margin-bottom: 24px;
-    position: relative;
-    z-index: 3;
   }
 
   .internships .title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
-  /* Remove horizontal-scroll container constraints */
+  .internships .title::after {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    transform: none;
+  }
+
+  .internships .subtitle {
+    font-size: 1rem;
+  }
+
+  .internships,
+  .internships * ,
+  .internships *::before,
+  .internships *::after {
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    transform: none !important;
+  }
+
   .wave-line {
     display: none;
   }
 
   .timeline-wave-container {
-    position: relative;
+    width: 100%;
     min-height: auto;
+    padding: 0;
     overflow: hidden;
-    padding: 8px 0 16px;
-  }
-
-  /* Stack cards in a single column, centered */
-  .timeline-items-wave {
-    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    min-width: 100%;
+  }
+
+  .timeline-items-wave {
     width: 100%;
+    min-width: 0;
     padding: 0;
-    gap: 20px;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     box-sizing: border-box;
   }
 
-  /* Reset the alternating top/bottom wave offsets that cause cards to
-     overflow upward into the section header on mobile */
   .timeline-item-wave,
   .timeline-item-wave.top,
   .timeline-item-wave.bottom {
     width: 100%;
-    max-width: 480px;
-    margin-top: 0 !important;
+    max-width: none;
+    margin: 0;
     align-items: stretch;
     flex: none;
   }
 
+  .timeline-dot-wave {
+    display: none;
+  }
+
   .timeline-card-wave {
     width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
     padding: 20px;
     box-sizing: border-box;
     overflow: hidden;
   }
 
+  .timeline-card-wave:hover {
+    transform: none;
+  }
+
   .timeline-card-wave * {
     overflow-wrap: break-word;
-  }
-
-  .timeline-dot-wave {
-    position: relative;
-    left: auto;
-    transform: none;
-    margin-bottom: 12px;
-  }
-
-  .timeline-item-wave.top .timeline-dot-wave,
-  .timeline-item-wave.bottom .timeline-dot-wave {
-    top: auto;
-    bottom: auto;
   }
 }
 
 @media (max-width: 600px) {
-  .internships {
-    padding: 60px 0;
-  }
-  
-  .internships .max-width {
-    padding: 0 16px;
-  }
-  
   .internships .title {
     font-size: 2rem;
   }
-  
-  .internships .subtitle {
-    font-size: 1rem;
-  }
-  
+
   .card-icon-wave {
     width: 40px;
     height: 40px;
   }
-  
+
   .card-icon-wave i {
     font-size: 1.2rem;
   }
-  
+
   .position-title-wave {
     font-size: 1.1rem;
   }
-  
+
   .company-name-wave {
     font-size: 0.95rem;
   }
