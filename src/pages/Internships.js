@@ -6,21 +6,21 @@ import '../styles/Internships.css';
 
 const Internships = () => {
   const { language, t } = useLanguage();
-  const [isMobile, setIsMobile] = React.useState(false);
+  const [isMobileLayout, setIsMobileLayout] = React.useState(false);
 
   React.useEffect(() => {
     if (typeof window === 'undefined') {
-      return undefined;
+      return () => {};
     }
 
-    const updateIsMobile = () => {
-      setIsMobile(window.innerWidth <= 968);
+    const updateIsMobileLayout = () => {
+      setIsMobileLayout(window.innerWidth <= 968);
     };
 
-    updateIsMobile();
-    window.addEventListener('resize', updateIsMobile);
+    updateIsMobileLayout();
+    window.addEventListener('resize', updateIsMobileLayout);
 
-    return () => window.removeEventListener('resize', updateIsMobile);
+    return () => window.removeEventListener('resize', updateIsMobileLayout);
   }, []);
 
   const containerVariants = {
@@ -45,23 +45,23 @@ const Internships = () => {
     }
   };
 
-  const headerMotionProps = isMobile ? {} : {
+  const headerMotionProps = isMobileLayout ? {} : {
     initial: { opacity: 0, y: -20 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6 }
   };
 
-  const containerMotionProps = isMobile ? {} : {
+  const containerMotionProps = isMobileLayout ? {} : {
     variants: containerVariants,
     initial: 'hidden',
     animate: 'visible'
   };
 
-  const itemMotionProps = isMobile ? {} : { variants: itemVariants };
+  const itemMotionProps = isMobileLayout ? {} : { variants: itemVariants };
 
-  const HeaderTag = isMobile ? 'div' : motion.div;
-  const ContainerTag = isMobile ? 'div' : motion.div;
-  const ItemTag = isMobile ? 'div' : motion.div;
+  const HeaderTag = isMobileLayout ? 'div' : motion.div;
+  const ContainerTag = isMobileLayout ? 'div' : motion.div;
+  const ItemTag = isMobileLayout ? 'div' : motion.div;
 
   return (
     <section className="internships" id="internships">
