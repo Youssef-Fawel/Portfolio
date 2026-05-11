@@ -10,7 +10,7 @@ const Internships = () => {
 
   React.useEffect(() => {
     if (typeof window === 'undefined') {
-      return () => {};
+      return undefined;
     }
 
     const updateIsMobileLayout = () => {
