@@ -20,13 +20,8 @@ const Internships = () => {
 
     setIsMobileLayout(mediaQuery.matches);
 
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener('change', updateIsMobileLayout);
-      return () => mediaQuery.removeEventListener('change', updateIsMobileLayout);
-    }
-
-    mediaQuery.addListener(updateIsMobileLayout);
-    return () => mediaQuery.removeListener(updateIsMobileLayout);
+    mediaQuery.addEventListener('change', updateIsMobileLayout);
+    return () => mediaQuery.removeEventListener('change', updateIsMobileLayout);
   }, []);
 
   const containerVariants = {
