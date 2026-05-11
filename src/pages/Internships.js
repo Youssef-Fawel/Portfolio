@@ -13,14 +13,20 @@ const Internships = () => {
       return undefined;
     }
 
-    const updateIsMobileLayout = () => {
-      setIsMobileLayout(window.innerWidth <= 968);
+    const mediaQuery = window.matchMedia('(max-width: 968px)');
+    const updateIsMobileLayout = (event) => {
+      setIsMobileLayout(event.matches);
     };
 
-    updateIsMobileLayout();
-    window.addEventListener('resize', updateIsMobileLayout);
+    setIsMobileLayout(mediaQuery.matches);
 
-    return () => window.removeEventListener('resize', updateIsMobileLayout);
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', updateIsMobileLayout);
+      return () => mediaQuery.removeEventListener('change', updateIsMobileLayout);
+    }
+
+    mediaQuery.addListener(updateIsMobileLayout);
+    return () => mediaQuery.removeListener(updateIsMobileLayout);
   }, []);
 
   const containerVariants = {
