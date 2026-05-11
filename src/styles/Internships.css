@@ -403,13 +403,14 @@
     font-size: 1rem;
   }
 
-  .internships,
-  .internships * ,
-  .internships *::before,
-  .internships *::after {
+  .internships {
     writing-mode: horizontal-tb;
     text-orientation: mixed;
-    transform: none !important;
+  }
+
+  .internships * {
+    writing-mode: inherit;
+    text-orientation: inherit;
   }
 
   .wave-line {
@@ -465,6 +466,10 @@
 
   .timeline-card-wave * {
     overflow-wrap: break-word;
+  }
+
+  .skill-tag-wave:hover {
+    transform: none;
   }
 }
 

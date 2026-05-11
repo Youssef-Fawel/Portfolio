@@ -6,6 +6,22 @@ import '../styles/Internships.css';
 
 const Internships = () => {
   const { language, t } = useLanguage();
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    const updateIsMobile = () => {
+      setIsMobile(window.innerWidth <= 968);
+    };
+
+    updateIsMobile();
+    window.addEventListener('resize', updateIsMobile);
+
+    return () => window.removeEventListener('resize', updateIsMobile);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -29,24 +45,38 @@ const Internships = () => {
     }
   };
 
+  const headerMotionProps = isMobile ? {} : {
+    initial: { opacity: 0, y: -20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
+  };
+
+  const containerMotionProps = isMobile ? {} : {
+    variants: containerVariants,
+    initial: 'hidden',
+    animate: 'visible'
+  };
+
+  const itemMotionProps = isMobile ? {} : { variants: itemVariants };
+
+  const HeaderTag = isMobile ? 'div' : motion.div;
+  const ContainerTag = isMobile ? 'div' : motion.div;
+  const ItemTag = isMobile ? 'div' : motion.div;
+
   return (
     <section className="internships" id="internships">
       <div className="max-width">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <HeaderTag
           className="section-header"
+          {...headerMotionProps}
         >
           <h2 className="title">{t.internships.title}</h2>
           <p className="subtitle">{t.internships.subtitle}</p>
-        </motion.div>
+        </HeaderTag>
 
-        <motion.div
+        <ContainerTag
           className="timeline-wave-container"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          {...containerMotionProps}
         >
           <svg className="wave-line" viewBox="0 0 1200 300" preserveAspectRatio="none">
             <path
@@ -66,10 +96,10 @@ const Internships = () => {
 
           <div className="timeline-items-wave">
             {internshipsData.map((internship, index) => (
-              <motion.div
+              <ItemTag
                 key={internship.id}
                 className={`timeline-item-wave ${index % 2 === 0 ? 'top' : 'bottom'}`}
-                variants={itemVariants}
+                {...itemMotionProps}
               >
                 <div className="timeline-dot-wave">
                   <div className="dot-pulse"></div>
@@ -119,10 +149,10 @@ const Internships = () => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </ItemTag>
             ))}
           </div>
-        </motion.div>
+        </ContainerTag>
       </div>
     </section>
   );
