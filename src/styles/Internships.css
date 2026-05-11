@@ -367,73 +367,11 @@
   }
 }
 
+/* Mobile layout: stacked column, title on top, cards centered below */
 @media (max-width: 968px) {
   .internships {
     width: 100%;
     margin-left: 0;
-    overflow-x: hidden;
-  }
-
-  .timeline-wave-container {
-    min-height: auto;
-    overflow: hidden;
-    padding: 16px 0 24px;
-  }
-
-  .internships .title {
-    font-size: 2.5rem;
-  }
-  
-  .timeline-items-wave {
-    flex-direction: column;
-    align-items: center;
-    min-width: 100%;
-    padding: 0 16px;
-    gap: 28px;
-    box-sizing: border-box;
-  }
-  
-  .timeline-item-wave,
-  .timeline-item-wave.top,
-  .timeline-item-wave.bottom {
-    width: 100%;
-    max-width: 520px;
-    margin-top: 0 !important;
-    align-items: stretch;
-  }
-  
-  .wave-line {
-    display: none;
-  }
-  
-  .timeline-card-wave {
-    width: calc(100% - 32px);
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-
-  .timeline-card-wave * {
-    overflow-wrap: break-word;
-  }
-  
-  .timeline-dot-wave {
-    position: relative;
-    left: auto;
-    transform: none;
-    margin-bottom: 15px;
-  }
-  
-  .timeline-item-wave.top .timeline-dot-wave,
-  .timeline-item-wave.bottom .timeline-dot-wave {
-    top: auto;
-    bottom: auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .internships {
     padding: 60px 0;
     overflow-x: hidden;
   }
@@ -442,12 +380,22 @@
     padding: 0 16px;
   }
 
+  /* Ensure title block is full-width and sits above the cards */
   .internships .section-header {
     width: 100%;
     text-align: center;
     margin-bottom: 24px;
     position: relative;
     z-index: 3;
+  }
+
+  .internships .title {
+    font-size: 2.5rem;
+  }
+
+  /* Remove horizontal-scroll container constraints */
+  .wave-line {
+    display: none;
   }
 
   .timeline-wave-container {
@@ -457,10 +405,7 @@
     padding: 8px 0 16px;
   }
 
-  .wave-line {
-    display: none;
-  }
-
+  /* Stack cards in a single column, centered */
   .timeline-items-wave {
     position: relative;
     display: flex;
@@ -473,11 +418,13 @@
     box-sizing: border-box;
   }
 
+  /* Reset the alternating top/bottom wave offsets that cause cards to
+     overflow upward into the section header on mobile */
   .timeline-item-wave,
   .timeline-item-wave.top,
   .timeline-item-wave.bottom {
     width: 100%;
-    max-width: 400px;
+    max-width: 480px;
     margin-top: 0 !important;
     align-items: stretch;
     flex: none;
@@ -485,11 +432,15 @@
 
   .timeline-card-wave {
     width: 100%;
-    max-width: 400px;
+    max-width: 480px;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
     overflow: hidden;
+  }
+
+  .timeline-card-wave * {
+    overflow-wrap: break-word;
   }
 
   .timeline-dot-wave {
@@ -497,6 +448,12 @@
     left: auto;
     transform: none;
     margin-bottom: 12px;
+  }
+
+  .timeline-item-wave.top .timeline-dot-wave,
+  .timeline-item-wave.bottom .timeline-dot-wave {
+    top: auto;
+    bottom: auto;
   }
 }
 
