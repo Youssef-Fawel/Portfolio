@@ -28,8 +28,6 @@ const Internships = () => {
       setIsMobileLayout(event.matches);
     };
 
-    setIsMobileLayout(mediaQuery.matches);
-
     mediaQuery.addEventListener('change', handleMediaChange);
     return () => mediaQuery.removeEventListener('change', handleMediaChange);
   }, []);
