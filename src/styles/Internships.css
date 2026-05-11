@@ -2,7 +2,7 @@
 .internships {
   padding: 80px 0;
   background: linear-gradient(135deg, #f5f7fa 0%, #e8f0f7 50%, #f5f7fa 100%);
-  min-height: 100vh;
+  min-height: auto;
   overflow-x: hidden;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
@@ -19,6 +19,8 @@
 .internships .section-header {
   text-align: center;
   margin-bottom: 60px;
+  position: relative;
+  z-index: 3;
 }
 
 .internships .title {
@@ -61,6 +63,7 @@
   min-height: 900px;
   overflow-x: auto;
   overflow-y: visible;
+  z-index: 1;
 }
 
 /* Custom Scrollbar */
@@ -162,7 +165,7 @@
 
 /* Timeline Card */
 .timeline-card-wave {
-  background: linear-gradient(145deg, rgba(26, 26, 46, 0.95), rgba(16, 16, 36, 0.95));
+  background: linear-gradient(145deg, rgba(40, 48, 84, 0.95), rgba(29, 36, 70, 0.95));
   border-radius: 20px;
   padding: 28px;
   width: 280px;
@@ -292,13 +295,10 @@
 
 .internship-description-wave {
   font-size: 0.9rem;
-  color: #c0c0c0;
+  color: #e3e8f5;
   line-height: 1.6;
   margin-bottom: 15px;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  overflow-wrap: break-word;
 }
 
 .skills-list-wave {
@@ -325,19 +325,25 @@
 .skills-tags-wave {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
+  align-items: flex-start;
 }
 
 .skill-tag-wave {
   background: rgba(106, 90, 205, 0.2);
   color: #b8aff5;
-  padding: 5px 12px;
+  padding: 6px 12px;
   border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 500;
   border: 1px solid rgba(106, 90, 205, 0.3);
   transition: all 0.3s ease;
-  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  white-space: normal;
+  overflow-wrap: break-word;
+  line-height: 1.3;
+  max-width: 100%;
 }
 
 .skill-tag-wave:hover {
@@ -370,8 +376,9 @@
 
   .timeline-wave-container {
     min-height: auto;
-    overflow: visible;
-    padding: 20px 0 40px;
+    overflow-x: hidden;
+    overflow-y: visible;
+    padding: 16px 0 24px;
   }
 
   .internships .title {
@@ -382,14 +389,16 @@
     flex-direction: column;
     align-items: center;
     min-width: 100%;
-    padding: 0;
-    gap: 60px;
+    padding: 0 16px;
+    gap: 28px;
+    box-sizing: border-box;
   }
   
   .timeline-item-wave {
     width: 100%;
-    max-width: 500px;
+    max-width: 520px;
     margin-top: 0 !important;
+    align-items: stretch;
   }
   
   .wave-line {
@@ -397,9 +406,15 @@
   }
   
   .timeline-card-wave {
-    width: 100%;
-    max-width: 500px;
+    width: calc(100% - 32px);
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 20px;
     box-sizing: border-box;
+  }
+
+  .timeline-card-wave * {
+    overflow-wrap: break-word;
   }
   
   .timeline-dot-wave {
@@ -431,12 +446,6 @@
   
   .internships .subtitle {
     font-size: 1rem;
-  }
-  
-  .timeline-card-wave {
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
   }
   
   .card-icon-wave {
