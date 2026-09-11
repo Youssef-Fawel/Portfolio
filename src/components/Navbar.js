@@ -14,6 +14,20 @@ const Navbar = () => {
     setIsMenuActive(false);
   }, [location]);
 
+  useEffect(() => {
+    document.body.classList.toggle('menu-open', isMenuActive);
+
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') setIsMenuActive(false);
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.body.classList.remove('menu-open');
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isMenuActive]);
+
   // Handle scroll events
   useEffect(() => {
     const handleScroll = () => {
@@ -34,9 +48,8 @@ const Navbar = () => {
   }, []);
 
   const toggleMenu = (e) => {
-    e.preventDefault();
     e.stopPropagation();
-    setIsMenuActive(!isMenuActive);
+    setIsMenuActive((isActive) => !isActive);
   };
 
   const closeMenu = () => {
@@ -72,7 +85,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} aria-label={language === 'en' ? 'Primary navigation' : 'Navigation principale'}>
       <div className="max-width">
         <div className="logo">
           <Link to="/">
@@ -89,15 +102,18 @@ const Navbar = () => {
           </Link>
         </div>
         
-        <div
+        <button
+          type="button"
           className={`menu-btn ${isMenuActive ? 'active' : ''}`}
           onClick={toggleMenu}
-          aria-label="Toggle navigation menu"
+          aria-label={language === 'en' ? 'Toggle navigation menu' : 'Ouvrir ou fermer le menu'}
+          aria-expanded={isMenuActive}
+          aria-controls="primary-menu"
         >
           <i className={`fas ${isMenuActive ? 'fa-times' : 'fa-bars'}`}></i>
-        </div>
+        </button>
         
-        <ul className={`menu ${isMenuActive ? 'active' : ''}`}>
+        <ul id="primary-menu" className={`menu ${isMenuActive ? 'active' : ''}`}>
           <li>
             <Link
               to="/"
@@ -177,7 +193,7 @@ const Navbar = () => {
                 e.stopPropagation();
                 toggleLanguage();
               }}
-              aria-label="Toggle language"
+              aria-label={language === 'en' ? 'Afficher le site en français' : 'View the site in English'}
             >
               <i className="fas fa-globe"></i>
               <span className="lang-text">{language === 'en' ? 'FR' : 'EN'}</span>

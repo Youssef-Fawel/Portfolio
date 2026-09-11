@@ -1,235 +1,355 @@
-import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useId, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import '../styles/ProjectModal.css';
 
-const ProjectModal = ({ project, onClose }) => {
-  const { t, language } = useLanguage();
-  const modalRef = useRef(null);
-  
-  useEffect(() => {
-    // Prevent scrolling of background content when modal is open
-    document.body.style.overflow = 'hidden';
-    
-    const handleEscape = (e) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
-    
-    const handleClickOutside = (e) => {
-      if (e.target.classList.contains('project-modal-overlay')) {
-        onClose();
-      }
-    };
-    
-    // Focus trap inside modal for accessibility
-    const handleTabKey = (e) => {
-      if (e.key === 'Tab' && modalRef.current) {
-        const focusableElements = modalRef.current.querySelectorAll(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-        
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-        
-        if (e.shiftKey && document.activeElement === firstElement) {
-          lastElement.focus();
-          e.preventDefault();
-        } else if (!e.shiftKey && document.activeElement === lastElement) {
-          firstElement.focus();
-          e.preventDefault();
-        }
-      }
-    };
-    
-    document.addEventListener('keydown', handleEscape);
-    document.addEventListener('keydown', handleTabKey);
-    document.addEventListener('click', handleClickOutside);
-    
-    // Focus the modal when it opens
-    if (modalRef.current) {
-      modalRef.current.focus();
+const copy = {
+  en: {
+    close: 'Close',
+    closeDialog: 'Close project details',
+    overview: 'Project overview',
+    features: 'Key capabilities',
+    technologies: 'Technology stack',
+    architecture: 'Technical architecture',
+    projectDetails: 'Project details',
+    client: 'Client',
+    date: 'Date',
+    duration: 'Duration',
+    role: 'Role',
+    challenges: 'Engineering notes',
+    liveDemo: 'Live demo',
+    viewCode: 'View on GitHub',
+    linkedinPost: 'View LinkedIn post',
+    projectPreview: 'project preview',
+    brandedCover: (title) => `Branded case-study cover for ${title}`,
+    category: {
+      web: 'Web application',
+      mobile: 'Mobile application',
+      html: 'Web interface',
+      javascript: 'JavaScript application',
+      react: 'React application',
+      fullstack: 'Full-stack application',
+      java: 'Java application',
+      python: 'Python application',
+      data: 'Data analysis',
+      design: 'Product design'
     }
-    
+  },
+  fr: {
+    close: 'Fermer',
+    closeDialog: 'Fermer les détails du projet',
+    overview: 'Présentation du projet',
+    features: 'Fonctionnalités clés',
+    technologies: 'Stack technique',
+    architecture: 'Architecture technique',
+    projectDetails: 'Détails du projet',
+    client: 'Client',
+    date: 'Date',
+    duration: 'Durée',
+    role: 'Rôle',
+    challenges: 'Notes techniques',
+    liveDemo: 'Démo en ligne',
+    viewCode: 'Voir sur GitHub',
+    linkedinPost: 'Voir la publication LinkedIn',
+    projectPreview: 'aperçu du projet',
+    brandedCover: (title) => `Couverture graphique de l’étude de cas ${title}`,
+    category: {
+      web: 'Application web',
+      mobile: 'Application mobile',
+      html: 'Interface web',
+      javascript: 'Application JavaScript',
+      react: 'Application React',
+      fullstack: 'Application Full-stack',
+      java: 'Application Java',
+      python: 'Application Python',
+      data: 'Analyse de données',
+      design: 'Design produit'
+    }
+  }
+};
+
+const getLocalizedValue = (value, language, fallback = '') => {
+  if (value && typeof value === 'object' && !Array.isArray(value)) {
+    return value[language] || value.en || fallback;
+  }
+
+  return value || fallback;
+};
+
+const isUsableLink = (value) => (
+  typeof value === 'string'
+  && value.trim().length > 0
+  && value.trim().toLowerCase() !== 'null'
+);
+
+const getProjectLinks = (project) => ({
+  live: [project.liveUrl, project.demoLink].find(isUsableLink),
+  code: [project.githubUrl, project.codeLink].find(isUsableLink),
+  linkedin: isUsableLink(project.linkedinPostUrl) ? project.linkedinPostUrl : null
+});
+
+const ProjectVisual = ({ project, language, labels, title }) => {
+  if (project.image) {
+    const customAlt = getLocalizedValue(project.imageAlt, language);
+    const presentation = project.imagePresentation || 'browser';
+
+    return (
+      <div className={`project-image-frame project-image-frame--modal project-image-frame--${presentation}`}>
+        {presentation === 'browser' && (
+          <span className="project-image-frame__toolbar" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
+        )}
+        <img
+          className="project-modal__image"
+          src={project.image}
+          alt={customAlt || `${title} — ${labels.projectPreview}`}
+          decoding="async"
+        />
+      </div>
+    );
+  }
+
+  const cover = project.cover || {};
+
+  return (
+    <div
+      className={`project-generated-cover project-generated-cover--modal project-generated-cover--${cover.variant || 'default'}`}
+      role="img"
+      aria-label={labels.brandedCover(title)}
+    >
+      <span className="project-generated-cover__grid" aria-hidden="true" />
+      <span className="project-generated-cover__orb" aria-hidden="true" />
+      <span className="project-generated-cover__eyebrow">
+        {getLocalizedValue(cover.eyebrow, language)}
+      </span>
+      <span className="project-generated-cover__mark" aria-hidden="true">
+        {cover.mark || title.charAt(0)}
+      </span>
+      <strong className="project-generated-cover__label">{cover.label || title}</strong>
+    </div>
+  );
+};
+
+const ProjectModal = ({ project, onClose }) => {
+  const { language } = useLanguage();
+  const labels = copy[language] || copy.en;
+  const modalRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const titleId = useId();
+  const descriptionId = useId();
+  const title = getLocalizedValue(project.title, language, 'Untitled project');
+  const description = getLocalizedValue(project.description, language);
+  const context = getLocalizedValue(
+    project.context,
+    language,
+    labels.category[project.category] || project.category
+  );
+  const features = getLocalizedValue(project.features, language, []);
+  const architecture = getLocalizedValue(project.architecture, language, []);
+  const links = getProjectLinks(project);
+  const hasLinks = links.live || links.code || links.linkedin;
+  const details = [
+    { icon: 'fa-user-tie', label: labels.client, value: getLocalizedValue(project.client, language) },
+    { icon: 'fa-calendar', label: labels.date, value: getLocalizedValue(project.date, language) },
+    { icon: 'fa-clock', label: labels.duration, value: getLocalizedValue(project.duration, language) },
+    { icon: 'fa-code', label: labels.role, value: getLocalizedValue(project.role, language) }
+  ].filter((item) => item.value);
+
+  useEffect(() => {
+    const previouslyFocusedElement = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (event.key !== 'Tab' || !modalRef.current) return;
+
+      const focusableElements = Array.from(modalRef.current.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      ));
+
+      if (focusableElements.length === 0) {
+        event.preventDefault();
+        modalRef.current.focus();
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
     return () => {
-      document.body.style.overflow = 'auto';
-      document.removeEventListener('keydown', handleEscape);
-      document.removeEventListener('keydown', handleTabKey);
-      document.removeEventListener('click', handleClickOutside);
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+      previouslyFocusedElement?.focus?.();
     };
   }, [onClose]);
-  
-  // Format the date if available
-  const formatDate = (dateString) => {
-    if (!dateString) return null;
-    
-    const options = { year: 'numeric', month: 'long' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
+
+  const handleBackdropMouseDown = (event) => {
+    if (event.target === event.currentTarget) onClose();
   };
 
   return (
-    <motion.div 
-      className="project-modal-overlay"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      <motion.div 
-        className="project-modal-container"
+    <div className="project-modal-overlay" onMouseDown={handleBackdropMouseDown}>
+      <div
+        className="project-modal"
         ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={descriptionId}
         tabIndex={-1}
-        initial={{ opacity: 0, y: 50, scale: 0.9 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 50, scale: 0.9 }}
-        transition={{ duration: 0.4, type: 'spring', damping: 25 }}
       >
-        <div className="project-modal-header">
-          <h2 className="project-modal-title">{project.title?.[language] || project.title}</h2>
-          <button 
-            className="close-modal-btn" 
-            onClick={onClose}
-            aria-label="Close modal"
-          >
-            <i className="fas fa-times"></i>
-          </button>
-        </div>
-        
-        <div className="project-modal-content">
-          <div className="project-modal-image-container">
-            <img 
-              className="project-modal-image" 
-              src={project.image} 
-              alt={project.title} 
-            />
-            {project.category && (
-              <div className="project-modal-category">
-                <span>{project.category}</span>
-              </div>
-            )}
-          </div>
-          
-          <div className="project-modal-details">
-            <div className="project-modal-info">
-              <div className="project-modal-description">
-                <h3>{t.projects.projectOverview}</h3>
-                <p>{project.description?.[language] || project.description}</p>
-              </div>
-              
-              {project.features && ((project.features[language] && project.features[language].length > 0) || project.features.length > 0) && (
-                <div className="project-modal-features">
-                  <h3>{t.projects.keyFeatures}</h3>
-                  <ul>
-                    {(project.features[language] || project.features).map((feature, index) => (
-                      <li key={index}>
-                        <i className="fas fa-check-circle"></i>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+        <header className="project-modal__header">
+          <div className="project-modal__heading">
+            <p>{context}</p>
+            <h2 id={titleId}>
+              {title}
+              {project.arabicBrand && (
+                <span className="project-modal__arabic" lang="ar" dir="rtl">
+                  {project.arabicBrand}
+                </span>
               )}
-              
-              <div className="project-modal-meta">
-                {project.client && (
-                  <div className="meta-item">
-                    <i className="fas fa-user-tie"></i>
-                    <div>
-                      <h4>{t.projects.client}</h4>
-                      <p>{project.client}</p>
+            </h2>
+          </div>
+          <button
+            ref={closeButtonRef}
+            type="button"
+            className="project-modal__close"
+            onClick={onClose}
+            aria-label={labels.closeDialog}
+          >
+            <i className="fas fa-xmark" aria-hidden="true" />
+          </button>
+        </header>
+
+        <div className="project-modal__scroll">
+          <div className="project-modal__visual">
+            <ProjectVisual
+              project={project}
+              language={language}
+              labels={labels}
+              title={title}
+            />
+          </div>
+
+          <div className="project-modal__content">
+            <section className="project-modal__section project-modal__overview">
+              <p className="project-modal__section-label">01 · {labels.overview}</p>
+              <p id={descriptionId} className="project-modal__description">{description}</p>
+            </section>
+
+            {details.length > 0 && (
+              <section className="project-modal__section" aria-labelledby={`${titleId}-details`}>
+                <h3 id={`${titleId}-details`}>{labels.projectDetails}</h3>
+                <dl className="project-modal__facts">
+                  {details.map((detail) => (
+                    <div key={detail.label}>
+                      <i className={`fas ${detail.icon}`} aria-hidden="true" />
+                      <dt>{detail.label}</dt>
+                      <dd>{detail.value}</dd>
                     </div>
-                  </div>
-                )}
-                
-                {project.date && (
-                  <div className="meta-item">
-                    <i className="fas fa-calendar-alt"></i>
-                    <div>
-                      <h4>{t.projects.date}</h4>
-                      <p>{formatDate(project.date)}</p>
-                    </div>
-                  </div>
-                )}
-                
-                {project.duration && (
-                  <div className="meta-item">
-                    <i className="fas fa-clock"></i>
-                    <div>
-                      <h4>{t.projects.duration}</h4>
-                      <p>{project.duration}</p>
-                    </div>
-                  </div>
-                )}
-                
-                {project.role && (
-                  <div className="meta-item">
-                    <i className="fas fa-user-cog"></i>
-                    <div>
-                      <h4>{t.projects.myRole}</h4>
-                      <p>{project.role}</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-              
-              <div className="project-modal-technologies">
-                <h3>{t.projects.technologiesUsed}</h3>
-                <div className="tech-tags">
-                  {project.technologies.map((tech, index) => (
-                    <span key={index} className="tech-tag">
-                      {tech}
-                    </span>
+                  ))}
+                </dl>
+              </section>
+            )}
+
+            {Array.isArray(architecture) && architecture.length > 0 && (
+              <section className="project-modal__section" aria-labelledby={`${titleId}-architecture`}>
+                <h3 id={`${titleId}-architecture`}>{labels.architecture}</h3>
+                <ol className="project-modal__architecture">
+                  {architecture.map((step, index) => (
+                    <li key={step}>
+                      <span>{String(index + 1).padStart(2, '0')}</span>
+                      <strong>{step}</strong>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            )}
+
+            {Array.isArray(features) && features.length > 0 && (
+              <section className="project-modal__section" aria-labelledby={`${titleId}-features`}>
+                <h3 id={`${titleId}-features`}>{labels.features}</h3>
+                <ul className="project-modal__features">
+                  {features.map((feature) => (
+                    <li key={feature}>
+                      <i className="fas fa-check" aria-hidden="true" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            {Array.isArray(project.technologies) && project.technologies.length > 0 && (
+              <section className="project-modal__section" aria-labelledby={`${titleId}-technologies`}>
+                <h3 id={`${titleId}-technologies`}>{labels.technologies}</h3>
+                <div className="project-modal__technologies">
+                  {project.technologies.map((technology) => (
+                    <span key={technology}>{technology}</span>
                   ))}
                 </div>
-              </div>
-              
-              {project.challenges && (
-                <div className="project-modal-challenges">
-                  <h3>{t.projects.challengesSolutions}</h3>
-                  <p>{project.challenges}</p>
-                </div>
-              )}
-            </div>
-            
-            <div className="project-modal-actions">
-              {project.githubUrl && (
-                <a 
-                  href={project.githubUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="github-btn"
-                >
-                  <i className="fab fa-github"></i>
-                  <span>{t.projects.viewCode}</span>
-                </a>
-              )}
-              
-              {project.liveUrl && (
-                <a 
-                  href={project.liveUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="live-btn"
-                >
-                  <i className="fas fa-external-link-alt"></i>
-                  <span>{t.projects.liveDemo}</span>
-                </a>
-              )}
-            </div>
+              </section>
+            )}
+
+            {project.challenges && (
+              <section className="project-modal__section" aria-labelledby={`${titleId}-challenges`}>
+                <h3 id={`${titleId}-challenges`}>{labels.challenges}</h3>
+                <p className="project-modal__description">
+                  {getLocalizedValue(project.challenges, language)}
+                </p>
+              </section>
+            )}
+
+            {hasLinks && (
+              <nav className="project-modal__actions" aria-label={labels.projectDetails}>
+                {links.live && (
+                  <a href={links.live} target="_blank" rel="noopener noreferrer">
+                    <i className="fas fa-arrow-up-right-from-square" aria-hidden="true" />
+                    {labels.liveDemo}
+                  </a>
+                )}
+                {links.code && (
+                  <a href={links.code} target="_blank" rel="noopener noreferrer">
+                    <i className="fab fa-github" aria-hidden="true" />
+                    {labels.viewCode}
+                  </a>
+                )}
+                {links.linkedin && (
+                  <a href={links.linkedin} target="_blank" rel="noopener noreferrer">
+                    <i className="fab fa-linkedin-in" aria-hidden="true" />
+                    {labels.linkedinPost}
+                  </a>
+                )}
+              </nav>
+            )}
           </div>
         </div>
-        
-        <div className="project-modal-footer">
-          <button 
-            className="close-btn" 
-            onClick={onClose}
-          >
-            {t.projects.close}
-          </button>
-        </div>
-      </motion.div>
-    </motion.div>
+
+        <footer className="project-modal__footer">
+          <button type="button" onClick={onClose}>{labels.close}</button>
+        </footer>
+      </div>
+    </div>
   );
 };
 

@@ -1,200 +1,225 @@
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useId, useRef, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/CertificateModal.css';
 
-const CertificateModal = ({ certificate, onClose }) => {
-  const [isImageZoomed, setIsImageZoomed] = useState(false);
-  
-  useEffect(() => {
-    // Close modal on escape key press
-    const handleEscape = (e) => {
-      if (e.key === 'Escape') {
-        if (isImageZoomed) {
-          setIsImageZoomed(false);
-        } else {
-          onClose();
-        }
-      }
-    };
-    
-    // Close modal when clicking outside
-    const handleClickOutside = (e) => {
-      if (e.target.classList.contains('certificate-modal')) {
-        onClose();
-      }
-    };
-    
-    document.addEventListener('keydown', handleEscape);
-    document.addEventListener('click', handleClickOutside);
-    
-    // Prevent scrolling when modal is open
-    document.body.style.overflow = 'hidden';
-    
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.removeEventListener('click', handleClickOutside);
-      document.body.style.overflow = 'auto';
-    };
-  }, [onClose, isImageZoomed]);
+const copy = {
+  en: {
+    close: 'Close',
+    closeDialog: 'Close certificate details',
+    details: 'Certificate details',
+    organization: 'Issuing organization',
+    issued: 'Date issued',
+    credential: 'Credential ID',
+    expiration: 'Expiration date',
+    description: 'Description',
+    skills: 'Skills',
+    zoomIn: 'Enlarge certificate',
+    zoomOut: 'Exit enlarged view',
+    verify: 'Verify certificate'
+  },
+  fr: {
+    close: 'Fermer',
+    closeDialog: 'Fermer les détails du certificat',
+    details: 'Détails du certificat',
+    organization: 'Organisme émetteur',
+    issued: 'Date d’obtention',
+    credential: 'Identifiant',
+    expiration: 'Date d’expiration',
+    description: 'Description',
+    skills: 'Compétences',
+    zoomIn: 'Agrandir le certificat',
+    zoomOut: 'Quitter la vue agrandie',
+    verify: 'Vérifier le certificat'
+  }
+};
 
-  const toggleImageZoom = () => {
-    setIsImageZoomed(!isImageZoomed);
-  };
+const CertificateModal = ({ certificate, onClose }) => {
+  const { language } = useLanguage();
+  const labels = copy[language] || copy.en;
+  const shouldReduceMotion = useReducedMotion();
+  const [isImageZoomed, setIsImageZoomed] = useState(false);
+  const imageZoomedRef = useRef(false);
+  const dialogRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const titleId = useId();
+  const descriptionId = useId();
+  imageZoomedRef.current = isImageZoomed;
+
+  useEffect(() => {
+    const previouslyFocusedElement = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        if (imageZoomedRef.current) setIsImageZoomed(false);
+        else onClose();
+        return;
+      }
+
+      if (event.key !== 'Tab' || !dialogRef.current) return;
+      const focusableElements = Array.from(dialogRef.current.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )).filter((element) => element.getClientRects().length > 0);
+      if (focusableElements.length === 0) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+      previouslyFocusedElement?.focus?.();
+    };
+  }, [onClose]);
+
+  const details = [
+    { icon: 'fa-building', label: labels.organization, value: certificate.organization },
+    { icon: 'fa-calendar-alt', label: labels.issued, value: certificate.dateIssued },
+    { icon: 'fa-id-card', label: labels.credential, value: certificate.credentialId },
+    { icon: 'fa-hourglass-end', label: labels.expiration, value: certificate.expirationDate }
+  ].filter((detail) => detail.value);
 
   return (
-    <motion.div 
-      className="certificate-modal"
-      initial={{ opacity: 0 }}
+    <motion.div
+      className="certificate-dialog-overlay"
+      initial={shouldReduceMotion ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: shouldReduceMotion ? 0 : 0.16 }}
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
     >
-      <motion.div 
-        className="certificate-modal-content"
-        initial={{ scale: 0.9, y: 20 }}
-        animate={{ scale: 1, y: 0 }}
-        exit={{ scale: 0.9, y: 20 }}
-        transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
+      <motion.div
+        ref={dialogRef}
+        className="certificate-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={certificate.description ? descriptionId : undefined}
+        tabIndex={-1}
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 18, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 12, scale: 0.98 }}
+        transition={{ duration: shouldReduceMotion ? 0 : 0.18 }}
       >
-        <div className="modal-header">
-          <h2>{certificate.title}</h2>
-          <button className="close-certificate-modal" onClick={onClose}>
-            <i className="fas fa-times"></i>
-          </button>
-        </div>
-        
-        <div className="certificate-details">
-          <div className="certificate-image-container">
-            <img
-              src={certificate.image}
-              alt={certificate.title}
-              className={`certificate-full-image ${isImageZoomed ? 'zoomed' : ''}`}
-              onClick={toggleImageZoom}
-            />
-            <div className="image-controls">
-              <button className="zoom-button" onClick={toggleImageZoom}>
-                <i className={`fas ${isImageZoomed ? 'fa-search-minus' : 'fa-search-plus'}`}></i>
-                {isImageZoomed ? 'Zoom Out' : 'Zoom In'}
-              </button>
-              {certificate.verificationLink && (
-                <a
-                  href={certificate.verificationLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="download-button"
-                >
-                  <i className="fas fa-download"></i>
-                  Download
-                </a>
-              )}
-            </div>
-          </div>
-          
-          <div className="certificate-info">
-            <div className="info-section">
-              <h3>Certificate Details</h3>
-              
-              <div className="info-grid">
-                <div className="info-item">
-                  <div className="info-label">
-                    <i className="fas fa-building"></i>
-                    <span>Issuing Organization</span>
-                  </div>
-                  <div className="info-value">{certificate.organization}</div>
-                </div>
-                
-                <div className="info-item">
-                  <div className="info-label">
-                    <i className="fas fa-calendar-alt"></i>
-                    <span>Date Issued</span>
-                  </div>
-                  <div className="info-value">{certificate.dateIssued}</div>
-                </div>
-                
-                <div className="info-item">
-                  <div className="info-label">
-                    <i className="fas fa-id-card"></i>
-                    <span>Credential ID</span>
-                  </div>
-                  <div className="info-value">{certificate.credentialId}</div>
-                </div>
-                
-                {certificate.expirationDate && (
-                  <div className="info-item">
-                    <div className="info-label">
-                      <i className="fas fa-hourglass-end"></i>
-                      <span>Expiration Date</span>
-                    </div>
-                    <div className="info-value">{certificate.expirationDate}</div>
-                  </div>
-                )}
-              </div>
-            </div>
-            
-            {certificate.description && (
-              <div className="info-section">
-                <h3>Description</h3>
-                <p className="certificate-description">{certificate.description}</p>
-              </div>
-            )}
-            
-            {certificate.skills && certificate.skills.length > 0 && (
-              <div className="info-section">
-                <h3>Skills</h3>
-                <div className="skills-tags">
-                  {certificate.skills.map((skill, index) => (
-                    <span key={index} className="skill-tag">
-                      <i className="fas fa-check-circle"></i>
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-            
-            <div className="modal-actions">
-              {certificate.verificationLink && (
-                <a
-                  href={certificate.verificationLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="verify-certificate-btn"
-                >
-                  <i className="fas fa-external-link-alt"></i>
-                  Verify Certificate
-                </a>
-              )}
-              <button className="close-btn" onClick={onClose}>
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-      
-      <AnimatePresence>
-        {isImageZoomed && (
-          <motion.div 
-            className="zoomed-image-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={toggleImageZoom}
+        <header className="certificate-dialog__header">
+          <h2 id={titleId}>{certificate.title}</h2>
+          <button
+            ref={closeButtonRef}
+            type="button"
+            className="certificate-dialog__icon-button"
+            onClick={onClose}
+            aria-label={labels.closeDialog}
           >
-            <div className="zoomed-image-container">
-              <img 
-                src={certificate.image} 
-                alt={certificate.title} 
-                className="zoomed-image"
-              />
-              <button className="close-zoom-btn" onClick={toggleImageZoom}>
-                <i className="fas fa-times"></i>
+            <i className="fas fa-times" aria-hidden="true" />
+          </button>
+        </header>
+
+        <div className="certificate-dialog__layout">
+          <div className="certificate-dialog__visual">
+            <button
+              type="button"
+              className="certificate-dialog__image-button"
+              onClick={() => setIsImageZoomed(true)}
+              aria-label={labels.zoomIn}
+            >
+              <img src={certificate.image} alt={certificate.title} />
+            </button>
+            <div className="certificate-dialog__visual-actions">
+              <button type="button" onClick={() => setIsImageZoomed(true)}>
+                <i className="fas fa-search-plus" aria-hidden="true" />
+                {labels.zoomIn}
               </button>
+              {certificate.verificationLink && (
+                <a href={certificate.verificationLink} target="_blank" rel="noopener noreferrer">
+                  <i className="fas fa-arrow-up-right-from-square" aria-hidden="true" />
+                  {labels.verify}
+                </a>
+              )}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+
+          <div className="certificate-dialog__content">
+            <section aria-labelledby={`${titleId}-details`}>
+              <h3 id={`${titleId}-details`}>{labels.details}</h3>
+              <dl className="certificate-dialog__facts">
+                {details.map((detail) => (
+                  <div key={detail.label}>
+                    <i className={`fas ${detail.icon}`} aria-hidden="true" />
+                    <dt>{detail.label}</dt>
+                    <dd>{detail.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+
+            {certificate.description && (
+              <section aria-labelledby={`${titleId}-description`}>
+                <h3 id={`${titleId}-description`}>{labels.description}</h3>
+                <p id={descriptionId}>{certificate.description}</p>
+              </section>
+            )}
+
+            {certificate.skills?.length > 0 && (
+              <section aria-labelledby={`${titleId}-skills`}>
+                <h3 id={`${titleId}-skills`}>{labels.skills}</h3>
+                <ul className="certificate-dialog__skills">
+                  {certificate.skills.map((skill) => <li key={skill}>{skill}</li>)}
+                </ul>
+              </section>
+            )}
+
+            <div className="certificate-dialog__footer">
+              {certificate.verificationLink && (
+                <a href={certificate.verificationLink} target="_blank" rel="noopener noreferrer">
+                  <i className="fas fa-arrow-up-right-from-square" aria-hidden="true" />
+                  {labels.verify}
+                </a>
+              )}
+              <button type="button" onClick={onClose}>{labels.close}</button>
+            </div>
+          </div>
+        </div>
+
+        <AnimatePresence>
+          {isImageZoomed && (
+            <motion.div
+              className="certificate-dialog__zoom"
+              initial={shouldReduceMotion ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.14 }}
+              onMouseDown={(event) => {
+                if (event.target === event.currentTarget) setIsImageZoomed(false);
+              }}
+            >
+              <img src={certificate.image} alt={certificate.title} />
+              <button
+                type="button"
+                className="certificate-dialog__zoom-close"
+                onClick={() => setIsImageZoomed(false)}
+                aria-label={labels.zoomOut}
+              >
+                <i className="fas fa-times" aria-hidden="true" />
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </motion.div>
   );
 };

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/ScrollToTop.css';
 
 const ScrollToTop = () => {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   
   // Show button when page is scrolled down
@@ -28,12 +30,14 @@ const ScrollToTop = () => {
   };
   
   return (
-    <div 
-      className={`scroll-to-top ${isVisible ? 'visible pulse' : ''}`} 
+    <button
+      type="button"
+      className={`scroll-to-top ${isVisible ? 'visible' : ''}`}
       onClick={scrollToTop}
+      aria-label={t.nav.backToTop}
     >
-      <i className="fas fa-angle-up"></i>
-    </div>
+      <i className="fas fa-angle-up" aria-hidden="true"></i>
+    </button>
   );
 };
 

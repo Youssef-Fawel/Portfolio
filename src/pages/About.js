@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import Typed from 'typed.js';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import '../styles/About.css';
 import profileImage from '../assets/images/Me.jpeg';
@@ -7,22 +7,6 @@ import cvPdf from '../assets/images/Resume.pdf';
 
 const About = () => {
   const { t } = useLanguage();
-  const typedRef = useRef(null);
-  
-  useEffect(() => {
-    const options = {
-      strings: t.home.titles,
-      typeSpeed: 100,
-      backSpeed: 60,
-      loop: true
-    };
-    
-    const typed = new Typed(typedRef.current, options);
-    
-    return () => {
-      typed.destroy();
-    };
-  }, [t.home.titles]);
 
   return (
     <section className="about" id="about">
@@ -42,8 +26,8 @@ const About = () => {
           
           <div className="about-info">
             <div className="about-heading">
-              <h3>I'm <span className="name">Youssef Fawel</span> and I'm a</h3>
-              <h3 className="typed-text"><span ref={typedRef}></span></h3>
+              <h3><span className="name">Youssef Fawel</span></h3>
+              <h3 className="typed-text"><span>{t.home.titles[0]}</span></h3>
             </div>
             
             <div className="about-description">
@@ -85,7 +69,11 @@ const About = () => {
                 </div>
                 <div className="info-item">
                   <span className="info-title">{t.about.graduation}:</span>
-                  <span className="info-value">2026</span>
+                  <span className="info-value">{t.about.graduationValue}</span>
+                </div>
+                <div className="info-item distinction-item">
+                  <span className="info-title">{t.about.distinction}:</span>
+                  <span className="info-value">{t.about.distinctionValue}</span>
                 </div>
               </div>
             </div>
@@ -101,7 +89,7 @@ const About = () => {
                 <i className="fas fa-download"></i>
                 <span>{t.about.downloadCV}</span>
               </a>
-              <a href="#projects" className="btn btn-secondary">{t.about.viewWork}</a>
+              <Link to="/projects" className="btn btn-secondary">{t.about.viewWork}</Link>
             </div>
           </div>
         </div>

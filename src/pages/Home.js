@@ -1,6 +1,5 @@
-import React, { useEffect, useRef} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Typed from 'typed.js';
 import { useLanguage } from '../context/LanguageContext';
 import '../styles/Home.css';
 
@@ -12,47 +11,26 @@ import Internships from './Internships';
 import Contact from './Contact';
 import Certificates from './Certificates';
 import ViewCV from './ViewCV';
-import ScrollToTop from '../components/ScrollToTop';
-import LinkedInPopup from '../components/LinkedInPopup'; 
 
 const Home = () => {
   const { t } = useLanguage();
-  const typedRef = useRef(null);
-    
-  useEffect(() => {
-    const options = {
-      strings: t.home.titles,
-      typeSpeed: 100,
-      backSpeed: 60,
-      loop: true
-    };
-        
-    const typed = new Typed(typedRef.current, options);
-        
-    return () => {
-      typed.destroy();
-    };
-  }, [t.home.titles]);
 
   return (
     <div className="home-page">
-      {/* Add ScrollToTop component here */}
-      <ScrollToTop />
-      
-      {/* Add LinkedIn Popup component here */}
-      <LinkedInPopup />
-            
       {/* Hero Section */}
       <section className="hero-section" id="hero">
         {/* Floating background shapes */}
-        <div className="floating-shape shape1"></div>
-        <div className="floating-shape shape2"></div>
-        <div className="floating-shape shape3"></div>
+        <div className="floating-shape shape1" aria-hidden="true"></div>
+        <div className="floating-shape shape2" aria-hidden="true"></div>
+        <div className="floating-shape shape3" aria-hidden="true"></div>
         <div className="hero-container">
           <div className="home-content">
             <div className="text-1">{t.home.greeting}</div>
-            <div className="text-2">{t.home.name}</div>
-            <div className="text-3">{t.home.tagline} <span ref={typedRef} className="typing"></span></div>
+            <h1 className="text-2">{t.home.name}</h1>
+            <p className="text-3">
+              {t.home.tagline}{' '}
+              <span className="typing-static">{t.home.titles[0]}</span>
+            </p>
                         
             <div className="text-description">
               {t.home.description}
@@ -67,7 +45,7 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="about-section" id="about">
+      <section className="about-section">
         <div className="section-container">
           <div className="section-title">
           </div>
@@ -79,7 +57,7 @@ const Home = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="skills-section" id="skills">
+      <section className="skills-section">
         <div className="section-container">
           <div className="section-title">
           </div>
@@ -91,7 +69,7 @@ const Home = () => {
       </section>
 
       {/* Projects Section */}
-      <section className="projects-section" id="projects">
+      <section className="projects-section">
         <div className="section-container">
           <div className="section-title">
           </div>
@@ -103,7 +81,7 @@ const Home = () => {
       </section>
 
       {/* Internships Section */}
-      <section className="internships-section" id="internships">
+      <section className="internships-section">
         <div className="section-container">
           <div className="section-title">
           </div>
@@ -115,7 +93,7 @@ const Home = () => {
       </section>
 
       {/* Certificates Section */}
-      <section className="certificates-section" id="certificates">
+      <section className="certificates-section">
         <div className="section-container">
           <div className="section-title">
           </div>
@@ -127,7 +105,7 @@ const Home = () => {
       </section>
 
       {/* CV Section */}
-      <section className="cv-section" id="cv">
+      <section className="cv-section">
         <div className="section-container">
           <div className="section-title">
           </div>
@@ -139,7 +117,7 @@ const Home = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="contact-section" id="contact">
+      <section className="contact-section">
         <div className="section-container">
           <div className="section-title">
           </div>

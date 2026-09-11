@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import '../styles/Skills.css';
 
@@ -14,39 +15,41 @@ const Skills = () => {
       {
         category: t.skills.frontend || 'Frontend',
         skills: [
-          { name: 'HTML5', level: 95 },
-          { name: 'CSS3', level: 95 },
-          { name: 'JavaScript', level: 85 },
+          { name: 'TypeScript', level: 88 },
+          { name: 'Next.js', level: 88 },
           { name: 'React', level: 85 },
-          { name: 'Vue.js', level: 75 },
-          { name: 'Bootstrap', level: 85 },
-          { name: 'Tailwind CSS', level: 75 },
+          { name: 'Angular', level: 82 },
+          { name: 'JavaScript', level: 88 },
+          { name: 'Tailwind CSS', level: 82 },
         ]
       },
       {
         category: t.skills.backend || 'Backend',
         skills: [
-          { name: 'Node.js', level: 85 },
-          { name: 'Spring Boot', level: 80 }, 
-          { name: 'PHP', level: 85 },
+          { name: 'NestJS', level: 88 },
+          { name: 'Node.js', level: 88 },
+          { name: 'FastAPI', level: 82 },
           { name: 'Python', level: 85 },
+          { name: 'Spring Boot', level: 80 },
           { name: 'Java', level: 75 },
-          { name: 'Express', level: 80 },
-          
         ]
       },
       {
         category: t.skills.mobile || 'Mobile Development',
         skills: [
-          { name: 'Android (Kotlin)', level: 75 }, 
+          { name: 'Flutter / Dart', level: 80 },
+          { name: 'React Native / Expo', level: 76 },
+          { name: 'Android (Kotlin)', level: 75 },
         ]
       },
       {
         category: t.skills.database || 'Database',
         skills: [
-          { name: 'MySQL', level: 85 },
-          { name: 'MongoDB', level: 85 },
-          { name: 'Firebase', level: 70 },
+          { name: 'PostgreSQL', level: 88 },
+          { name: 'Supabase', level: 85 },
+          { name: 'MySQL / TiDB', level: 82 },
+          { name: 'MongoDB', level: 80 },
+          { name: 'Firebase', level: 75 },
         ]
       },
     ],
@@ -86,9 +89,9 @@ const Skills = () => {
           { name: t.skills.gitGithub, level: 85 },
           { name: t.skills.postman, level: 85 },
           { name: t.skills.vsCode, level: 90 },
-          { name: t.skills.androidStudio, level: 78 }, 
-          { name: t.skills.webpack, level: 65 },
-          { name: t.skills.npmYarn, level: 80 },
+          { name: 'Docker', level: 78 },
+          { name: 'pnpm / npm', level: 84 },
+          { name: 'Vercel / Netlify / Render', level: 82 },
         ]
       },
       {
@@ -168,11 +171,18 @@ const Skills = () => {
         
         <motion.div
           className="skills-tabs"
+          role="tablist"
+          aria-label={t.skills.title}
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <button
+            type="button"
+            role="tab"
+            id="skills-tab-technical"
+            aria-selected={activeTab === 'technical'}
+            aria-controls="skills-tabpanel"
             className={`tab-btn ${activeTab === 'technical' ? 'active' : ''}`}
             onClick={() => setActiveTab('technical')}
           >
@@ -180,6 +190,11 @@ const Skills = () => {
             <span>{t.skills.technicalSkills}</span>
           </button>
           <button
+            type="button"
+            role="tab"
+            id="skills-tab-soft"
+            aria-selected={activeTab === 'soft'}
+            aria-controls="skills-tabpanel"
             className={`tab-btn ${activeTab === 'soft' ? 'active' : ''}`}
             onClick={() => setActiveTab('soft')}
           >
@@ -187,6 +202,11 @@ const Skills = () => {
             <span>{t.skills.softSkills}</span>
           </button>
           <button
+            type="button"
+            role="tab"
+            id="skills-tab-tools"
+            aria-selected={activeTab === 'tools'}
+            aria-controls="skills-tabpanel"
             className={`tab-btn ${activeTab === 'tools' ? 'active' : ''}`}
             onClick={() => setActiveTab('tools')}
           >
@@ -210,19 +230,22 @@ const Skills = () => {
               {t.skills.expertiseDesc2}
             </p>
             <div className="skills-cta">
-              <a href="#projects" className="cta-btn">
+              <Link to="/projects" className="cta-btn">
                 <span>{t.skills.viewProjects}</span>
                 <i className="fas fa-arrow-right"></i>
-              </a>
-              <a href="#contact" className="cta-btn outline">
+              </Link>
+              <Link to="/contact" className="cta-btn outline">
                 <span>{t.skills.getInTouch}</span>
                 <i className="fas fa-envelope"></i>
-              </a>
+              </Link>
             </div>
           </motion.div>
           
           <motion.div
             className="skills-details"
+            id="skills-tabpanel"
+            role="tabpanel"
+            aria-labelledby={`skills-tab-${activeTab}`}
             initial={{ opacity: 0, x: 50 }}
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -254,6 +277,11 @@ const Skills = () => {
                         <div className="skill-bar">
                           <motion.div
                             className={`skill-progress ${getLevelClass(skill.level)}`}
+                            role="progressbar"
+                            aria-label={skill.name}
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            aria-valuenow={skill.level}
                             initial={{ width: 0 }}
                             animate={isVisible ? { width: `${skill.level}%` } : {}}
                             transition={{ duration: 1, delay: 0.7 + (skillIndex * 0.1) }}
@@ -276,16 +304,16 @@ const Skills = () => {
         >
           <div className="skill-levels-legend">
             <div className="legend-item">
-              <span className="legend-color beginner"></span>
-              <span className="legend-text">Beginner (0-69%)</span>
+              <span className="legend-color beginner" aria-hidden="true"></span>
+              <span className="legend-text">{t.skills.beginner}</span>
             </div>
             <div className="legend-item">
-              <span className="legend-color intermediate"></span>
-              <span className="legend-text">Intermediate (70-84%)</span>
+              <span className="legend-color intermediate" aria-hidden="true"></span>
+              <span className="legend-text">{t.skills.intermediate}</span>
             </div>
             <div className="legend-item">
-              <span className="legend-color advanced"></span>
-              <span className="legend-text">Advanced (85-100%)</span>
+              <span className="legend-color advanced" aria-hidden="true"></span>
+              <span className="legend-text">{t.skills.advanced}</span>
             </div>
           </div>
         </motion.div>

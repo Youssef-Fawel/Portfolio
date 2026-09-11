@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
-import './App.css';
 
 // Components
 import Navbar from './components/Navbar';
@@ -19,130 +18,25 @@ import ViewCV from './pages/ViewCV';
 import Contact from './pages/Contact';
 import ThankYou from './pages/ThankYou';
 
-function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadingProgress, setLoadingProgress] = useState(0);
-  const [loadingText, setLoadingText] = useState('Initializing...');
-    
+// Loaded after page styles so shared accessibility and responsive safeguards win.
+import './styles/Global.css';
+
+const RouteScrollReset = () => {
+  const { pathname } = useLocation();
+
   useEffect(() => {
-    const loadingSteps = [
-      { progress: 20, text: 'Loading assets...' },
-      { progress: 40, text: 'Preparing components...' },
-      { progress: 60, text: 'Setting up portfolio...' },
-      { progress: 80, text: 'Finalizing experience...' },
-      { progress: 100, text: 'Welcome!' }
-    ];
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [pathname]);
 
-    let currentStep = 0;
-    
-    const progressInterval = setInterval(() => {
-      setLoadingProgress(prev => {
-        const newProgress = prev + Math.random() * 8 + 2;
-        
-        // Update loading text based on progress
-        if (currentStep < loadingSteps.length && newProgress >= loadingSteps[currentStep].progress) {
-          setLoadingText(loadingSteps[currentStep].text);
-          currentStep++;
-        }
-        
-        if (newProgress >= 100) {
-          clearInterval(progressInterval);
-          setTimeout(() => setIsLoading(false), 800);
-          return 100;
-        }
-        return newProgress;
-      });
-    }, 120);
-        
-    return () => clearInterval(progressInterval);
-  }, []);
+  return null;
+};
 
-  if (isLoading) {
-    return (
-      <div className="loading-screen">
-        {/* Animated Background */}
-        <div className="loading-bg">
-          <div className="bg-animation"></div>
-          <div className="bg-overlay"></div>
-        </div>
-
-        {/* Floating Particles */}
-        <div className="particles-container">
-          {[...Array(15)].map((_, i) => (
-            <div key={i} className={`particle particle-${i + 1}`}></div>
-          ))}
-        </div>
-
-        <div className="loading-content">
-          {/* Logo/Brand Section */}
-          <div className="loading-brand">
-            <div className="brand-container">
-              <div className="brand-icon">
-                <div className="icon-layer layer-1"></div>
-                <div className="icon-layer layer-2"></div>
-                <div className="icon-layer layer-3"></div>
-                <div className="brand-letter">Y</div>
-              </div>
-              <h1 className="brand-name">Youssef Fawel</h1>
-              <p className="brand-subtitle">Full Stack Developer</p>
-            </div>
-          </div>
-
-          {/* Advanced Spinner */}
-          <div className="spinner-advanced">
-            <div className="spinner-ring ring-1"></div>
-            <div className="spinner-ring ring-2"></div>
-            <div className="spinner-ring ring-3"></div>
-            <div className="spinner-core">
-              <div className="core-dot"></div>
-            </div>
-          </div>
-          
-          {/* Progress Section */}
-          <div className="progress-section">
-            <div className="progress-bar-container">
-              <div className="progress-bar-bg">
-                <div 
-                  className="progress-bar-fill" 
-                  style={{ width: `${Math.min(loadingProgress, 100)}%` }}
-                >
-                  <div className="progress-glow"></div>
-                </div>
-              </div>
-              <div className="progress-info">
-                <span className="progress-text">{loadingText}</span>
-                <span className="progress-percentage">
-                  {Math.round(Math.min(loadingProgress, 100))}%
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Loading Status */}
-          <div className="loading-status">
-            <div className="status-dots">
-              <div className="status-dot active"></div>
-              <div className="status-dot active"></div>
-              <div className="status-dot active"></div>
-              <div className="status-dot"></div>
-            </div>
-            <p className="status-message">Crafting your digital experience</p>
-          </div>
-        </div>
-
-        {/* Corner Decorations */}
-        <div className="corner-decoration top-left"></div>
-        <div className="corner-decoration top-right"></div>
-        <div className="corner-decoration bottom-left"></div>
-        <div className="corner-decoration bottom-right"></div>
-      </div>
-    );
-  }
-
+function App() {
   return (
     <LanguageProvider>
       <Router>
         <div className="App">
+          <RouteScrollReset />
           <Navbar />
           <main className="main-content">
             <Routes>

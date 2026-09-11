@@ -1,0 +1,220 @@
+:root {
+  color-scheme: light dark;
+  --surface-page: #f8fafc;
+  --surface-card: #ffffff;
+  --text-strong: #0f1729;
+  --text-body: #475569;
+  --border-soft: #dbe4ef;
+  --focus-ring: #0b84e5;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 82px;
+  overflow-x: hidden;
+}
+
+body {
+  min-width: 320px;
+  overflow-x: hidden;
+  background: var(--surface-page);
+  color: var(--text-strong);
+}
+
+#root,
+.App,
+.main-content {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+:where(p, h1, h2, h3, h4, li, span) {
+  overflow-wrap: break-word;
+}
+
+section[id] {
+  scroll-margin-top: 82px;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+@media (max-width: 991px) {
+  .navbar .menu:not(.active) {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .navbar .menu.active {
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 430px) {
+  :root {
+    --mobile-gutter: 16px;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.65rem, 9vw, 2rem);
+    line-height: 1.15;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-page: #0b1220;
+    --surface-card: #111c2f;
+    --text-strong: #f3f7fc;
+    --text-body: #c2cede;
+    --border-soft: #2b3b52;
+    --focus-ring: #67c4ff;
+  }
+
+  body,
+  .App,
+  .home-page,
+  .about-section,
+  .skills-section,
+  .projects-section,
+  .internships-section,
+  .certificates-section,
+  .cv-section,
+  .contact-section,
+  .about {
+    background-color: var(--surface-page);
+    color: var(--text-strong);
+  }
+
+  .navbar.scrolled,
+  .navbar.scrolled .menu {
+    background: rgba(11, 18, 32, 0.97);
+  }
+
+  .navbar.scrolled .menu li a,
+  .navbar.scrolled .menu-btn,
+  .navbar.scrolled .logo a,
+  .navbar.scrolled .menu .language-btn {
+    color: var(--text-strong);
+  }
+
+  .about-heading h3,
+  .about .info-title,
+  .contact-heading h3,
+  .contact-details h4,
+  .form-header h3,
+  .form-group label,
+  .certificate-title,
+  .certificate-modal-content .modal-header h2,
+  .certificate-modal-content .info-section h3,
+  .certificate-modal-content .info-value {
+    color: var(--text-strong);
+  }
+
+  .about-description p,
+  .about .info-value,
+  .contact-heading p,
+  .contact-details p,
+  .contact-details a,
+  .form-header p,
+  .certificate-organization,
+  .certificate-date,
+  .certificates-count,
+  .certificate-modal-content .certificate-description,
+  .certificate-modal-content .info-label {
+    color: var(--text-body);
+  }
+
+  .contact-form-container,
+  .certificate-card,
+  .certificate-modal-content,
+  .certificate-modal-content .modal-header,
+  .certificate-modal-content .certificate-image-container {
+    background: var(--surface-card);
+    border-color: var(--border-soft);
+  }
+
+  .input-container input,
+  .input-container textarea,
+  .search-input {
+    background: #0c1627;
+    border-color: var(--border-soft);
+    color: var(--text-strong);
+  }
+
+  .input-container input::placeholder,
+  .input-container textarea::placeholder,
+  .search-input::placeholder {
+    color: #8fa0b6;
+  }
+}

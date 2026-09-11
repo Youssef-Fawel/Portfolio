@@ -188,6 +188,12 @@
   border: 1px solid rgba(40, 167, 69, 0.2);
 }
 
+.form-status.pending {
+  color: #185d91;
+  background: rgba(24, 93, 145, 0.1);
+  border: 1px solid rgba(24, 93, 145, 0.24);
+}
+
 .form-status.error {
   background-color: rgba(220, 53, 69, 0.1);
   color: #dc3545;
@@ -366,12 +372,16 @@ form.submitting button:not(:disabled) {
   }
   
   .contact-info-item {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 24px;
   }
   
   .icon-container {
-    margin-bottom: 10px;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 0;
   }
   
   .social-icons {

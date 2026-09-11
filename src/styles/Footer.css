@@ -1,4 +1,6 @@
 .footer {
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
   color: #fff;
   padding: 20px 0;
@@ -31,7 +33,7 @@
 }
 
 .footer-left span {
-  color: #4db5ff;
+  color: #9ed8ff;
 }
 
 .contact-info {
@@ -50,7 +52,7 @@
 
 .contact-info p i {
   margin-right: 8px;
-  color: #4db5ff;
+  color: #9ed8ff;
   font-size: 12px;
 }
 
@@ -70,8 +72,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 44px;
+  height: 44px;
   margin-left: 10px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
@@ -92,7 +94,7 @@
 }
 
 .copyright a {
-  color: #4db5ff;
+  color: #9ed8ff;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -159,8 +161,8 @@
   }
   
   .social-links a {
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
+    width: 44px;
+    height: 44px;
+    font-size: 14px;
   }
 }
