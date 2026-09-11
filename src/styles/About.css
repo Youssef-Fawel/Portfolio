@@ -7,6 +7,7 @@
 }
 
 .about-container {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
@@ -84,6 +85,8 @@
 
 .about-info {
   flex: 1;
+  min-width: 0;
+  text-align: left;
 }
 
 .about-heading {
@@ -132,16 +135,24 @@
   margin-bottom: 15px;
   display: flex;
   align-items: center;
+  min-width: 0;
 }
 
 .info-title {
   font-weight: 600;
   color: #333;
-  width: 100px;
+  flex: 0 0 110px;
 }
 
 .info-value {
   color: #555;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.distinction-item .info-value {
+  color: #1e6da8;
+  font-weight: 700;
 }
 
 .about-buttons {
@@ -230,8 +241,9 @@
   }
   
   .image-container {
-    width: 250px;
-    height: 250px;
+    width: min(250px, calc(100vw - 64px));
+    height: auto;
+    aspect-ratio: 1;
   }
   
   .about-heading h3 {
@@ -241,6 +253,16 @@
   .about-buttons {
     flex-direction: column;
     gap: 10px;
+  }
+
+  .info-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .info-title {
+    flex-basis: auto;
   }
   
   .btn {

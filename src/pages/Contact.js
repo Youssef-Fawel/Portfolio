@@ -15,7 +15,7 @@ const Contact = () => {
   
   const [formStatus, setFormStatus] = useState({
     submitted: false,
-    success: false,
+    status: 'idle',
     message: ''
   });
   
@@ -70,21 +70,18 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submission started");
     
     if (!validateForm()) {
-      console.log("Form validation failed");
       return;
     }
     
     setIsSubmitting(true);
-    console.log("Submitting form data:", formData);
     
     try {
       setFormStatus({
         submitted: true,
-        success: false,
-        message: 'Sending your message...'
+        status: 'pending',
+        message: t.contact.sending
       });
       
       const submissionData = {
@@ -92,51 +89,28 @@ const Contact = () => {
         ...formData,
       };
       
-      console.log("Encoded form data:", encode(submissionData));
-      
-      fetch("/", {
+      const response = await fetch("/", {
         method: "POST",
         headers: {
            "Content-Type": "application/x-www-form-urlencoded"
         },
         body: encode(submissionData)
-      })
-        .then(response => {
-          console.log("Form submission response:", response);
-          if (!response.ok) {
-            throw new Error(`Form submission failed: ${response.status}`);
-          }
-          return response;
-        })
-        .then(() => {
-          console.log("Form submission successful!");
-          
-          setFormData({
-            name: '',
-            email: '',
-            message: ''
-          });
-          
-          navigate('/thank-you');
-        })
-        .catch(error => {
-          console.error('Error submitting form:', error);
-          setFormStatus({
-            submitted: true,
-            success: false,
-            message: 'Oops! Something went wrong. Please try again later.'
-          });
-        })
-        .finally(() => {
-          setIsSubmitting(false);
-        });
+      });
+
+      if (!response.ok) {
+        throw new Error(`Form submission failed: ${response.status}`);
+      }
+
+      setFormData({ name: '', email: '', message: '' });
+      navigate('/thank-you');
     } catch (error) {
       console.error('Error in form submission:', error);
       setFormStatus({
         submitted: true,
-        success: false,
-        message: 'Oops! Something went wrong. Please try again later.'
+        status: 'error',
+        message: t.contact.sendError
       });
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -179,7 +153,7 @@ const Contact = () => {
             <div className="contact-info-items">
               <div className="contact-info-item">
                 <div className="icon-container">
-                  <i className="fas fa-envelope"></i>
+                  <i className="fas fa-envelope" aria-hidden="true"></i>
                 </div>
                 <div className="contact-details">
                   <h4>{t.contact.emailLabel}</h4>
@@ -191,7 +165,7 @@ const Contact = () => {
               
               <div className="contact-info-item">
                 <div className="icon-container">
-                  <i className="fas fa-map-marker-alt"></i>
+                  <i className="fas fa-map-marker-alt" aria-hidden="true"></i>
                 </div>
                 <div className="contact-details">
                   <h4>{t.contact.locationLabel}</h4>
@@ -201,11 +175,11 @@ const Contact = () => {
               
               <div className="contact-info-item">
                 <div className="icon-container">
-                  <i className="fas fa-phone-alt"></i>
+                  <i className="fas fa-phone-alt" aria-hidden="true"></i>
                 </div>
                 <div className="contact-details">
-                  <h4>Phone</h4>
-                  <p>+33 780765291</p>
+                  <h4>{t.contact.phoneLabel}</h4>
+                  <a href="tel:+33746495170">+33 7 46 49 51 70</a>
                 </div>
               </div>
             </div>
@@ -222,17 +196,22 @@ const Contact = () => {
             <div className="contact-form-container">
               <div className="form-header">
                 <h3>{t.contact.sendMessage}</h3>
-                <p>I'll get back to you as soon as possible</p>
+                <p>{t.contact.responseTime}</p>
               </div>
               
               {formStatus.submitted && (
                 <motion.div
-                  className={`form-status ${formStatus.success ? 'success' : 'error'}`}
+                  className={`form-status ${formStatus.status}`}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
+                  role={formStatus.status === 'error' ? 'alert' : 'status'}
+                  aria-live="polite"
                 >
-                  <i className={`fas ${formStatus.success ? 'fa-check-circle' : 'fa-exclamation-circle'}`}></i>
+                  <i
+                    className={`fas ${formStatus.status === 'error' ? 'fa-exclamation-circle' : 'fa-paper-plane'}`}
+                    aria-hidden="true"
+                  ></i>
                   <span>{formStatus.message}</span>
                 </motion.div>
               )}
@@ -265,9 +244,13 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       className={formErrors.name ? 'error' : ''}
+                      autoComplete="name"
+                      required
+                      aria-invalid={Boolean(formErrors.name)}
+                      aria-describedby={formErrors.name ? 'name-error' : undefined}
                     />
                   </div>
-                  {formErrors.name && <div className="error-message">{formErrors.name}</div>}
+                  {formErrors.name && <div className="error-message" id="name-error" role="alert">{formErrors.name}</div>}
                 </div>
                 
                 <div className="form-group">
@@ -282,9 +265,13 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       className={formErrors.email ? 'error' : ''}
+                      autoComplete="email"
+                      required
+                      aria-invalid={Boolean(formErrors.email)}
+                      aria-describedby={formErrors.email ? 'email-error' : undefined}
                     />
                   </div>
-                  {formErrors.email && <div className="error-message">{formErrors.email}</div>}
+                  {formErrors.email && <div className="error-message" id="email-error" role="alert">{formErrors.email}</div>}
                 </div>
                 
                 <div className="form-group">
@@ -299,9 +286,13 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleChange}
                       className={formErrors.message ? 'error' : ''}
+                      required
+                      minLength="10"
+                      aria-invalid={Boolean(formErrors.message)}
+                      aria-describedby={formErrors.message ? 'message-error' : undefined}
                     ></textarea>
                   </div>
-                  {formErrors.message && <div className="error-message">{formErrors.message}</div>}
+                  {formErrors.message && <div className="error-message" id="message-error" role="alert">{formErrors.message}</div>}
                 </div>
                 
                 <div className="form-submit">

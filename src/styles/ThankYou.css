@@ -1,17 +1,14 @@
 .thank-you-page {
   min-height: 100vh;
+  min-height: 100svh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  padding: 0;
+  padding: clamp(6.5rem, 12vh, 8rem) 1rem 3rem;
   margin: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
 }
 
 .thank-you-container {
@@ -21,10 +18,7 @@
   border-radius: 12px;
   box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
   overflow: hidden;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
 }
 
 .thank-you-content {
@@ -93,6 +87,7 @@
   border-radius: 30px;
   font-size: 1rem;
   font-weight: 600;
+  min-height: 44px;
   text-decoration: none;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);

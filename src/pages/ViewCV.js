@@ -34,9 +34,14 @@ const ViewCV = () => {
   }, []);
   
   const personalInfo = [
-    { icon: 'fas fa-graduation-cap', label: 'Education', value: 'Computer Science Engineering' },
-    { icon: 'fas fa-language', label: 'Languages', value: 'English, Arabic, French' },
-    { icon: 'fas fa-phone-alt', label: 'Phone', value: '+33 780765291' }
+    { icon: 'fas fa-graduation-cap', label: t.viewCV.educationLabel, value: t.viewCV.educationValue },
+    { icon: 'fas fa-language', label: t.viewCV.languagesLabel, value: t.viewCV.languagesValue },
+    {
+      icon: 'fas fa-phone-alt',
+      label: t.viewCV.phoneLabel,
+      value: '+33 7 46 49 51 70',
+      href: 'tel:+33746495170'
+    }
   ];
   
   const socialLinks = [
@@ -159,7 +164,7 @@ const ViewCV = () => {
                 <img src={require("../assets/images/Me.jpeg")} alt="Youssef Fawel" />
                 </div>
                 <h3>Youssef Fawel</h3>
-                <p className="profile-title">Software Developer - Full-stack developer</p>
+                <p className="profile-title">{t.viewCV.profileTitle}</p>
               </div>
               
               <div className="personal-info-list">
@@ -176,14 +181,16 @@ const ViewCV = () => {
                     </div>
                     <div className="info-content">
                       <h4>{info.label}</h4>
-                      <p>{info.value}</p>
+                      {info.href
+                        ? <a href={info.href}>{info.value}</a>
+                        : <p>{info.value}</p>}
                     </div>
                   </motion.div>
                 ))}
               </div>
               
               <div className="social-links">
-                <h3>Connect With Me</h3>
+                <h3>{t.viewCV.connect}</h3>
                 <div className="social-icons">
                   {socialLinks.map((social, index) => (
                     <motion.a 
@@ -207,11 +214,11 @@ const ViewCV = () => {
       </div>
       
       {showPreview && (
-        <div className="cv-preview-overlay" onClick={closePreview}>
-          <div className="cv-preview-container" onClick={e => e.stopPropagation()}>
+        <div className="cv-preview-overlay" onClick={closePreview} role="presentation">
+          <div className="cv-preview-container" onClick={e => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="cv-preview-title">
             <div className="preview-header">
-              <h3>CV Preview</h3>
-              <button className="close-preview" onClick={closePreview}>
+              <h3 id="cv-preview-title">{t.viewCV.previewTitle}</h3>
+              <button className="close-preview" onClick={closePreview} aria-label={t.viewCV.close}>
                 <i className="fas fa-times"></i>
               </button>
             </div>
@@ -232,10 +239,10 @@ const ViewCV = () => {
                 download="Resume.pdf"
               >
                 <i className="fas fa-download"></i>
-                <span>Download</span>
+                <span>{t.viewCV.download}</span>
               </a>
               <button className="close-btn" onClick={closePreview}>
-                Close
+                {t.viewCV.close}
               </button>
             </div>
           </div>

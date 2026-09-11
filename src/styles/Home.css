@@ -3,15 +3,15 @@
   display: flex;
   background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100svh;
   color: #fff;
-  min-height: 500px;
   font-family: 'Poppins', sans-serif;
   position: relative;
   overflow: hidden;
-  align-items: flex-start; 
+  align-items: center;
   justify-content: center;
-  padding-top: 15vh; 
+  padding: clamp(6.5rem, 12vh, 9rem) 0 clamp(3.5rem, 8vh, 6rem);
 }
 
 /* Add a subtle pattern overlay */
@@ -26,15 +26,12 @@
   opacity: 0.1;
 }
 
-.max-width {
-  width: 100%;
-  max-width: 1300px;
+.hero-container {
+  width: min(100%, 1200px);
   margin: 0 auto;
-  padding: 0 50px;
+  padding: 0 clamp(1rem, 4vw, 3rem);
   position: relative;
   z-index: 2;
-  display: flex;
-  justify-content: center; /* Center content horizontally */
 }
 
 .home-content {
@@ -50,7 +47,7 @@
 }
 
 .text-1 {
-  font-size: 28px;
+  font-size: clamp(1rem, 2.2vw, 1.75rem);
   font-weight: 300;
   letter-spacing: 1px;
   opacity: 0;
@@ -58,7 +55,7 @@
 }
 
 .text-2 {
-  font-size: 75px;
+  font-size: clamp(2.6rem, 7vw, 4.7rem);
   font-weight: 700;
   margin-left: 0; /* Remove left margin for center alignment */
   background: linear-gradient(to right, #fff, #a5c4ff);
@@ -66,22 +63,24 @@
   -webkit-text-fill-color: transparent;
   opacity: 0;
   animation: slideUp 0.8s ease forwards 0.4s;
+  line-height: 1.08;
 }
 
 .text-3 {
-  font-size: 40px;
+  font-size: clamp(1.35rem, 3.5vw, 2.5rem);
   margin: 10px 0;
   opacity: 0;
   animation: slideUp 0.8s ease forwards 0.6s;
+  line-height: 1.25;
 }
 
-.text-3 span {
+.text-3 .typing-static {
   color: #4db5ff;
   font-weight: 600;
   position: relative;
 }
 
-.text-3 span::after {
+.text-3 .typing-static::after {
   content: '';
   position: absolute;
   bottom: -5px;
@@ -94,13 +93,13 @@
   transition: transform 0.5s ease;
 }
 
-.text-3 span:hover::after {
+.text-3 .typing-static:hover::after {
   transform: scaleX(1);
   transform-origin: left;
 }
 
 .text-description {
-  font-size: 20px;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
   margin: 20px auto 0; /* Center with auto margins */
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.9);
@@ -216,7 +215,7 @@
 .section-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 20px;
+  padding: 0 0 56px;
 }
 
 .section-title {
@@ -325,12 +324,6 @@
 }
 
 /* Responsive Media Queries */
-@media (max-width: 1300px) {
-  .max-width {
-    padding: 0 50px;
-  }
-}
-
 @media (max-width: 1104px) {
   .text-2 {
     font-size: 65px;
@@ -341,9 +334,6 @@
 }
 
 @media (max-width: 991px) {
-  .max-width {
-    padding: 0 50px;
-  }
   .home-content {
     max-width: 600px;
   }
@@ -360,9 +350,6 @@
   .hero-section {
     background-position: center;
   }
-  .max-width {
-    padding: 0 30px;
-  }
   .home-content {
     text-align: center;
     margin: auto;
@@ -378,14 +365,26 @@
     justify-content: center;
     flex-wrap: wrap;
   }
+
+  .floating-shape {
+    opacity: 0.55;
+  }
   .section-title h2 {
     font-size: 30px;
   }
 }
 
 @media (max-width: 500px) {
+  .hero-section {
+    padding-top: 6rem;
+  }
+
+  .hero-container {
+    padding-inline: 1rem;
+  }
+
   .home-content {
-    padding: 20px;
+    padding: 1.5rem 1rem;
   }
   .text-1 {
     font-size: 22px;
@@ -405,7 +404,7 @@
     padding: 12px 25px;
   }
   .section-container {
-    padding: 50px 15px;
+    padding: 0 0 44px;
   }
   .section-title h2 {
     font-size: 26px;
@@ -421,7 +420,7 @@
 }
 
 /* For very small screens */
-@media (max-width: 380px) {
+@media (max-width: 430px) {
   .text-2 {
     font-size: 35px;
   }
@@ -431,6 +430,7 @@
   .buttons-container {
     flex-direction: column;
     gap: 15px;
+    margin-top: 28px;
   }
   .hire-me-btn,
   .portfolio-btn {

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useEffect, useState, useContext } from 'react';
 
 const LanguageContext = createContext();
 
@@ -9,16 +9,17 @@ export const translations = {
       about: 'About',
       skills: 'Skills',
       projects: 'Projects',
-      internships: 'Internships',
+      internships: 'Experience',
       certificates: 'Certificates',
       viewCV: 'View CV',
-      contact: 'Contact'
+      contact: 'Contact',
+      backToTop: 'Back to top'
     },
     home: {
       greeting: "Hello, my name is",
       name: "Youssef Fawel",
       tagline: "And I'm a",
-      description: "I'm passionate about creating elegant solutions through code. As a software engineering student, I combine technical skills with creative problem-solving to build impactful digital experiences.",
+      description: "Software Engineer building reliable full-stack products and AI-assisted experiences. I turn complex requirements into secure, accessible and maintainable web and mobile applications.",
       hireMeBtn: "Get In Touch",
       portfolioBtn: "View Portfolio",
       downloadCVBtn: "Download CV",
@@ -29,43 +30,44 @@ export const translations = {
       viewAllCertificates: "View All Certificates",
       viewFullCV: "View Full CV",
       titles: [
-        "Software Engineering Student",
-        "Web Developer",
-        "Full-Stack Developer",
-        "Problem Solver",
-        "MERN Stack Developer",
-        "Tech Enthusiast"
+        "Software Engineer",
+        "Full-Stack Engineer",
+        "AI-Integrated App Developer",
+        "Web & Mobile Developer"
       ]
     },
     about: {
       title: "About Me",
       subtitle: "Who I am",
-      heading: "I'm Youssef and I'm a",
-      description1: "As a dedicated software engineering student at EPI DIGITAL SCHOOL in Sousse, I'm passionate about leveraging technology to solve complex problems. My academic journey from 2021 to 2026 has equipped me with a strong foundation in various programming languages and cutting-edge technologies.",
-      description2: "Currently, I'm expanding my horizons through an exciting exchange semester at ESIEA - École d'Ingénieur·e·s d'un numérique utile in Paris, France. This international experience is enriching my perspective and allowing me to develop new skills in an innovative academic environment. I thrive in challenging environments and am constantly seeking opportunities to expand my skill set.",
+      heading: "I'm Youssef, a",
+      description1: "I am a Software Engineer and engineering graduate in Computer Science / Software Engineering from EPI Digital School. I graduated with the distinction “Excellent” and focus on full-stack systems, modern web applications and practical AI integrations.",
+      description2: "My academic journey also included an exchange experience at ESIEA — École d'ingénieur·e·s d'un numérique utile in Paris. Combined with my professional experience in France and Tunisia, it strengthened my ability to work across cultures and deliver clear, dependable software.",
       downloadCV: "Download CV",
       viewWork: "View My Work",
       name: "Name",
       email: "Email",
       esieaEmail: "ESIEA Email",
       degree: "Degree",
-      degreeValue: "Software Engineering",
+      degreeValue: "Engineering degree in Computer Science",
       location: "Location",
       locationValue: "Paris, France",
       study: "Study",
-      studyValue: "ESIEA (Exchange) / EPI DIGITAL SCHOOL",
-      graduation: "Graduation"
+      studyValue: "EPI Digital School · ESIEA exchange",
+      graduation: "Graduated",
+      graduationValue: "2026",
+      distinction: "Distinction",
+      distinctionValue: "Excellent"
     },
     skills: {
       title: "My Skills",
       subtitle: "Expertise and proficiencies I've developed over the years",
-      description: "As a dedicated software engineering student with a passion for development, I've been building a diverse skill set that allows me to tackle interesting problems and deliver quality solutions. I'm enthusiastic about creating clean, efficient, and user-friendly applications that address real-world challenges.",
+      description: "A practical full-stack toolkit shaped by production work, engineering projects and continuous learning across web, mobile, data and AI-assisted systems.",
       technicalSkills: "Technical Skills",
       softSkills: "Soft Skills",
       toolsTech: "Tools & Technologies",
       myExpertise: "My Expertise",
-      expertiseDesc1: "As a dedicated software engineering student with a passion for development, I've been building a diverse skill set that allows me to tackle interesting problems and deliver quality solutions. I'm enthusiastic about creating clean, efficient, and user-friendly applications that address real-world challenges.",
-      expertiseDesc2: "I continuously expand my knowledge through coursework, personal projects, and staying updated with the latest technologies and industry trends. My approach combines growing technical expertise with strong communication and problem-solving abilities, preparing me for success in the professional world.",
+      expertiseDesc1: "I build end-to-end applications with typed frontends, API-driven backends and relational data models, with particular attention to security, maintainability and user experience.",
+      expertiseDesc2: "My recent work spans Next.js, Angular, NestJS, FastAPI, PostgreSQL, Flutter and Gemini integrations, supported by testing, deployment and collaborative delivery practices.",
       viewProjects: "View My Projects",
       getInTouch: "Get In Touch",
       beginner: "Beginner (0-69%)",
@@ -138,8 +140,8 @@ export const translations = {
       searchPlaceholder: "Search projects..."
     },
     internships: {
-      title: "My Internships",
-      subtitle: "Professional Experience",
+      title: "Experience",
+      subtitle: "Professional experience and engineering internships",
       duration: "Duration",
       location: "Location",
       skills: "Skills",
@@ -162,8 +164,8 @@ export const translations = {
       title: "My Curriculum Vitae",
       subtitle: "Get to know my professional journey and qualifications",
       professionalSummary: "Professional Summary",
-      summaryText1: "I'm a passionate software developer with expertise in web development, specializing in building responsive and user-friendly applications. My CV provides a comprehensive overview of my professional experience, technical skills, educational background, and notable projects.",
-      summaryText2: "I'm constantly learning and adapting to new technologies to stay at the forefront of the industry. My goal is to create innovative solutions that make a positive impact and deliver exceptional user experiences.",
+      summaryText1: "I am a Software Engineer specializing in full-stack product development, secure APIs and AI-assisted workflows. My experience covers modern web and mobile interfaces, backend services, relational databases and production deployment.",
+      summaryText2: "My CV presents my professional experience, engineering degree, technical skills and recent projects, including Talentry, AHKILI and SABA.",
       whatsInside: "What's Inside",
       experience: "Professional Experience",
       experienceDesc: "Detailed work history with key achievements and responsibilities.",
@@ -175,7 +177,17 @@ export const translations = {
       projectsDesc: "Showcase of significant projects with technologies used and outcomes.",
       downloadCV: "Download CV",
       previewCV: "Preview CV",
-      viewFull: "View Full CV"
+      viewFull: "View Full CV",
+      educationLabel: "Education",
+      educationValue: "Engineering degree · Mention Excellent",
+      languagesLabel: "Languages",
+      languagesValue: "Arabic, French, English",
+      phoneLabel: "Phone",
+      connect: "Connect with me",
+      profileTitle: "Software Engineer · Full-Stack",
+      previewTitle: "CV preview",
+      download: "Download",
+      close: "Close"
     },
     contact: {
       title: "Contact Me",
@@ -198,14 +210,17 @@ export const translations = {
       emailRequired: "Email is required",
       emailInvalid: "Email address is invalid",
       messageRequired: "Message is required",
-      messageShort: "Message must be at least 10 characters"
+      messageShort: "Message must be at least 10 characters",
+      responseTime: "I'll get back to you as soon as possible.",
+      sending: "Sending your message...",
+      sendError: "Something went wrong. Please try again later."
     },
     linkedin: {
       title: "LinkedIn",
       author: "Youssef Fawel",
-      subtitle: "Software Engineering Student",
-      content1: "🚀 Looking for an End-of-Study Internship – Full Stack Development - Artificial Intelligence",
-      content2: "I am currently a 5th-year student in software engineering, and I am looking for an end-of-study internship starting from February 2026...",
+      subtitle: "Software Engineer",
+      content1: "Software Engineer · Full-Stack development · AI-integrated applications",
+      content2: "Discover my professional experience and the engineering behind Talentry, AHKILI and SABA on my LinkedIn profile.",
       visitBtn: "Visit My LinkedIn Profile",
       closeBtn: "Close",
       countdown: "LinkedIn in:"
@@ -221,16 +236,17 @@ export const translations = {
       about: 'À propos',
       skills: 'Compétences',
       projects: 'Projets',
-      internships: 'Stages',
+      internships: 'Expérience',
       certificates: 'Certificats',
       viewCV: 'Voir CV',
-      contact: 'Contact'
+      contact: 'Contact',
+      backToTop: 'Retour en haut'
     },
     home: {
       greeting: "Bonjour, je m'appelle",
       name: "Youssef Fawel",
       tagline: "Et je suis",
-      description: "Je suis passionné par la création de solutions élégantes à travers le code. En tant qu'étudiant en génie logiciel, je combine compétences techniques et résolution créative de problèmes pour créer des expériences numériques percutantes.",
+      description: "Ingénieur en informatique, je conçois des produits Full-stack fiables et des expériences assistées par IA. Je transforme des besoins complexes en applications web et mobiles sécurisées, accessibles et maintenables.",
       hireMeBtn: "Prenez Contact",
       portfolioBtn: "Voir le Portfolio",
       downloadCVBtn: "Télécharger CV",
@@ -241,43 +257,44 @@ export const translations = {
       viewAllCertificates: "Voir Tous les Certificats",
       viewFullCV: "Voir le CV Complet",
       titles: [
-        "Étudiant en Génie Logiciel",
-        "Développeur Web",
-        "Développeur Full-Stack",
-        "Résolveur de Problèmes",
-        "Développeur MERN Stack",
-        "Passionné de Technologie"
+        "Ingénieur en informatique",
+        "Ingénieur Full-stack",
+        "Développeur d'applications avec IA",
+        "Développeur Web & Mobile"
       ]
     },
     about: {
       title: "À Propos de Moi",
       subtitle: "Qui je suis",
-      heading: "Je suis Youssef et je suis",
-      description1: "En tant qu'étudiant dévoué en génie logiciel à l'EPI DIGITAL SCHOOL à Sousse, je suis passionné par l'utilisation de la technologie pour résoudre des problèmes complexes. Mon parcours académique de 2021 à 2026 m'a doté d'une base solide dans divers langages de programmation et technologies de pointe.",
-      description2: "Actuellement, j'élargis mes horizons grâce à un semestre d'échange passionnant à l'ESIEA - École d'Ingénieur·e·s d'un numérique utile à Paris, France. Cette expérience internationale enrichit ma perspective et me permet de développer de nouvelles compétences dans un environnement académique innovant. Je m'épanouis dans des environnements stimulants et je cherche constamment des opportunités pour élargir mes compétences.",
+      heading: "Je suis Youssef,",
+      description1: "Je suis ingénieur en informatique, diplômé de l'EPI Digital School avec la mention « Excellent ». Je me spécialise dans les systèmes Full-stack, les applications web modernes et les intégrations d'intelligence artificielle utiles.",
+      description2: "Mon parcours comprend également une expérience d'échange à l'ESIEA — École d'ingénieur·e·s d'un numérique utile à Paris. Associée à mes expériences professionnelles en France et en Tunisie, elle a renforcé ma capacité à collaborer dans des contextes internationaux et à livrer des logiciels fiables.",
       downloadCV: "Télécharger CV",
       viewWork: "Voir Mon Travail",
       name: "Nom",
       email: "Email",
       esieaEmail: "Email ESIEA",
       degree: "Diplôme",
-      degreeValue: "Génie Logiciel",
+      degreeValue: "Diplôme d'ingénieur en informatique",
       location: "Lieu",
       locationValue: "Paris, France",
       study: "Études",
-      studyValue: "ESIEA (Échange) / EPI DIGITAL SCHOOL",
-      graduation: "Diplômation"
+      studyValue: "EPI Digital School · échange ESIEA",
+      graduation: "Diplômé en",
+      graduationValue: "2026",
+      distinction: "Mention",
+      distinctionValue: "Excellent"
     },
     skills: {
       title: "Mes Compétences",
       subtitle: "Expertise et compétences que j'ai développées au fil des années",
-      description: "En tant qu'étudiant dévoué en génie logiciel avec une passion pour le développement, j'ai construit un ensemble diversifié de compétences qui me permet de relever des problèmes intéressants et de fournir des solutions de qualité. Je suis enthousiaste à l'idée de créer des applications propres, efficaces et conviviales qui répondent aux défis du monde réel.",
+      description: "Une boîte à outils Full-stack concrète, développée en production, lors de projets d'ingénierie et par une veille continue autour du web, du mobile, des données et de l'IA.",
       technicalSkills: "Compétences Techniques",
       softSkills: "Compétences Relationnelles",
       toolsTech: "Outils et Technologies",
       myExpertise: "Mon Expertise",
-      expertiseDesc1: "En tant qu'étudiant dévoué en génie logiciel avec une passion pour le développement, j'ai construit un ensemble diversifié de compétences qui me permet de relever des problèmes intéressants et de fournir des solutions de qualité. Je suis enthousiaste à l'idée de créer des applications propres, efficaces et conviviales qui répondent aux défis du monde réel.",
-      expertiseDesc2: "J'élargis continuellement mes connaissances à travers les cours, les projets personnels et en restant à jour avec les dernières technologies et tendances de l'industrie. Mon approche combine une expertise technique croissante avec de solides capacités de communication et de résolution de problèmes, me préparant au succès dans le monde professionnel.",
+      expertiseDesc1: "Je développe des applications de bout en bout avec des interfaces typées, des API robustes et des modèles de données relationnels, en privilégiant la sécurité, la maintenabilité et l'expérience utilisateur.",
+      expertiseDesc2: "Mes travaux récents couvrent Next.js, Angular, NestJS, FastAPI, PostgreSQL, Flutter et les intégrations Gemini, avec des pratiques de test, de déploiement et de livraison collaborative.",
       viewProjects: "Voir Mes Projets",
       getInTouch: "Prenez Contact",
       beginner: "Débutant (0-69%)",
@@ -350,8 +367,8 @@ export const translations = {
       searchPlaceholder: "Rechercher des projets..."
     },
     internships: {
-      title: "Mes Stages",
-      subtitle: "Expérience Professionnelle",
+      title: "Expérience",
+      subtitle: "Expériences professionnelles et stages d'ingénierie",
       duration: "Durée",
       location: "Lieu",
       skills: "Compétences",
@@ -374,8 +391,8 @@ export const translations = {
       title: "Mon Curriculum Vitae",
       subtitle: "Découvrez mon parcours professionnel et mes qualifications",
       professionalSummary: "Résumé Professionnel",
-      summaryText1: "Je suis un développeur logiciel passionné avec une expertise en développement web, spécialisé dans la création d'applications réactives et conviviales. Mon CV offre un aperçu complet de mon expérience professionnelle, de mes compétences techniques, de mon parcours éducatif et de mes projets notables.",
-      summaryText2: "J'apprends et m'adapte constamment aux nouvelles technologies pour rester à la pointe de l'industrie. Mon objectif est de créer des solutions innovantes qui ont un impact positif et offrent des expériences utilisateur exceptionnelles.",
+      summaryText1: "Je suis ingénieur en informatique, spécialisé dans le développement de produits Full-stack, les API sécurisées et les parcours assistés par IA. Mon expérience couvre les interfaces web et mobiles, les services backend, les bases relationnelles et le déploiement en production.",
+      summaryText2: "Mon CV présente mon expérience professionnelle, mon diplôme d'ingénieur, mes compétences techniques et mes projets récents, notamment Talentry, AHKILI et SABA.",
       whatsInside: "Contenu",
       experience: "Expérience Professionnelle",
       experienceDesc: "Historique de travail détaillé avec les réalisations et responsabilités clés.",
@@ -387,7 +404,17 @@ export const translations = {
       projectsDesc: "Présentation de projets significatifs avec les technologies utilisées et les résultats.",
       downloadCV: "Télécharger CV",
       previewCV: "Prévisualiser CV",
-      viewFull: "Voir le CV Complet"
+      viewFull: "Voir le CV Complet",
+      educationLabel: "Formation",
+      educationValue: "Diplôme d'ingénieur · Mention Excellent",
+      languagesLabel: "Langues",
+      languagesValue: "Arabe, français, anglais",
+      phoneLabel: "Téléphone",
+      connect: "Me retrouver en ligne",
+      profileTitle: "Ingénieur en informatique · Full-stack",
+      previewTitle: "Aperçu du CV",
+      download: "Télécharger",
+      close: "Fermer"
     },
     contact: {
       title: "Contactez-moi",
@@ -410,14 +437,17 @@ export const translations = {
       emailRequired: "L'email est requis",
       emailInvalid: "L'adresse email est invalide",
       messageRequired: "Le message est requis",
-      messageShort: "Le message doit contenir au moins 10 caractères"
+      messageShort: "Le message doit contenir au moins 10 caractères",
+      responseTime: "Je vous répondrai dans les meilleurs délais.",
+      sending: "Envoi de votre message...",
+      sendError: "Une erreur est survenue. Veuillez réessayer plus tard."
     },
     linkedin: {
       title: "LinkedIn",
       author: "Youssef Fawel",
-      subtitle: "Étudiant en Génie Logiciel",
-      content1: "🚀 À la recherche d'un stage de fin d'études – Développement Full Stack - Intelligence Artificielle",
-      content2: "Je suis actuellement étudiant en 5ᵉ année de cycle ingénieur en génie logiciel, et je recherche un stage de fin d'études à partir de février 2026...",
+      subtitle: "Ingénieur en informatique",
+      content1: "Ingénieur en informatique · Développement Full-stack · Applications intégrant l'IA",
+      content2: "Découvrez mon expérience professionnelle ainsi que l'ingénierie de Talentry, AHKILI et SABA sur mon profil LinkedIn.",
       visitBtn: "Visiter Mon Profil LinkedIn",
       closeBtn: "Fermer",
       countdown: "LinkedIn dans :"
@@ -438,7 +468,15 @@ export const useLanguage = () => {
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('en');
+  const [language, setLanguage] = useState(() => {
+    if (typeof window === 'undefined') return 'en';
+    return window.localStorage.getItem('portfolio-language') === 'fr' ? 'fr' : 'en';
+  });
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+    window.localStorage.setItem('portfolio-language', language);
+  }, [language]);
 
   const toggleLanguage = () => {
     setLanguage(prev => prev === 'en' ? 'fr' : 'en');

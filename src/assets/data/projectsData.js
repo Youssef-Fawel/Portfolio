@@ -1,5 +1,360 @@
 const projectsData = [
   {
+    id: "talentry",
+    slug: "talentry",
+    featured: true,
+    title: {
+      en: "Talentry",
+      fr: "Talentry"
+    },
+    context: {
+      en: "AI-Powered Freelance Platform · Final-Year Engineering Project",
+      fr: "Plateforme freelance assistée par IA · Projet de fin d’études"
+    },
+    description: {
+      en: "An intelligent platform connecting companies and freelancers through secure workflows and AI-assisted matching. Talentry centralizes profiles, missions, applications, communication, contractual workflows and payments while using AI to analyze CVs, generate professional content and improve candidate-to-mission matching.",
+      fr: "Plateforme intelligente de mise en relation entre entreprises et freelances intégrant des parcours sécurisés et du matching assisté par IA. Talentry centralise les profils, missions, candidatures, échanges, processus contractuels et paiements, tout en utilisant l’IA pour analyser les CV, générer du contenu professionnel et améliorer la correspondance entre candidats et missions."
+    },
+    cardFeatures: {
+      en: [
+        "AI-assisted CV-to-mission matching",
+        "Secure mission, communication and payment workflows"
+      ],
+      fr: [
+        "Matching CV-missions assisté par IA",
+        "Parcours sécurisés pour les missions, échanges et paiements"
+      ]
+    },
+    features: {
+      en: [
+        "Secure authentication",
+        "JWT sessions",
+        "Refresh tokens",
+        "Email verification",
+        "Password reset",
+        "2FA architecture",
+        "Freelancer profiles",
+        "Company profiles",
+        "CV upload",
+        "CV analysis",
+        "Mission creation",
+        "Mission management",
+        "Applications",
+        "Automatic CV-to-mission matching",
+        "AI-generated cover letters",
+        "AI-assisted mission descriptions",
+        "Skill-gap analysis",
+        "Dashboards",
+        "Notifications",
+        "Communication workflows",
+        "Payments",
+        "Administrative workflows",
+        "Support workflows",
+        "Bilingual interface",
+        "Web application",
+        "Mobile application architecture"
+      ],
+      fr: [
+        "Authentification sécurisée",
+        "Sessions JWT",
+        "Jetons de rafraîchissement",
+        "Vérification de l’adresse e-mail",
+        "Réinitialisation du mot de passe",
+        "Architecture 2FA",
+        "Profils freelances",
+        "Profils entreprises",
+        "Import de CV",
+        "Analyse de CV",
+        "Création de missions",
+        "Gestion des missions",
+        "Candidatures",
+        "Matching automatique CV-missions",
+        "Génération de lettres de motivation par IA",
+        "Descriptions de missions assistées par IA",
+        "Analyse des écarts de compétences",
+        "Tableaux de bord",
+        "Notifications",
+        "Parcours de communication",
+        "Paiements",
+        "Parcours administratifs",
+        "Parcours de support",
+        "Interface bilingue",
+        "Application web",
+        "Architecture d’application mobile"
+      ]
+    },
+    architecture: {
+      en: ["Web / Mobile", "NestJS API", "FastAPI AI Microservice", "Google Gemini API"],
+      fr: ["Web / Mobile", "API NestJS", "Microservice IA FastAPI", "API Google Gemini"]
+    },
+    category: "fullstack",
+    technologies: [
+      "Next.js 14",
+      "React 18",
+      "TypeScript",
+      "NestJS 10",
+      "Node.js",
+      "FastAPI",
+      "Python",
+      "Google Gemini",
+      "React Query",
+      "React Hook Form",
+      "Zod",
+      "Zustand",
+      "PostgreSQL",
+      "Supabase",
+      "Stripe",
+      "Brevo SMTP",
+      "React Native",
+      "Expo",
+      "Vercel",
+      "Render",
+      "Git"
+    ],
+    cardTechnologies: [
+      "Next.js",
+      "TypeScript",
+      "NestJS",
+      "FastAPI",
+      "Python",
+      "Gemini",
+      "PostgreSQL",
+      "Supabase"
+    ],
+    image: require("../images/talentry-case-study.jpg"),
+    imagePresentation: "mockup",
+    imageAlt: {
+      en: "Talentry web marketplace and company dashboard presented on laptop and mobile devices",
+      fr: "Marketplace web Talentry et tableau de bord entreprise présentés sur ordinateur et mobile"
+    },
+    liveUrl: "https://talentryplatforme.tech",
+    cover: {
+      variant: "talentry",
+      mark: "T",
+      label: "Talentry",
+      eyebrow: {
+        en: "Final-Year Engineering Project",
+        fr: "Projet de fin d’études"
+      }
+    },
+    completed: true
+  },
+  {
+    id: "ahkili",
+    slug: "ahkili",
+    featured: true,
+    title: {
+      en: "AHKILI",
+      fr: "AHKILI"
+    },
+    context: {
+      en: "Social Community Platform · AI-Assisted Moderation",
+      fr: "Plateforme communautaire · Modération assistée par IA"
+    },
+    description: {
+      en: "A responsive Tunisian social community platform combining public and anonymous participation, communities, personalized feeds, premium features and auditable AI-assisted moderation. The platform supports profiles, followers, notifications, community membership, reports, administration and multilingual content moderation.",
+      fr: "Plateforme sociale communautaire tunisienne responsive combinant participation publique et anonyme, communautés, fils d’actualité personnalisés, fonctionnalités Premium et modération assistée par IA avec traçabilité. La plateforme intègre les profils, abonnements, notifications, adhésions aux communautés, signalements, administration et modération multilingue."
+    },
+    cardFeatures: {
+      en: [
+        "Auditable multilingual AI-assisted moderation",
+        "Public and anonymous community participation"
+      ],
+      fr: [
+        "Modération multilingue assistée par IA et traçable",
+        "Participation communautaire publique ou anonyme"
+      ]
+    },
+    features: {
+      en: [
+        "Public posts",
+        "Anonymous posts",
+        "Comments",
+        "Likes",
+        "Edit history",
+        "Soft deletion",
+        "Communities",
+        "Community membership",
+        "Public profiles",
+        "Followers",
+        "Following",
+        "Notifications",
+        "For You feed",
+        "Following feed",
+        "Latest feed",
+        "Premium subscription workflow",
+        "Billing history",
+        "Reports",
+        "Administrator moderation",
+        "Member warnings",
+        "Member suspension",
+        "CSV export",
+        "AI-assisted moderation",
+        "Tunisian Derja moderation",
+        "Arabizi moderation",
+        "Arabic moderation",
+        "French moderation",
+        "English moderation",
+        "Image upload",
+        "Responsive desktop/mobile interface"
+      ],
+      fr: [
+        "Publications publiques",
+        "Publications anonymes",
+        "Commentaires",
+        "Mentions J’aime",
+        "Historique des modifications",
+        "Suppression logique",
+        "Communautés",
+        "Adhésion aux communautés",
+        "Profils publics",
+        "Abonnés",
+        "Abonnements",
+        "Notifications",
+        "Fil Pour vous",
+        "Fil Abonnements",
+        "Fil Récent",
+        "Parcours d’abonnement Premium",
+        "Historique de facturation",
+        "Signalements",
+        "Modération administrateur",
+        "Avertissements aux membres",
+        "Suspension des membres",
+        "Export CSV",
+        "Modération assistée par IA",
+        "Modération du Derja tunisien",
+        "Modération de l’Arabizi",
+        "Modération de l’arabe",
+        "Modération du français",
+        "Modération de l’anglais",
+        "Import d’images",
+        "Interface responsive sur ordinateur et mobile"
+      ]
+    },
+    architecture: {
+      en: [
+        "Local moderation rules",
+        "Google Gemini contextual classification",
+        "Fallback and moderation safety logic"
+      ],
+      fr: [
+        "Règles de modération locales",
+        "Classification contextuelle avec Google Gemini",
+        "Logique de repli et de sécurité de la modération"
+      ]
+    },
+    category: "fullstack",
+    technologies: [
+      "Angular 19",
+      "TypeScript",
+      "NestJS 11",
+      "TypeORM",
+      "PostgreSQL 16",
+      "Supabase",
+      "Redis 7",
+      "Google Gemini",
+      "ImageKit",
+      "Docker",
+      "Playwright",
+      "Netlify",
+      "Render"
+    ],
+    cardTechnologies: [
+      "Angular 19",
+      "NestJS 11",
+      "PostgreSQL",
+      "Redis",
+      "Gemini",
+      "Docker"
+    ],
+    image: require("../images/ahkili-case-study.jpg"),
+    imagePresentation: "mockup",
+    imageAlt: {
+      en: "AHKILI community platform presented in a laptop case-study mockup",
+      fr: "Plateforme communautaire AHKILI présentée dans une maquette d’ordinateur"
+    },
+    liveUrl: "https://ahkilitn.netlify.app/",
+    cover: {
+      variant: "ahkili",
+      mark: "A",
+      label: "AHKILI",
+      eyebrow: {
+        en: "Community · Trust · Moderation",
+        fr: "Communauté · Confiance · Modération"
+      }
+    },
+    completed: true
+  },
+  {
+    id: "saba",
+    slug: "saba",
+    featured: true,
+    title: {
+      en: "SABA",
+      fr: "SABA"
+    },
+    arabicBrand: "صابة",
+    context: {
+      en: "Smart Agricultural Marketplace · Mobile App",
+      fr: "Marketplace agricole intelligent · Application mobile"
+    },
+    description: {
+      en: "A mobile agricultural marketplace designed to connect Tunisian farmers directly with buyers. SABA combines a marketplace experience with specialized intelligent features including Tunisian Derja natural-language interaction, smart-camera photo validation and privacy-first approximate location sharing.",
+      fr: "Marketplace agricole mobile conçue pour mettre directement en relation les agriculteurs tunisiens et les acheteurs. SABA associe une expérience de marketplace à des fonctionnalités intelligentes spécialisées, notamment l’interaction en Derja tunisienne, la validation des photos par caméra intelligente et le partage de localisation approximative respectueux de la vie privée."
+    },
+    cardFeatures: {
+      en: [
+        "Tunisian Derja natural-language interaction",
+        "Smart-camera validation and privacy-first location"
+      ],
+      fr: [
+        "Interaction en langage naturel en Derja tunisienne",
+        "Validation par caméra intelligente et localisation confidentielle"
+      ]
+    },
+    features: {
+      en: [
+        "Farmer-to-buyer marketplace",
+        "Agricultural product listings",
+        "Saba Speak",
+        "Tunisian Derja natural-language interaction",
+        "Natural language processing",
+        "Smart-camera validation",
+        "Live photo validation",
+        "Privacy-first fuzzy location mapping"
+      ],
+      fr: [
+        "Marketplace entre agriculteurs et acheteurs",
+        "Annonces de produits agricoles",
+        "Saba Speak",
+        "Interaction en langage naturel en Derja tunisienne",
+        "Traitement automatique du langage naturel",
+        "Validation par caméra intelligente",
+        "Validation de photos en direct",
+        "Cartographie approximative respectueuse de la vie privée"
+      ]
+    },
+    category: "mobile",
+    technologies: ["Flutter", "Dart", "Firebase", "NLP"],
+    cardTechnologies: ["Flutter", "Dart", "Firebase", "NLP"],
+    image: require("../images/saba-case-study.jpg"),
+    imagePresentation: "mockup",
+    imageAlt: {
+      en: "SABA agricultural marketplace mobile application presented on a smartphone",
+      fr: "Application mobile de marketplace agricole SABA présentée sur smartphone"
+    },
+    cover: {
+      variant: "saba",
+      mark: "ص",
+      label: "SABA · صابة",
+      eyebrow: {
+        en: "Mobile-first agriculture",
+        fr: "Agriculture mobile-first"
+      }
+    },
+    completed: true
+  },
+  {
     id: 1,
     title: {
       en: "Albert Einstein Tribute",

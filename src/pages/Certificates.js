@@ -1,187 +1,175 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useMemo, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import CertificateModal from '../components/CertificateModal';
 import certificatesData from '../assets/data/certificatesData';
 import '../styles/Certificates.css';
 
-const Certificates = () => {
-  const { t } = useLanguage();
-  const categories = [...new Set(certificatesData.map(cert => cert.category))];
-  
-  const [filter, setFilter] = useState(categories[0]); 
-  const [modalOpen, setModalOpen] = useState(false);
+const copy = {
+  en: {
+    all: 'All',
+    filters: 'Certificate categories',
+    open: 'View certificate',
+    noResults: 'No certificates found',
+    noResultsHint: 'Try another category or search term.',
+    clear: 'Clear search',
+    showing: (visible, total) => `Showing ${visible} of ${total} certificates`
+  },
+  fr: {
+    all: 'Tous',
+    filters: 'Catégories de certificats',
+    open: 'Voir le certificat',
+    noResults: 'Aucun certificat trouvé',
+    noResultsHint: 'Essayez une autre catégorie ou recherche.',
+    clear: 'Effacer la recherche',
+    showing: (visible, total) => `${visible} certificats affichés sur ${total}`
+  }
+};
+
+const Certificates = ({ featured = false }) => {
+  const { language, t } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
+  const labels = copy[language] || copy.en;
+  const categories = useMemo(
+    () => [...new Set(certificatesData.map((certificate) => certificate.category))],
+    []
+  );
+  const [filter, setFilter] = useState('all');
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-  
-  // Filter certificates based on category and search term
-  const filteredCertificates = certificatesData
-    .filter(cert => cert.category === filter)
-    .filter(cert =>
-      cert.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      cert.organization.toLowerCase().includes(searchTerm.toLowerCase())
-    );
 
-  // Simulate loading
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 800);
-    
-    return () => clearTimeout(timer);
-  }, []);
-  
-  const openModal = (certificate) => {
-    setSelectedCertificate(certificate);
-    setModalOpen(true);
-    document.body.style.overflow = 'hidden'; 
-  };
-  
-  const closeModal = () => {
-    setModalOpen(false);
-    document.body.style.overflow = 'auto'; 
-  };
-  
-  const handleFilterChange = (category) => {
-    setIsLoading(true);
-    setFilter(category);
-    
-    // Simulate loading when changing filters
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-  };
+  const filteredCertificates = useMemo(() => {
+    const normalizedSearch = searchTerm.trim().toLowerCase();
+
+    return certificatesData.filter((certificate) => {
+      const matchesCategory = filter === 'all' || certificate.category === filter;
+      const matchesSearch = !normalizedSearch
+        || certificate.title.toLowerCase().includes(normalizedSearch)
+        || certificate.organization.toLowerCase().includes(normalizedSearch);
+
+      return matchesCategory && matchesSearch;
+    });
+  }, [filter, searchTerm]);
+
+  const visibleCertificates = featured
+    ? certificatesData.slice(0, 3)
+    : filteredCertificates;
+  const Wrapper = featured ? 'div' : 'section';
 
   return (
-    <section className="certificates-section" id="certificates">
+    <Wrapper
+      className={`certificates-section${featured ? ' certificates-section--embedded' : ''}`}
+      id={featured ? undefined : 'certificates'}
+      aria-labelledby="certificates-title"
+    >
       <div className="certificates-container">
-        <div className="section-header">
-          <h2 className="section-title">{t.certificates.title}</h2>
-          <div className="underline"></div>
-          <p className="section-subtitle">
-            {t.certificates.subtitle}
-          </p>
-        </div>
-        
-        <div className="certificates-controls">
-          <div className="filter-buttons">
-            {categories.map(category => (
-              <button
-                key={category}
-                className={`filter-btn ${filter === category ? 'active' : ''}`}
-                onClick={() => handleFilterChange(category)}
-              >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </button>
-            ))}
-          </div>
-          
-          <div className="search-container">
-            <input
-              type="text"
-              placeholder={t.certificates.searchPlaceholder}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input"
-            />
-            <i className="fas fa-search search-icon"></i>
-          </div>
-        </div>
-        
-        {isLoading ? (
-          <div className="certificates-loading">
-            <div className="spinner"></div>
-            <p>Loading certificates...</p>
-          </div>
-        ) : (
-          <>
-            <AnimatePresence>
-              <motion.div
-                className="certificates-grid"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                {filteredCertificates.map(certificate => (
-                  <motion.div
-                    key={certificate.id}
-                    className="certificate-card"
-                    onClick={() => openModal(certificate)}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    transition={{ duration: 0.3 }}
-                    whileHover={{
-                      y: -10,
-                      boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)'
-                    }}
-                  >
-                    <div className="certificate-image">
-                      <img src={certificate.image} alt={certificate.title} />
-                      <div className="certificate-badge">
-                        <span>{certificate.category}</span>
-                      </div>
-                    </div>
-                    
-                    <div className="certificate-content">
-                      <h3 className="certificate-title">{certificate.title}</h3>
-                      <div className="certificate-organization">
-                        <i className="fas fa-building"></i>
-                        <span>{certificate.organization}</span>
-                      </div>
-                      <div className="certificate-date">
-                        <i className="fas fa-calendar-alt"></i>
-                        <span>{certificate.dateIssued}</span>
-                      </div>
-                      <div className="certificate-view">
-                        <span>View Certificate</span>
-                        <i className="fas fa-external-link-alt"></i>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
-            
-            {filteredCertificates.length === 0 && (
-              <motion.div
-                className="no-certificates"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <i className="fas fa-search-minus"></i>
-                <h3>No certificates found</h3>
-                <p>Try adjusting your search criteria</p>
+        <header className="section-header">
+          <h2 className="section-title" id="certificates-title">{t.certificates.title}</h2>
+          <div className="underline" aria-hidden="true" />
+          <p className="section-subtitle">{t.certificates.subtitle}</p>
+        </header>
+
+        {!featured && (
+          <div className="certificates-controls">
+            <div className="filter-buttons" role="group" aria-label={labels.filters}>
+              {['all', ...categories].map((category) => (
                 <button
-                  className="reset-btn"
-                  onClick={() => {
-                    setSearchTerm('');
-                  }}
+                  key={category}
+                  type="button"
+                  className={`filter-btn ${filter === category ? 'active' : ''}`}
+                  onClick={() => setFilter(category)}
+                  aria-pressed={filter === category}
                 >
-                  Clear Search
+                  {category === 'all'
+                    ? labels.all
+                    : category.charAt(0).toUpperCase() + category.slice(1)}
                 </button>
-              </motion.div>
-            )}
-          </>
+              ))}
+            </div>
+
+            <label className="search-container">
+              <span className="sr-only">{t.certificates.searchPlaceholder}</span>
+              <input
+                type="search"
+                placeholder={t.certificates.searchPlaceholder}
+                value={searchTerm}
+                onChange={(event) => setSearchTerm(event.target.value)}
+                className="search-input"
+              />
+              <i className="fas fa-search search-icon" aria-hidden="true" />
+            </label>
+          </div>
         )}
-        
-        <div className="certificates-count">
-          Showing {filteredCertificates.length} of {certificatesData.filter(cert => cert.category === filter).length} certificates in {filter}
-        </div>
+
+        {visibleCertificates.length > 0 ? (
+          <motion.div
+            className="certificates-grid"
+            initial={shouldReduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            {visibleCertificates.map((certificate) => (
+              <motion.button
+                type="button"
+                key={certificate.id}
+                className="certificate-card"
+                onClick={() => setSelectedCertificate(certificate)}
+                whileHover={shouldReduceMotion ? undefined : { y: -6 }}
+                aria-label={`${labels.open}: ${certificate.title}`}
+              >
+                <span className="certificate-image">
+                  <img
+                    src={certificate.image}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span className="certificate-badge">{certificate.category}</span>
+                </span>
+                <span className="certificate-content">
+                  <span className="certificate-title">{certificate.title}</span>
+                  <span className="certificate-organization">
+                    <i className="fas fa-building" aria-hidden="true" />
+                    <span>{certificate.organization}</span>
+                  </span>
+                  <span className="certificate-date">
+                    <i className="fas fa-calendar-alt" aria-hidden="true" />
+                    <span>{certificate.dateIssued}</span>
+                  </span>
+                  <span className="certificate-view">
+                    <span>{labels.open}</span>
+                    <i className="fas fa-arrow-right" aria-hidden="true" />
+                  </span>
+                </span>
+              </motion.button>
+            ))}
+          </motion.div>
+        ) : (
+          <div className="no-certificates" role="status">
+            <i className="fas fa-search" aria-hidden="true" />
+            <h3>{labels.noResults}</h3>
+            <p>{labels.noResultsHint}</p>
+            <button type="button" className="reset-btn" onClick={() => setSearchTerm('')}>
+              {labels.clear}
+            </button>
+          </div>
+        )}
+
+        {!featured && (
+          <p className="certificates-count" aria-live="polite">
+            {labels.showing(visibleCertificates.length, certificatesData.length)}
+          </p>
+        )}
       </div>
-      
+
       <AnimatePresence>
-        {modalOpen && selectedCertificate && (
+        {selectedCertificate && (
           <CertificateModal
             certificate={selectedCertificate}
-            onClose={closeModal}
+            onClose={() => setSelectedCertificate(null)}
           />
         )}
       </AnimatePresence>
-    </section>
+    </Wrapper>
   );
 };
 

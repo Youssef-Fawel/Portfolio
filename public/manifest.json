@@ -1,6 +1,6 @@
 {
-  "short_name": "Youssef's Portfolio",
-  "name": "Youssef's Portfolio",
+  "short_name": "Youssef Fawel",
+  "name": "Youssef Fawel · Software Engineer",
   "icons": [
     {
       "src": "Logo.png",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#1e3c72",
   "background_color": "#ffffff"
 }

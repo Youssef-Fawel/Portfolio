@@ -1,128 +1,275 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { internshipsData } from '../assets/data/internshipsData';
 import '../styles/Internships.css';
 
+const uiCopy = {
+  en: {
+    introduction: 'A reverse-chronological view of the products, platforms and technical environments that shaped my professional journey.',
+    timelineLabel: 'Professional experience timeline',
+    latest: 'Latest experience',
+    period: 'Period',
+    workMode: 'Working mode',
+    technologies: 'Core technologies',
+    project: 'Project',
+    contributions: 'Key contributions',
+    additionalTechnologies: 'Additional technologies',
+    viewDetails: 'View contributions and full stack',
+    hideDetails: 'Hide details',
+    moreTechnology: 'more technology',
+    moreTechnologies: 'more technologies'
+  },
+  fr: {
+    introduction: 'Un parcours antéchronologique des produits, plateformes et environnements techniques qui ont façonné mon expérience professionnelle.',
+    timelineLabel: 'Chronologie de l’expérience professionnelle',
+    latest: 'Expérience la plus récente',
+    period: 'Période',
+    workMode: 'Mode de travail',
+    technologies: 'Technologies principales',
+    project: 'Projet',
+    contributions: 'Contributions clés',
+    additionalTechnologies: 'Technologies complémentaires',
+    viewDetails: 'Voir les contributions et la stack complète',
+    hideDetails: 'Masquer les détails',
+    moreTechnology: 'technologie supplémentaire',
+    moreTechnologies: 'technologies supplémentaires'
+  }
+};
+
+const getCompanyInitials = (company) =>
+  company
+    .split(/[\s-]+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word.charAt(0))
+    .join('')
+    .toUpperCase();
+
 const Internships = () => {
   const { language, t } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
+  const copy = uiCopy[language] || uiCopy.en;
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
+  const listVariants = {
+    hidden: {},
     visible: {
-      opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: shouldReduceMotion ? 0 : 0.09
       }
     }
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
+  const itemVariants = shouldReduceMotion
+    ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
+    : {
+        hidden: { opacity: 0, y: 24 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.48, ease: [0.22, 1, 0.36, 1] }
+        }
+      };
 
   return (
-    <section className="internships" id="internships">
-      <div className="max-width">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
+    <section className="internships" id="internships" aria-labelledby="experience-title">
+      <div className="experience-shell max-width">
+        <motion.header
+          className="experience-header"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="section-header"
+          transition={{ duration: shouldReduceMotion ? 0 : 0.45 }}
         >
-          <h2 className="title">{t.internships.title}</h2>
-          <p className="subtitle">{t.internships.subtitle}</p>
-        </motion.div>
+          <p className="experience-eyebrow">{t.internships.title}</p>
+          <h1 id="experience-title">{t.internships.subtitle}</h1>
+          <p className="experience-introduction">{copy.introduction}</p>
+        </motion.header>
 
-        <motion.div
-          className="timeline-wave-container"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+        <motion.ol
+          className="experience-timeline"
+          aria-label={copy.timelineLabel}
+          variants={listVariants}
+          initial={shouldReduceMotion ? false : 'hidden'}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.08 }}
         >
-          <svg className="wave-line" viewBox="0 0 1200 300" preserveAspectRatio="none">
-            <path
-              d="M0,150 Q200,50 400,150 T800,150 T1200,150"
-              fill="none"
-              stroke="url(#gradient)"
-              strokeWidth="3"
-            />
-            <defs>
-              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#4db5ff" />
-                <stop offset="50%" stopColor="#6a5acd" />
-                <stop offset="100%" stopColor="#4db5ff" />
-              </linearGradient>
-            </defs>
-          </svg>
+          {internshipsData.map((internship, index) => {
+            const localizedDate = internship.date[language] || internship.date.en;
+            const previewCount = internship.technologyPreviewCount || internship.technologies.length;
+            const visibleTechnologies = internship.technologies.slice(0, previewCount);
+            const additionalTechnologies = internship.technologies.slice(previewCount);
+            const contributions = internship.contributions?.[language] || [];
+            const hasDetails = contributions.length > 0 || additionalTechnologies.length > 0;
+            const titleId = `experience-${internship.id}-title`;
+            const detailsId = `experience-${internship.id}-details`;
 
-          <div className="timeline-items-wave">
-            {internshipsData.map((internship, index) => (
-              <motion.div
+            return (
+              <motion.li
+                className="experience-timeline-item"
                 key={internship.id}
-                className={`timeline-item-wave ${index % 2 === 0 ? 'top' : 'bottom'}`}
                 variants={itemVariants}
               >
-                <div className="timeline-dot-wave">
-                  <div className="dot-pulse"></div>
-                </div>
-                
-                <div className="timeline-card-wave">
-                  <div className="card-icon-wave">
-                    <i className="fas fa-briefcase"></i>
-                  </div>
-                  
-                  <div className="card-content-wave">
-                    <h3 className="position-title-wave">{internship.title[language]}</h3>
-                    <h4 className="company-name-wave">{internship.company}</h4>
-                    
-                    <div className="internship-meta-wave">
-                      <span className="internship-duration-wave">
-                        <i className="fas fa-calendar-alt"></i>
-                        {internship.duration}
-                      </span>
-                      <span className="internship-months-wave">
-                        <i className="fas fa-clock"></i>
-                        {internship.months} {internship.months > 1 ? t.internships.months : t.internships.month}
-                      </span>
-                    </div>
-                    
-                    <div className="location-info-wave">
-                      <i className="fas fa-map-marker-alt"></i>
-                      <span>{internship.location[language]}</span>
-                    </div>
-                    
-                    <p className="internship-description-wave">
-                      {internship.description[language]}
-                    </p>
-                    
-                    <div className="skills-list-wave">
-                      <div className="skills-label-wave">
-                        <i className="fas fa-code"></i>
-                        <span>{t.internships.skills}:</span>
-                      </div>
-                      <div className="skills-tags-wave">
-                        {internship.skills.map((skill, idx) => (
-                          <span key={idx} className="skill-tag-wave">
-                            {skill}
+                <span className="experience-timeline-marker" aria-hidden="true">
+                  <span>{index + 1}</span>
+                </span>
+
+                <article
+                  className={`experience-card${internship.featured ? ' experience-card--featured' : ''}`}
+                  aria-labelledby={titleId}
+                >
+                  <header className="experience-card-header">
+                    <div className="experience-heading-group">
+                      <div className="experience-company-row">
+                        <span className="experience-company">{internship.company}</span>
+                        <span className="experience-type">{internship.type[language]}</span>
+                        {internship.featured && (
+                          <span className="experience-latest">
+                            <i className="fas fa-star" aria-hidden="true" />
+                            {copy.latest}
                           </span>
-                        ))}
+                        )}
                       </div>
+                      <h2 id={titleId}>{internship.title[language]}</h2>
                     </div>
+
+                    <span className="experience-company-mark" aria-hidden="true">
+                      {getCompanyInitials(internship.company)}
+                    </span>
+                  </header>
+
+                  <ul className="experience-meta" aria-label={`${internship.company} — ${copy.period}`}>
+                    <li className="experience-meta-item experience-meta-item--period">
+                      <i className="far fa-calendar" aria-hidden="true" />
+                      <span className="experience-meta-copy">
+                        <span className="experience-meta-label">{copy.period}</span>
+                        <span className="experience-date-range" title={internship.numericPeriod}>
+                          <time dateTime={internship.date.start}>{localizedDate.startLabel}</time>
+                          {localizedDate.endLabel && (
+                            <>
+                              <span aria-hidden="true">–</span>
+                              <time dateTime={internship.date.end}>{localizedDate.endLabel}</time>
+                            </>
+                          )}
+                        </span>
+                      </span>
+                    </li>
+
+                    <li className="experience-meta-item">
+                      <i className="far fa-clock" aria-hidden="true" />
+                      <span className="experience-meta-copy">
+                        <span className="experience-meta-label">{t.internships.duration}</span>
+                        <span>{internship.duration[language]}</span>
+                      </span>
+                    </li>
+
+                    <li className="experience-meta-item experience-meta-item--location">
+                      <i className="fas fa-location-dot" aria-hidden="true" />
+                      <span className="experience-meta-copy">
+                        <span className="experience-meta-label">{t.internships.location}</span>
+                        <span>{internship.location[language]}</span>
+                      </span>
+                    </li>
+
+                    {internship.workMode && (
+                      <li className="experience-meta-item">
+                        <i className="fas fa-building" aria-hidden="true" />
+                        <span className="experience-meta-copy">
+                          <span className="experience-meta-label">{copy.workMode}</span>
+                          <span>{internship.workMode[language]}</span>
+                        </span>
+                      </li>
+                    )}
+                  </ul>
+
+                  {internship.project && (
+                    <div className="experience-project">
+                      <span className="experience-project-icon" aria-hidden="true">
+                        <i className="fas fa-diagram-project" />
+                      </span>
+                      <span>
+                        <span className="experience-project-label">{copy.project}</span>
+                        <strong>{internship.project.name}</strong>
+                        <small>{internship.project.context[language]}</small>
+                      </span>
+                    </div>
+                  )}
+
+                  {internship.image && (
+                    <figure className="experience-visual">
+                      <img
+                        src={internship.image}
+                        alt={internship.imageAlt?.[language] || `${internship.company} project preview`}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </figure>
+                  )}
+
+                  <p className="experience-description">{internship.description[language]}</p>
+
+                  <div className="experience-technologies">
+                    <h3>
+                      <i className="fas fa-code" aria-hidden="true" />
+                      {copy.technologies}
+                    </h3>
+                    <ul className="experience-tags" aria-label={copy.technologies}>
+                      {visibleTechnologies.map((technology) => (
+                        <li key={technology}>{technology}</li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+
+                  {hasDetails && (
+                    <details className="experience-details" id={detailsId}>
+                      <summary>
+                        <span className="experience-summary-label experience-summary-label--closed">
+                          <i className="fas fa-plus" aria-hidden="true" />
+                          {copy.viewDetails}
+                        </span>
+                        <span className="experience-summary-label experience-summary-label--open">
+                          <i className="fas fa-minus" aria-hidden="true" />
+                          {copy.hideDetails}
+                        </span>
+                        {additionalTechnologies.length > 0 && (
+                          <span className="experience-more-count">
+                            +{additionalTechnologies.length}{' '}
+                            {additionalTechnologies.length === 1
+                              ? copy.moreTechnology
+                              : copy.moreTechnologies}
+                          </span>
+                        )}
+                      </summary>
+
+                      <div className="experience-details-content">
+                        {contributions.length > 0 && (
+                          <section aria-labelledby={`${detailsId}-contributions`}>
+                            <h3 id={`${detailsId}-contributions`}>{copy.contributions}</h3>
+                            <ul className="experience-contributions">
+                              {contributions.map((contribution) => (
+                                <li key={contribution}>{contribution}</li>
+                              ))}
+                            </ul>
+                          </section>
+                        )}
+
+                        {additionalTechnologies.length > 0 && (
+                          <section aria-labelledby={`${detailsId}-technologies`}>
+                            <h3 id={`${detailsId}-technologies`}>{copy.additionalTechnologies}</h3>
+                            <ul className="experience-tags experience-tags--additional">
+                              {additionalTechnologies.map((technology) => (
+                                <li key={technology}>{technology}</li>
+                              ))}
+                            </ul>
+                          </section>
+                        )}
+                      </div>
+                    </details>
+                  )}
+                </article>
+              </motion.li>
+            );
+          })}
+        </motion.ol>
       </div>
     </section>
   );
